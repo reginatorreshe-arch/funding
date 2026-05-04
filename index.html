@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Fundación Estudiantil Christel House</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Icono -->
+    <link rel="icon" href="img/icon.webp">
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<!-- ================= HEADER / HERO ================= -->
+<header class="hero">
+    <div class="hero-content">
+        <h1>Fundación Estudiantil <span>Christel House</span></h1>
+        <p>Proyecto estudiantil enfocado en transformar vidas a través de la educación</p>
+        <a href="#donar" class="boton">Apoyar la causa</a>
+    </div>
+</header>
+
+<!-- ================= NAV ================= -->
+<nav class="navbar">
+    <a href="#nosotros">Nosotros</a>
+    <a href="#fundadora">Fundadora</a>
+    <a href="#transparencia">Transparencia</a>
+    <a href="#impacto">Impacto</a>
+    <a href="#testimonios">Testimonios</a>
+    <a href="#donar" class="nav-cta">Donar</a>
+</nav>
+
+<!-- ================= NOSOTROS ================= -->
+<section id="nosotros">
+    <h2>¿Quiénes Somos?</h2>
+    <div class="card">
+        <p>
+            Somos una fundación estudiantil creada con el objetivo de apoyar a estudiantes
+            de bajos recursos mediante donaciones, becas y equipos tecnológicos.
+        </p>
+    </div>
+</section>
+
+<!-- ================= FUNDADORA ================= -->
+<section id="fundadora" class="bg-light">
+  <h2>Sobre la Fundadora</h2>
+
+  <div class="card">
+    <div class="fundadora-contenido">
+      
+      <div class="texto">
+        <p>
+          Christel DeHaan fue una empresaria y filántropa que dedicó su vida a romper
+          el ciclo de la pobreza a través de la educación.
+        </p>
+        <p>
+          Su visión dio origen a Christel House, una institución que hoy representa
+          esperanza, equidad y oportunidades para miles de jóvenes.
+        </p>
+      </div>
+
+      <div class="imagen">
+        <img src="img/OIP.webp" alt="Christel DeHaan">
+      </div>
+
+    </div>
+  </div>
+</section>
+<!-- ================= TRANSPARENCIA ================= -->
+<section id="transparencia">
+    <h2>Transparencia de Recursos</h2>
+    <div class="card">
+        <table class="tabla-transparencia">
+            <thead>
+                <tr>
+                    <th>Recurso</th>
+                    <th>Uso</th>
+                    <th>%</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Útiles escolares</td>
+                    <td>Entrega directa</td>
+                    <td>40%</td>
+                </tr>
+                <tr>
+                    <td>Becas</td>
+                    <td>Apoyo económico</td>
+                    <td>35%</td>
+                </tr>
+                <tr>
+                    <td>Equipos tecnológicos</td>
+                    <td>Computadoras y tablets</td>
+                    <td>25%</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<!-- ================= GRAFICAS ================= -->
+<section id="graficas" class="bg-light">
+    <h2>Distribución de Donaciones</h2>
+    <div class="card">
+        <canvas id="graficaDonaciones"></canvas>
+    </div>
+</section>
+
+<!-- ================= IMPACTO ================= -->
+<section id="impacto">
+    <h2>Impacto Generado</h2>
+    <div class="impacto-grid">
+        <div class="impacto-card">♦<span>120+</span> Estudiantes</div>
+        <div class="impacto-card">♣<span>45</span> Equipos</div>
+        <div class="impacto-card">♠<span>30</span> Becas</div>
+    </div>
+</section>
+
+<!-- ================= TESTIMONIOS ================= -->
+<section id="testimonios" class="bg-light">
+    <h2>Testimonios</h2>
+
+    <div class="testimonio">
+        <p>“Gracias a esta beca pude continuar mis estudios sin preocupaciones.”</p>
+        <strong>Ana López</strong>
+    </div>
+
+    <div class="testimonio">
+        <p>“La transparencia me dio confianza para donar.”</p>
+        <strong>Carlos Martínez</strong>
+    </div>
+</section>
+
+<!-- ================= DONAR ================= -->
+<section id="donar" class="cta">
+    <p>Donar para transformar vidas.</p>
+    <link rel="stylesheet" href="https://alwayson.recaudia.com/christelhousefeenicia/donor">
+
+</a>
+     <button type="submit" class="boton grande"> DONAR</button>
+    </form>
+
+    <div id="mensajeExito" class="mensaje-exito">
+        <h3>¡Gracias por tu apoyo! ♥</h3>
+        <p id="detalleDonacion"></p>
+    </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+    <p>© 2026 Fundación Estudiantil Christel House | Proyecto Escolar</p>
+</footer>
+
+<!-- ================= SCRIPT ================= -->
+<script src="js/script.js"></script>
+<script src="js/donaciones.j"></script>
+
+</body>
+</html>
