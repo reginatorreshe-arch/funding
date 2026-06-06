@@ -16,15 +16,15 @@
        VARIABLES Y RESET
     ============================================================ */
     :root {
-      --verde:      #1a6b45;   /* color principal — esperanza */
-      --verde-claro:#2e9e68;
-      --dorado:     #e8a520;   /* acento cálido */
-      --crema:      #fdf7ef;   /* fondo general */
-      --oscuro:     #12211a;   /* texto principal */
-      --gris:       #6b7c74;
+      --verde:      #1B3A6B;   /* azul institucional Christel House */
+      --verde-claro:#2a5298;   /* azul medio */
+      --dorado:     #F26522;   /* naranja Christel House */
+      --crema:      #f5f7fa;   /* fondo general suave */
+      --oscuro:     #0f1f3d;   /* texto principal — azul muy oscuro */
+      --gris:       #5a6a80;
       --blanco:     #ffffff;
       --radio:      14px;
-      --sombra:     0 8px 32px rgba(26,107,69,.12);
+      --sombra:     0 8px 32px rgba(27,58,107,.13);
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -45,9 +45,9 @@
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       display: flex; align-items: center; justify-content: space-between;
       padding: 18px 6vw;
-      background: rgba(253,247,239,.88);
+      background: rgba(245,247,250,.92);
       backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(26,107,69,.1);
+      border-bottom: 1px solid rgba(27,58,107,.12);
     }
 
     .nav-logo {
@@ -86,8 +86,8 @@
       display: flex; align-items: center;
       padding: 120px 6vw 80px;
       background:
-        radial-gradient(ellipse 80% 60% at 70% 50%, rgba(46,158,104,.18) 0%, transparent 70%),
-        radial-gradient(ellipse 50% 50% at 20% 80%, rgba(232,165,32,.12) 0%, transparent 60%),
+        radial-gradient(ellipse 80% 60% at 70% 50%, rgba(42,82,152,.15) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 50% at 20% 80%, rgba(242,101,34,.10) 0%, transparent 60%),
         var(--crema);
       position: relative; overflow: hidden;
     }
@@ -99,7 +99,7 @@
       transform: translateY(-50%);
       width: 640px; height: 640px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(46,158,104,.15), transparent 70%);
+      background: radial-gradient(circle, rgba(42,82,152,.13), transparent 70%);
       pointer-events: none;
     }
 
@@ -107,7 +107,7 @@
 
     .hero-badge {
       display: inline-flex; align-items: center; gap: 8px;
-      background: rgba(26,107,69,.1); color: var(--verde);
+      background: rgba(27,58,107,.1); color: var(--verde);
       font-size: .78rem; font-weight: 600; letter-spacing: .05em;
       text-transform: uppercase; padding: 6px 14px; border-radius: 50px;
       margin-bottom: 24px;
@@ -148,25 +148,25 @@
       padding: 14px 32px; border-radius: 50px;
       font-weight: 600; font-size: .95rem;
       text-decoration: none;
-      box-shadow: 0 4px 20px rgba(26,107,69,.35);
+      box-shadow: 0 4px 20px rgba(27,58,107,.35);
       transition: background .2s, transform .15s, box-shadow .2s;
     }
     .btn-primary:hover {
       background: var(--verde-claro);
       transform: translateY(-2px);
-      box-shadow: 0 8px 28px rgba(26,107,69,.4);
+      box-shadow: 0 8px 28px rgba(27,58,107,.4);
     }
 
     /* Botón secundario (outline) */
     .btn-secondary {
       display: inline-flex; align-items: center; gap: 8px;
-      border: 2px solid rgba(26,107,69,.3); color: var(--verde);
+      border: 2px solid rgba(27,58,107,.3); color: var(--verde);
       padding: 13px 28px; border-radius: 50px;
       font-weight: 600; font-size: .95rem;
       text-decoration: none;
       transition: border-color .2s, background .2s;
     }
-    .btn-secondary:hover { border-color: var(--verde); background: rgba(26,107,69,.05); }
+    .btn-secondary:hover { border-color: var(--verde); background: rgba(27,58,107,.05); }
 
     /* ============================================================
        STATS RÁPIDAS (debajo del hero)
@@ -198,7 +198,7 @@
        SECCIONES GENÉRICAS
     ============================================================ */
     section { padding: 90px 6vw; }
-    .bg-alt { background: #f2ede5; }
+    .bg-alt { background: #edf1f8; }
 
     h2.section-title {
       font-family: 'Playfair Display', serif;
@@ -282,7 +282,7 @@
     .barra-header span:first-child { font-weight: 600; font-size: .92rem; }
     .barra-header span:last-child { color: var(--verde); font-weight: 700; }
     .barra-track {
-      height: 8px; background: rgba(26,107,69,.12);
+      height: 8px; background: rgba(27,58,107,.12);
       border-radius: 99px; overflow: hidden;
     }
     .barra-fill {
@@ -325,7 +325,7 @@
     .impacto-card.visible {
       opacity: 1; transform: translateY(0);
     }
-    .impacto-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(26,107,69,.18); }
+    .impacto-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(27,58,107,.18); }
 
     .impacto-icon { font-size: 2.2rem; margin-bottom: 12px; }
     .impacto-num {
@@ -353,7 +353,7 @@
       content: '"';
       font-family: 'Playfair Display', serif;
       font-size: 5rem; line-height: 1;
-      color: rgba(26,107,69,.12);
+      color: rgba(27,58,107,.12);
       position: absolute; top: 8px; left: 24px;
       pointer-events: none;
     }
@@ -364,7 +364,7 @@
        DONAR — sección principal
     ============================================================ */
     #donar {
-      background: linear-gradient(135deg, var(--oscuro) 0%, #1f3d2c 100%);
+      background: linear-gradient(135deg, #0f1f3d 0%, #1B3A6B 100%);
       color: var(--blanco);
       text-align: center;
     }
@@ -438,12 +438,12 @@
       cursor: pointer;
       margin-top: 8px;
       transition: background .2s, transform .15s, box-shadow .2s;
-      box-shadow: 0 4px 20px rgba(232,165,32,.4);
+      box-shadow: 0 4px 20px rgba(242,101,34,.4);
     }
     .btn-donar:hover {
-      background: #f2b82a;
+      background: #f47a3a;
       transform: translateY(-2px);
-      box-shadow: 0 8px 28px rgba(232,165,32,.5);
+      box-shadow: 0 8px 28px rgba(242,101,34,.5);
     }
 
     /* Mensaje de éxito */
@@ -474,6 +474,66 @@
       color: rgba(255,255,255,.4);
       font-size: .78rem;
       display: flex; align-items: center; justify-content: center; gap: 6px;
+    }
+
+    /* ============================================================
+       TABLA EQUIVALENCIAS
+    ============================================================ */
+    .equiv-wrap {
+      max-width: 720px;
+      margin: 0 auto 40px;
+    }
+    .equiv-titulo {
+      font-size: .78rem;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.45);
+      margin-bottom: 14px;
+    }
+    .equiv-tabla {
+      width: 100%;
+      border-collapse: collapse;
+      border-radius: 14px;
+      overflow: hidden;
+      font-size: .9rem;
+    }
+    .equiv-tabla thead tr {
+      background: var(--dorado);
+      color: var(--oscuro);
+    }
+    .equiv-tabla thead th {
+      padding: 14px 18px;
+      text-align: center;
+      font-weight: 700;
+      font-size: .8rem;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+    }
+    .equiv-tabla tbody tr {
+      background: rgba(255,255,255,.06);
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      transition: background .2s;
+    }
+    .equiv-tabla tbody tr:hover {
+      background: rgba(255,255,255,.11);
+    }
+    .equiv-tabla tbody td {
+      padding: 13px 18px;
+      text-align: center;
+      color: rgba(255,255,255,.85);
+    }
+    .equiv-monto {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--dorado) !important;
+    }
+    .equiv-row-highlight {
+      background: rgba(242,101,34,.12) !important;
+    }
+    .equiv-row-highlight .equiv-monto {
+      font-size: 1.2rem;
     }
 
     /* ============================================================
@@ -523,8 +583,6 @@
   <ul class="nav-links">
     <li><a href="#nosotros">Nosotros</a></li>
     <li><a href="#fundadora">Fundadora</a></li>
-    <li><a href="#transparencia">Transparencia</a></li>
-    <li><a href="#impacto">Impacto</a></li>
     <li><a href="#testimonios">Testimonios</a></li>
     <li><a href="#donar" class="btn-nav">Donar ahora</a></li>
   </ul>
@@ -560,24 +618,7 @@
   </div>
 </header>
 
-<!-- ======================================================
-     STATS BAR
-====================================================== -->
-<div class="stats-bar">
-  <!-- Cada stat-item se anima al entrar al viewport (IntersectionObserver) -->
-  <div class="stat-item">
-    <div class="stat-num">120+</div>
-    <div class="stat-label">Estudiantes apoyados</div>
-  </div>
-  <div class="stat-item">
-    <div class="stat-num">45</div>
-    <div class="stat-label">Equipos donados</div>
-  </div>
-  <div class="stat-item">
-    <div class="stat-num">30</div>
-    <div class="stat-label">Becas otorgadas</div>
-  </div>
-</div>
+
 
 <!-- ======================================================
      NOSOTROS
@@ -638,89 +679,9 @@
   </div>
 </section>
 
-<!-- ======================================================
-     TRANSPARENCIA
-====================================================== -->
-<section id="transparencia">
-  <h2 class="section-title">Transparencia de Recursos</h2>
-  <p class="section-sub">Así distribuimos cada donación recibida.</p>
 
-  <div class="trans-grid">
 
-    <!-- Barras de progreso animadas -->
-    <div>
-      <!-- Útiles escolares: 40% -->
-      <div class="barra-item">
-        <div class="barra-header">
-          <span>Útiles escolares</span>
-          <span>40%</span>
-        </div>
-        <div class="barra-track">
-          <div class="barra-fill" data-ancho="40"></div>
-        </div>
-      </div>
 
-      <!-- Becas: 35% -->
-      <div class="barra-item">
-        <div class="barra-header">
-          <span>Becas académicas</span>
-          <span>35%</span>
-        </div>
-        <div class="barra-track">
-          <div class="barra-fill" data-ancho="35"></div>
-        </div>
-      </div>
-
-      <!-- Tecnología: 25% -->
-      <div class="barra-item">
-        <div class="barra-header">
-          <span>Equipos tecnológicos</span>
-          <span>25%</span>
-        </div>
-        <div class="barra-track">
-          <div class="barra-fill" data-ancho="25"></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Gráfica donut -->
-    <div class="chart-wrap">
-      <canvas id="graficaDonaciones"></canvas>
-    </div>
-
-  </div>
-</section>
-
-<!-- ======================================================
-     IMPACTO
-====================================================== -->
-<section id="impacto" class="bg-alt">
-  <h2 class="section-title" style="text-align:center;">Impacto Generado</h2>
-  <p class="section-sub" style="text-align:center; margin:0 auto 48px;">Números reales que representan historias de cambio.</p>
-
-  <div class="impacto-grid">
-    <!-- Tarjeta 1 -->
-    <div class="impacto-card">
-      <div class="impacto-icon">🎓</div>
-      <div class="impacto-num">120+</div>
-      <div class="impacto-label">Estudiantes apoyados</div>
-    </div>
-
-    <!-- Tarjeta 2 -->
-    <div class="impacto-card">
-      <div class="impacto-icon">💻</div>
-      <div class="impacto-num">45</div>
-      <div class="impacto-label">Equipos entregados</div>
-    </div>
-
-    <!-- Tarjeta 3 -->
-    <div class="impacto-card">
-      <div class="impacto-icon">📚</div>
-      <div class="impacto-num">30</div>
-      <div class="impacto-label">Becas otorgadas</div>
-    </div>
-  </div>
-</section>
 
 <!-- ======================================================
      TESTIMONIOS
@@ -749,15 +710,68 @@
 ====================================================== -->
 <section id="donar">
   <h2 class="section-title">Haz tu donación</h2>
-  <p class="section-sub">Elige un monto o escribe el tuyo. Cada peso cuenta.</p>
+  <p class="section-sub">Con tu apoyo, transformamos la vida de un niño. Conoce lo que cada monto representa.</p>
 
-  <!-- Montos rápidos (estilo Patreon / Donadora) -->
+  <!-- Tabla de equivalencias -->
+  <div class="equiv-wrap">
+    <p class="equiv-titulo">Equivalencias por alumno</p>
+    <table class="equiv-tabla">
+      <thead>
+        <tr>
+          <th>Equivalencias por alumno</th>
+          <th>Programa</th>
+          <th>Periodo</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="equiv-monto">$200</td>
+          <td>Salud Física y Preventiva</td>
+          <td>Mensual</td>
+        </tr>
+        <tr>
+          <td class="equiv-monto">$485</td>
+          <td>Programa de Alto Nivel de Inglés</td>
+          <td>Mensual</td>
+        </tr>
+        <tr>
+          <td class="equiv-monto">$600</td>
+          <td>Uniforme</td>
+          <td>Anual</td>
+        </tr>
+        <tr>
+          <td class="equiv-monto">$750</td>
+          <td>Apoyo Psicológico</td>
+          <td>Mensual</td>
+        </tr>
+        <tr>
+          <td class="equiv-monto">$1,000</td>
+          <td>Nutrición</td>
+          <td>Mensual</td>
+        </tr>
+        <tr>
+          <td class="equiv-monto">$1,280</td>
+          <td>Preparación en Tecnología</td>
+          <td>Anual</td>
+        </tr>
+        <tr class="equiv-row-highlight">
+          <td class="equiv-monto">$8,560</td>
+          <td>Programa Integral</td>
+          <td>Mensual</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Montos rápidos actualizados con los valores reales -->
   <div class="montos-rapidos">
-    <button class="monto-btn" data-monto="50">$50</button>
-    <button class="monto-btn" data-monto="100">$100</button>
-    <button class="monto-btn activo" data-monto="250">$250</button>
-    <button class="monto-btn" data-monto="500">$500</button>
+    <button class="monto-btn" data-monto="200">$200</button>
+    <button class="monto-btn" data-monto="485">$485</button>
+    <button class="monto-btn" data-monto="600">$600</button>
+    <button class="monto-btn" data-monto="750">$750</button>
     <button class="monto-btn" data-monto="1000">$1,000</button>
+    <button class="monto-btn activo" data-monto="1280">$1,280</button>
+    <button class="monto-btn" data-monto="8560">$8,560</button>
   </div>
 
   <!--
@@ -826,7 +840,7 @@
       labels: ['Útiles escolares', 'Becas', 'Tecnología'],
       datasets: [{
         data: [40, 35, 25],
-        backgroundColor: ['#1a6b45', '#2e9e68', '#e8a520'],
+        backgroundColor: ['#1B3A6B', '#2a5298', '#F26522'],
         borderWidth: 0,
         hoverOffset: 10
       }]
