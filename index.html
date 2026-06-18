@@ -431,8 +431,13 @@
       <p>Somos una comunidad comprometida con brindar oportunidades educativas, acompañamiento y herramientas para que cada estudiante alcance su máximo potencial y construya un mejor futuro.</p>
       <p>Creemos que ningún estudiante debe abandonar sus estudios por falta de recursos. Por eso trabajamos de manera transparente para que cada peso donado llegue directamente a quienes más lo necesitan.</p>
     </div>
+    <div class="nosotros-visual">
+      <!-- Corregido: Se añade el elemento canvas que el script requiere -->
+      <canvas id="graficaDonaciones" style="max-height: 260px; width: 100%;"></canvas>
+    </div>
+  </div>
+</section>
   
-    
 <section id="fundadora" class="bg-alt">
   <div class="fundadora-grid">
     <div class="fundadora-img-wrap">
@@ -442,7 +447,7 @@
       <h2 class="section-title">Sobre la Fundadora</h2>
       <blockquote class="fundadora-quote">"La educación es el camino más poderoso para romper el ciclo de la pobreza."</blockquote>
       <p><strong>Christel DeHaan</strong> fue una empresaria y filántropa que dedicó su vida a generar oportunidades reales para jóvenes en situación vulnerable.</p>
-      <p>Su visión dio origen a Christel House, una institución que hoy representa esperanza, equidad y futuro para miles de estudiantes alrededor del mundo.</p>
+      <p>Su visión dio origen a Christel House, una institution que hoy representa esperanza, equidad y futuro para miles de estudiantes alrededor del mundo.</p>
     </div>
   </div>
 </section>
@@ -452,12 +457,12 @@
   <p class="section-sub" style="text-align:center; margin: 0 auto 48px;">Lo que dicen quienes han vivido el cambio.</p>
   <div class="testimonios-grid">
     <div class="testimonio-card">
-      <p>"Cristel House me ha enseñado que los sueños sí se pueden alcanzar con esfuerzo y apoyo. Aquí he encontrado personas que creen en mí y me motivan a seguir creciendo cada día.."</p>
-      <strong>— Regina Torres,Alumna.</strong>
+      <p>"Cristel House me ha enseñado que los sueños sí se pueden alcanzar con esfuerzo y apoyo. Aquí he encontrado personas que creen en mí y me motivan a seguir creciendo cada día."</p>
+      <strong>— Regina Torres, Alumna.</strong>
     </div>
     <div class="testimonio-card">
-      <p>"He visto cómo los estudiantes apoyados por Christel House desarrollan confianza,compromiso y liderazgo.El impcto de este programa va más allá de lo académico ;transforma vidas y abre nuevas oportunidades para el futuro ."</p>
-      <strong>— Armando Yáñez, Docente. </strong>
+      <p>"He visto cómo los estudiantes apoyados por Christel House desarrollan confianza, compromiso y liderazgo. El impacto de este programa va más allá de lo académico; transforma vidas y abre nuevas oportunidades para el futuro."</p>
+      <strong>— Armando Yáñez, Docente.</strong>
     </div>
   </div>
 </section>
@@ -553,7 +558,7 @@
         <div class="form-group">
           <label for="edad">Edad</label>
           <input type="number" id="edad" placeholder="Ej. 32" min="18" max="99" autocomplete="off">
-          <p class="error-msg">18–99 años</p>
+          <p class="error-msg">18–99 años requerido</p>
         </div>
         <div class="form-group">
           <label for="sexo">Sexo</label>
@@ -607,7 +612,7 @@
       <p style="font-size:.82rem; color:rgba(255,255,255,.45); text-transform:uppercase; letter-spacing:.06em; margin-bottom:16px;">Resumen de tu donación</p>
 
       <div class="resumen-box" id="resumenBox">
-        </div>
+      </div>
 
       <div class="check-group">
         <input type="checkbox" id="avisoPrivacidad">
@@ -671,7 +676,7 @@
           labels: ['Útiles Escolares', 'Becas de Estudio', 'Tecnología'],
           datasets: [{
             data: [40, 35, 25],
-            backgroundColor: ['#2a5298', '#1B3A6B', '#F26522'], // Sincronizado con variables CSS
+            backgroundColor: ['#2a5298', '#1B3A6B', '#F26522'], 
             hoverOffset: 8,
             borderWidth: 0
           }]
@@ -738,96 +743,101 @@
       impactoBadge.innerHTML = getImpacto(val);
     });
 
-    // Función de ayuda para cambiar de panel
+    // Corregido y completado: Función para alternar de paneles con estilos visuales correctos
     function goToStep(stepIndex) {
       panels.forEach((p, idx) => {
         if (idx === stepIndex) {
           p.classList.add('active');
           tabs[idx].classList.add('active');
+          tabs[idx].classList.remove('done');
         } else {
           p.classList.remove('active');
           tabs[idx].classList.remove('active');
-        }
-        if (idx < stepIndex) {
-          tabs[idx].classList.add('done');
-        } else {
-          tabs[idx].classList.remove('done');
+          if (idx < stepIndex) {
+            tabs[idx].classList.add('done');
+          } else {
+            tabs[idx].classList.remove('done');
+          }
         }
       });
     }
 
-    // Navegación: Paso 1 a Paso 2
+    // Eventos de Navegación Simple
     next1.addEventListener('click', () => {
       if (state.monto <= 0) {
-        alert('Por favor, ingresa un monto de donación válido.');
+        alert('Por favor ingresa un monto de donación válido.');
         return;
       }
       goToStep(1);
     });
 
-    // Navegación: Regresar al Paso 1
-    back2.addEventListener('click', () => {
-      goToStep(0);
-    });
+    back2.addEventListener('click', () => goToStep(0));
+    back3.addEventListener('click', () => goToStep(1));
 
-    // Navegación: Paso 2 a Paso 3 (Validación de Formulario)
+    // Validación exhaustiva del Paso 2
     next2.addEventListener('click', () => {
-      let isValid = true;
-      
-      const nombre = document.getElementById('nombre');
-      const apellido = document.getElementById('apellido');
-      const correo = document.getElementById('correo');
-      const edad = document.getElementById('edad');
-      const sexo = document.getElementById('sexo');
-      const pais = document.getElementById('pais');
-      
-      function validateField(el, condition) {
-        if (condition) {
-          el.closest('.form-group').classList.remove('has-error');
+      let isFormValid = true;
+      const inputsRequeridos = ['nombre', 'apellido', 'sexo', 'pais'];
+
+      inputsRequeridos.forEach(id => {
+        const input = document.getElementById(id);
+        const group = input.closest('.form-group');
+        if (!input.value.trim()) {
+          group.classList.add('has-error');
+          isFormValid = false;
         } else {
-          el.closest('.form-group').classList.add('has-error');
-          isValid = false;
+          group.classList.remove('has-error');
         }
+      });
+
+      // Validar Email
+      const correo = document.getElementById('correo');
+      const correoGroup = correo.closest('.form-group');
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(correo.value.trim())) {
+        correoGroup.classList.add('has-error');
+        isFormValid = false;
+      } else {
+        correoGroup.classList.remove('has-error');
       }
 
-      validateField(nombre, nombre.value.trim() !== '');
-      validateField(apellido, apellido.value.trim() !== '');
-      
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      validateField(correo, emailRegex.test(correo.value.trim()));
-      
+      // Validar Edad
+      const edad = document.getElementById('edad');
+      const edadGroup = edad.closest('.form-group');
       const edadVal = parseInt(edad.value);
-      validateField(edad, !isNaN(edadVal) && edadVal >= 18 && edadVal <= 99);
-      
-      validateField(sexo, sexo.value !== '');
-      validateField(pais, pais.value !== '');
+      if (isNaN(edadVal) || edadVal < 18 || edadVal > 99) {
+        edadGroup.classList.add('has-error');
+        isFormValid = false;
+      } else {
+        edadGroup.classList.remove('has-error');
+      }
 
-      if (!isValid) return;
+      if (!isFormValid) return;
 
-      // Generar el contenido del resumen en el Paso 3
-      const freqText = state.frecuencia === 'una-vez' ? 'Una vez' : (state.frecuencia === 'mensual' ? 'Mensual' : 'Anual');
+      // Generación dinámica del resumen en el paso 3
+      const nombreCompleto = `${document.getElementById('nombre').value.trim()} ${document.getElementById('apellido').value.trim()}`;
+      let freqLabel = 'Una sola vez';
+      if (state.frecuencia === 'mensual') freqLabel = 'Mensual';
+      if (state.frecuencia === 'anual') freqLabel = 'Anual';
+
       resumenBox.innerHTML = `
-        <div class="resumen-row"><span>Donante:</span> <strong>${nombre.value} ${apellido.value}</strong></div>
-        <div class="resumen-row"><span>Frecuencia:</span> <strong>${freqText}</strong></div>
-        <div class="resumen-row resumen-total"><span>Total a apoyar:</span> <strong>$${state.monto.toLocaleString()} MXN</strong></div>
+        <div class="resumen-row"><span>Donante:</span><strong>${nombreCompleto}</strong></div>
+        <div class="resumen-row"><span>Frecuencia:</span><strong>${freqLabel}</strong></div>
+        <div class="resumen-row resumen-total"><span>Total a apoyar:</span><strong>$${state.monto.toLocaleString('es-MX')} MXN</strong></div>
       `;
 
       goToStep(2);
     });
 
-    // Navegación: Regresar al Paso 2
-    back3.addEventListener('click', () => {
-      goToStep(1);
-    });
-
-    // Confirmación Final (Paso 3)
+    // Procesamiento final del widget
     btnConfirmar.addEventListener('click', () => {
       const aviso = document.getElementById('avisoPrivacidad');
       if (!aviso.checked) {
-        alert('Debes aceptar el aviso de privacidad para guardar los datos.');
+        alert('Es necesario aceptar el aviso de privacidad para continuar con el proyecto escolar.');
         return;
       }
-      alert('¡Muchisimas gracias por tu apoyo simulado! Tus datos se han procesado correctamente para el proyecto escolar.');
+
+      alert('¡Datos registrados de forma segura!\nRedirigiendo a la simulación de pasarela de pagos escolar.');
     });
   });
 </script>
