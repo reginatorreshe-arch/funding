@@ -137,7 +137,7 @@
     }
     .section-sub { color: var(--gris); font-size: .95rem; max-width: 520px; line-height: 1.6; margin-bottom: 48px; }
 
-    /* ── NOSOTROS (Optimizado sin gráfica) ── */
+    /* ── NOSOTROS ── */
     .nosotros-container { max-width: 760px; margin: 0 auto; text-align: center; }
     .nosotros-container p { color: var(--gris); line-height: 1.8; font-size: .97rem; margin-bottom: 16px; text-align: left; }
     .nosotros-container .section-sub { text-align: center; margin-left: auto; margin-right: auto; }
@@ -165,7 +165,6 @@
       position: absolute; top: 8px; left: 24px; pointer-events: none;
     }
     .testimonio-card p { font-size: .97rem; color: var(--oscuro); line-height: 1.7; font-style: italic; margin-bottom: 20px; }
-    .testimonio-card strong { color: var(--verde); font-size: .88rem; }
 
     /* ── SECCIÓN DONAR ── */
     #donar {
@@ -335,7 +334,7 @@
     }
     .check-group a { color: var(--dorado); text-decoration: underline; }
 
-    /* Botones de navegación entre pasos */
+    /* Botones de navegación */
     .btn-step-next,
     .btn-step-back {
       display: inline-flex; align-items: center; gap: 8px;
@@ -434,7 +433,7 @@
     <div class="fundadora-text">
       <h2 class="section-title">Sobre la Fundadora</h2>
       <blockquote class="fundadora-quote">"La educación es el camino más poderoso para romper el ciclo de la pobreza."</blockquote>
-      <p><strong>Christel DeHaan</strong> fue una empresaria  que dedicó su vida a generar oportunidades reales para jóvenes en situación vulnerable.</p>
+      <p><strong>Christel DeHaan</strong> fue una empresaria que dedicó su vida a generar oportunidades reales para jóvenes en situación vulnerable.</p>
       <p>Su visión dio origen a Christel House, una institución que hoy representa esperanza, equidad y futuro para miles de estudiantes alrededor del mundo Sobre nuestra misión “La educación puede cambiar una vida, pero una oportunidad puede cambiar generaciones.” Miles de estudiantes tienen sueños enormes, pero muchos enfrentan obstáculos que parecen imposibles de superar. En Cristel House México trabajamos para que ningún joven abandone sus metas por falta de recursos. Cada apoyo recibido representa una nueva oportunidad para aprender, crecer y construir un futuro mejor. Cuando donas, no solo ayudas a un estudiante; te conviertes en parte de su historia de éxito. Juntos podemos transformar desafíos en oportunidades y esperanza en realidad..</p>
     </div>
   </div>
@@ -446,11 +445,11 @@
   <div class="testimonios-grid">
     <div class="testimonio-card">
       <p>"Cristel House me ha enseñado que los sueños sí se pueden alcanzar con esfuerzo y apoyo. Aquí he encontrado personas que creen en mí y me motivan a seguir creciendo cada día."</p>
-      <strong>— Regina Torres, Alumna.</strong>
+      <strong style="color: var(--verde); font-size: .88rem;">— Regina Torres, Alumna.</strong>
     </div>
     <div class="testimonio-card">
       <p>"He visto cómo los estudiantes apoyados por Christel House desarrollan confianza, compromiso y liderazgo. El impacto de este programa va más allá de lo académico; transforma vidas y abre nuevas oportunidades para el futuro."</p>
-      <strong>— Armando Yáñez, Docente.</strong>
+      <strong style="color: var(--verde); font-size: .88rem;">— Armando Yáñez, Docente.</strong>
     </div>
   </div>
 </section>
@@ -633,171 +632,4 @@
 
   /* ─────────────────────────────────────────
      Mapa de impacto dinámico por monto
-  ───────────────────────────────────────── */
-  const impactoMap = [
-    { min: 1,    max: 199,   txt: 'Cada peso cuenta. Tu donación apoya materiales escolares.' },
-    { min: 200,  max: 484,   txt: '<strong>$200</strong> cubre un mes de <em>Salud Física y Preventiva</em> para un alumno.' },
-    { min: 485,  max: 599,   txt: '<strong>$485</strong> financia un mes del <em>Programa de Inglés</em> de alto nivel.' },
-    { min: 600,  max: 749,   txt: '<strong>$600</strong> costea el <em>uniforme completo</em> de un estudiante por el año.' },
-    { min: 750,  max: 999,   txt: '<strong>$750</strong> paga un mes de <em>Apoyo Psicológico</em> para un joven.' },
-    { min: 1000, max: 1279,  txt: '<strong>$1,000</strong> cubre la <em>nutrición</em> de un alumno durante un mes.' },
-    { min: 1280, max: 8559,  txt: '<strong>$1,280</strong> incluye un año de <em>Preparación en Tecnología</em>.' },
-    { min: 8560, max: Infinity, txt: '🌟 <strong>$8,560</strong> financia el <em>Programa Integral</em> completo de un alumno por un mes.' },
-  ];
-
-  function getImpacto(monto) {
-    const hit = impactoMap.find(r => monto >= r.min && monto <= r.max);
-    return hit ? `💡 ${hit.txt}` : '💡 Tu donación hace la diferencia.';
-  }
-
-  /* ─────────────────────────────────────────
-     Lógica y Control del Flujo del Widget
-  ───────────────────────────────────────── */
-  document.addEventListener('DOMContentLoaded', () => {
-    
-    const freqBtns = document.querySelectorAll('.freq-btn');
-    const montoBtns = document.querySelectorAll('.monto-btn');
-    const montoInput = document.getElementById('montoInput');
-    const impactoBadge = document.getElementById('impactoBadge');
-    
-    const panels = [document.getElementById('panel1'), document.getElementById('panel2'), document.getElementById('panel3')];
-    const tabs = [document.getElementById('tab1'), document.getElementById('tab2'), document.getElementById('tab3')];
-    
-    const next1 = document.getElementById('next1');
-    const next2 = document.getElementById('next2');
-    const back2 = document.getElementById('back2');
-    const back3 = document.getElementById('back3');
-    const btnConfirmar = document.getElementById('btnConfirmar');
-    const resumenBox = document.getElementById('resumenBox');
-
-    // 1. Manejo de Frecuencia
-    freqBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        freqBtns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        state.frecuencia = btn.dataset.freq;
-      });
-    });
-
-    // 2. Control de montos fijos
-    montoBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        montoBtns.forEach(b => b.classList.remove('activo'));
-        btn.classList.add('activo');
-        state.monto = parseInt(btn.dataset.monto);
-        montoInput.value = state.monto;
-        impactoBadge.innerHTML = getImpacto(state.monto);
-      });
-    });
-
-    // 3. Control de monto personalizado
-    montoInput.addEventListener('input', () => {
-      montoBtns.forEach(b => b.classList.remove('activo'));
-      const val = parseInt(montoInput.value) || 0;
-      state.monto = val;
-      impactoBadge.innerHTML = getImpacto(val);
-    });
-
-    // Cambiar de paneles
-    function goToStep(stepIndex) {
-      panels.forEach((p, idx) => {
-        if (idx === stepIndex) {
-          p.classList.add('active');
-          tabs[idx].classList.add('active');
-          tabs[idx].classList.remove('done');
-        } else {
-          p.classList.remove('active');
-          tabs[idx].classList.remove('active');
-          if (idx < stepIndex) {
-            tabs[idx].classList.add('done');
-          } else {
-            tabs[idx].classList.remove('done');
-          }
-        }
-      });
-    }
-
-    // Eventos de Navegación
-    next1.addEventListener('click', () => {
-      if (state.monto <= 0) {
-        alert('Por favor ingresa un monto de donación válido.');
-        return;
-      }
-      goToStep(1);
-    });
-
-    back2.addEventListener('click', () => goToStep(0));
-    back3.addEventListener('click', () => goToStep(1));
-
-    // Validación del Paso 2
-    next2.addEventListener('click', () => {
-      let isFormValid = true;
-      const inputsRequeridos = ['nombre', 'apellido', 'sexo', 'pais'];
-
-      inputsRequeridos.forEach(id => {
-        const input = document.getElementById(id);
-        const group = input.closest('.form-group');
-        if (!input.value.trim()) {
-          group.classList.add('has-error');
-          isFormValid = false;
-        } else {
-          group.classList.remove('has-error');
-        }
-      });
-
-      // Validar Email
-      const correo = document.getElementById('correo');
-      const correoGroup = correo.closest('.form-group');
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(correo.value.trim())) {
-        correoGroup.classList.add('has-error');
-        isFormValid = false;
-      } else {
-        correoGroup.classList.remove('has-error');
-      }
-
-      // Validar Edad
-      const edad = document.getElementById('edad');
-      const edadGroup = edad.closest('.form-group');
-      const edadVal = parseInt(edad.value);
-      if (isNaN(edadVal) || edadVal < 18 || edadVal > 99) {
-        edadGroup.classList.add('has-error');
-        isFormValid = false;
-      } else {
-        edadGroup.classList.remove('has-error');
-      }
-
-      if (!isFormValid) return;
-
-      // Generación del resumen
-      const nombreCompleto = `${document.getElementById('nombre').value.trim()} ${document.getElementById('apellido').value.trim()}`;
-      let freqLabel = 'Una sola vez';
-      if (state.frecuencia === 'mensual') freqLabel = 'Mensual';
-      if (state.frecuencia === 'anual') freqLabel = 'Anual';
-
-      resumenBox.innerHTML = `
-        <div class="resumen-row"><span>Donante:</span><strong>${nombreCompleto}</strong></div>
-        <div class="resumen-row"><span>Frecuencia:</span><strong>${freqLabel}</strong></div>
-        <div class="resumen-row resumen-total"><span>Total a apoyar:</span><strong>$${state.monto.toLocaleString('es-MX')} MXN</strong></div>
-      `;
-
-      goToStep(2);
-    });
-
-    // Confirmación final
-    btnConfirmar.addEventListener('click', () => {
-      const aviso = document.getElementById('avisoPrivacidad');
-      if (!aviso.checked) {
-        alert('Es necesario aceptar el aviso de privacidad para continuar con el proyecto escolar.');
-        return;
-      }
-
-      alert('¡Datos registrados de forma segura!\nRedirigiendo a la simulación de pasarela de pagos escolar.');
-    });
-  });
-  </script>
-
-</body>
-</html>
-
   
