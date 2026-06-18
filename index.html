@@ -632,4 +632,166 @@
 
   /* ─────────────────────────────────────────
      Mapa de impacto dinámico por monto
+  ───────────────────────────────────────── */
+  const impactoMap = [
+    { min: 1,    max: 199,   txt: 'Cada peso cuenta. Tu donación apoya materiales escolares.' },
+    { min: 200,  max: 484,   txt: '<strong>$200</strong> cubre un mes de <em>Salud Física y Preventiva</em> para un alumno.' },
+    { min: 485,  max: 599,   txt: '<strong>$485</strong> financia un mes del <em>Programa de Inglés</em> de alto nivel.' },
+    { min: 600,  max: 749,   txt: '<strong>$600</strong> costea el <em>uniforme completo</em> de un estudiante por el año.' },
+    { min: 750,  max: 999,   txt: '<strong>$750</strong> paga un mes de <em>Apoyo Psicológico</em> para un joven.' },
+    { min: 1000, max: 1279,  txt: '<strong>$1,000</strong> cubre la <em>nutrición</em> de un alumno durante un mes.' },
+    { min: 1280, max: 8559,  txt: '<strong>$1,280</strong> incluye un año de <em>Preparación en Tecnología</em>.' },
+    { min: 8560, max: Infinity, txt: '🌟 <strong>$8,560</strong> financia el <em>Programa Integral</em> completo de un alumno por un mes.' },
+  ];
+
+  function getImpacto(monto) {
+    const hit = impactoMap.find(r => monto >= r.min && monto <= r.max);
+    return hit ? `💡 ${hit.txt}` : '💡 Tu donación hace la diferencia.';
+  }
+
+  /* ─────────────────────────────────────────
+     Lógica y Control del Flujo del Widget
+  ───────────────────────────────────────── */
+  document.addEventListener('DOMContentLoaded', () => {
+    
+    const freqBtns = document.querySelectorAll('.freq-btn');
+    const montoBtns = document.querySelectorAll('.monto-btn');
+    const montoInput = document.getElementById('montoInput');
+    const impactoBadge = document.getElementById('impactoBadge');
+    
+    const panels = [document.getElementById('panel1'), document.getElementById('panel2'), document.getElementById('panel3')];
+    const tabs = [document.getElementById('tab1'), document.getElementById('tab2'), document.getElementById('tab3')];
+    
+    const next1 = document.getElementById('next1');
+    const next2 = document.getElementById('next2');
+    const back2 = document.getElementById('back2');
+    const back3 = document.getElementById('back3');
+    const btnConfirmar = document.getElementById('btnConfirmar');
+    const resumenBox = document.getElementById('resumenBox');
+
+    // 1. Manejo de Frecuencia
+    freqBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        freqBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        state.frecuencia = btn.dataset.freq;
+      });
+    });
+
+    // 2. Control de montos fijos
+    montoBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        montoBtns.forEach(b => b.classList.remove('activo'));
+        btn.classList.add('activo');
+        state.monto = parseInt(btn.dataset.monto);
+        montoInput.value = state.monto;
+        impactoBadge.innerHTML = getImpacto(state.monto);
+      });
+    });
+
+    // 3. Control de monto personalizado
+    montoInput.addEventListener('input', () => {
+      montoBtns.forEach(b => b.classList.remove('activo'));
+      const val = parseInt(montoInput.value) || 0;
+      state.monto = val;
+      impactoBadge.innerHTML = getImpacto(val);
+    });
+
+    // Cambiar de paneles de forma controlada
+    function goToStep(stepIndex) {
+      panels.forEach((p, idx) => {
+        if (idx === stepIndex) {
+          p.classList.add('active');
+          tabs[idx].classList.add('active');
+          tabs[idx].classList.remove('done');
+        } else {
+          p.classList.remove('active');
+          tabs[idx].classList.remove('active');
+          if (idx < stepIndex) {
+            tabs[idx].classList.add('done');
+          } else {
+            tabs[idx].classList.remove('done');
+          }
+        }
+      });
+    }
+
+    // Eventos de Regresar
+    back2.addEventListener('click', () => goToStep(0));
+    back3.addEventListener('click', () => goToStep(1));
+
+    // Botón Continuar (Paso 1 -> Paso 2)
+    next1.addEventListener('click', () => {
+      if (state.monto <= 0) {
+        alert('Por favor ingresa un monto de donación válido.');
+        return;
+      }
+      goToStep(1);
+    });
+
+    // Función auxiliar para validar campos individuales
+    function validarCampo(inputEl, condicion) {
+      const grupo = inputEl.closest('.form-group');
+      if (condicion) {
+        grupo.classList.add('has-error');
+        return false;
+      } else {
+        grupo.classList.remove('has-error');
+        return true;
+      }
+    }
+
+    // Botón Revisar Donación (Paso 2 -> Paso 3)
+    next2.addEventListener('click', () => {
+      const nombre = document.getElementById('nombre');
+      const apellido = document.getElementById('apellido');
+      const correo = document.getElementById('correo');
+      const edad = document.getElementById('edad');
+      const sexo = document.getElementById('sexo');
+      const pais = document.getElementById('pais');
+
+      let esValido = true;
+
+      if (!validarCampo(nombre, nombre.value.trim() === '')) esValido = false;
+      if (!validarCampo(apellido, apellido.value.trim() === '')) esValido = false;
+      
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!validarCampo(correo, !emailRegex.test(correo.value.trim()))) esValido = false;
+      
+      const edadVal = parseInt(edad.value);
+      if (!validarCampo(edad, isNaN(edadVal) || edadVal < 18 || edadVal > 99)) esValido = false;
+      
+      if (!validarCampo(sexo, sexo.value === '')) esValido = false;
+      if (!validarCampo(pais, pais.value === '')) esValido = false;
+
+      if (esValido) {
+        const freqLabel = state.frecuencia === 'una-vez' ? 'Una sola vez' : (state.frecuencia === 'mensual' ? 'Mensual' : 'Anual');
+        
+        resumenBox.innerHTML = `
+          <div class="resumen-row"><span>Donante:</span><strong>${nombre.value.trim()} ${apellido.value.trim()}</strong></div>
+          <div class="resumen-row"><span>Frecuencia:</span><strong>${freqLabel}</strong></div>
+          <div class="resumen-row resumen-total"><span>Total a aportar:</span><strong>$${state.monto.toLocaleString('es-MX')} MXN</strong></div>
+        `;
+        goToStep(2);
+      }
+    });
+
+    // Botón Confirmar Final (Paso 3 con Redirección a Recaudia)
+    btnConfirmar.addEventListener('click', () => {
+      const aviso = document.getElementById('avisoPrivacidad');
+      if (!aviso.checked) {
+        alert('Debes aceptar el aviso de privacidad y el uso escolar de los datos para continuar.');
+        return;
+      }
+
+      alert('¡Muchas gracias por tu apoyo! Redirigiéndote de forma segura a la plataforma de pago oficial...');
+      
+      // Redirección directa a la URL oficial
+      window.location.href = "https://alwayson.recaudia.com/christelhousefeenicia/donor";
+    });
+
+  });
+</script>
+</body>
+</html>
   
