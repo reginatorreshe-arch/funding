@@ -20,7 +20,7 @@
       --error:      #e53e3e;
       --success:    #38a169;
     }
-
+ 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
@@ -29,7 +29,7 @@
       color: var(--oscuro);
       overflow-x: hidden;
     }
-
+ 
     /* ── NAVBAR ── */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
@@ -56,7 +56,7 @@
       font-weight: 600 !important; transition: background .2s, transform .15s !important;
     }
     .btn-nav:hover { background: var(--verde-claro); transform: translateY(-1px); }
-
+ 
     /* ── HERO ── */
     .hero {
       min-height: 100vh; display: flex; align-items: center;
@@ -113,7 +113,7 @@
       text-decoration: none; transition: border-color .2s, background .2s;
     }
     .btn-secondary:hover { border-color: var(--verde); background: rgba(27,58,107,.05); }
-
+ 
     /* ── STATS ── */
     .stats-bar {
       display: grid; grid-template-columns: repeat(3, 1fr);
@@ -127,7 +127,7 @@
     .stat-item:last-child { border-right: none; }
     .stat-num { font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 700; }
     .stat-label { font-size: .8rem; opacity: .75; margin-top: 4px; letter-spacing: .04em; text-transform: uppercase; }
-
+ 
     /* ── SECCIONES ── */
     section { padding: 90px 6vw; }
     .bg-alt { background: #edf1f8; }
@@ -136,12 +136,12 @@
       font-size: clamp(1.7rem, 3vw, 2.5rem); color: var(--oscuro); margin-bottom: 10px;
     }
     .section-sub { color: var(--gris); font-size: .95rem; max-width: 520px; line-height: 1.6; margin-bottom: 48px; }
-
+ 
     /* ── NOSOTROS ── */
     .nosotros-container { max-width: 760px; margin: 0 auto; text-align: center; }
     .nosotros-container p { color: var(--gris); line-height: 1.8; font-size: .97rem; margin-bottom: 16px; text-align: left; }
     .nosotros-container .section-sub { text-align: center; margin-left: auto; margin-right: auto; }
-
+ 
     /* ── FUNDADORA ── */
     .fundadora-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
     .fundadora-img-wrap {
@@ -163,7 +163,7 @@
       padding-left: 20px; margin: 24px 0; line-height: 1.5;
     }
     .fundadora-text p { color: var(--gris); line-height: 1.8; font-size: .97rem; margin-bottom: 14px; }
-
+ 
     /* ── TESTIMONIOS ── */
     .testimonios-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
     .testimonio-card {
@@ -176,7 +176,7 @@
       position: absolute; top: 8px; left: 24px; pointer-events: none;
     }
     .testimonio-card p { font-size: .97rem; color: var(--oscuro); line-height: 1.7; font-style: italic; margin-bottom: 20px; }
-
+ 
     /* ── SECCIÓN DONAR ── */
     #donar {
       background: linear-gradient(135deg, #0f1f3d 0%, #1B3A6B 100%);
@@ -184,7 +184,7 @@
     }
     #donar h2.section-title { color: var(--blanco); }
     #donar .section-sub { color: rgba(255,255,255,.6); margin: 0 auto 48px; }
-
+ 
     .equiv-wrap { max-width: 720px; margin: 0 auto 40px; }
     .equiv-titulo { font-size: .78rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.45); margin-bottom: 14px; }
     .equiv-tabla { width: 100%; border-collapse: collapse; border-radius: 14px; overflow: hidden; font-size: .9rem; }
@@ -196,7 +196,7 @@
     .equiv-monto { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: var(--dorado) !important; }
     .equiv-row-highlight { background: rgba(242,101,34,.12) !important; }
     .equiv-row-highlight .equiv-monto { font-size: 1.2rem; }
-
+ 
     /* ── WIDGET ── */
     .donation-widget {
       background: rgba(255,255,255,.06);
@@ -216,10 +216,10 @@
     }
     .step-tab.active { color: var(--dorado); border-bottom-color: var(--dorado); }
     .step-tab.done { color: rgba(255,255,255,.6); }
-
+ 
     .step-panel { display: none; padding: 36px 40px; text-align: left; }
     .step-panel.active { display: block; }
-
+ 
     .freq-tabs {
       display: flex; gap: 8px; margin-bottom: 28px;
       background: rgba(255,255,255,.06); border-radius: 50px; padding: 4px;
@@ -232,7 +232,7 @@
       transition: background .2s, color .2s;
     }
     .freq-btn.active { background: var(--verde-claro); color: var(--blanco); }
-
+ 
     .montos-rapidos { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 16px; }
     .monto-btn {
       padding: 11px 8px; border-radius: 10px;
@@ -243,14 +243,14 @@
     }
     .monto-btn:hover { border-color: var(--dorado); color: var(--blanco); }
     .monto-btn.activo { background: var(--dorado); border-color: var(--dorado); color: var(--oscuro); }
-
+ 
     .monto-custom-wrap { position: relative; }
     .monto-custom-wrap span {
       position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
       color: rgba(255,255,255,.5); font-weight: 600;
     }
     .monto-custom-wrap input { padding-left: 30px !important; }
-
+ 
     .impacto-badge {
       background: rgba(242,101,34,.15); border: 1px solid rgba(242,101,34,.3);
       border-radius: 10px; padding: 12px 16px; margin-top: 16px;
@@ -258,7 +258,7 @@
       min-height: 48px; transition: all .3s;
     }
     .impacto-badge strong { color: var(--dorado); }
-
+ 
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
     .form-group { margin-bottom: 16px; }
     .form-group label {
@@ -285,14 +285,14 @@
     .form-group.has-error select { border-color: var(--error); }
     .error-msg { font-size: .75rem; color: #fc8181; margin-top: 5px; display: none; }
     .form-group.has-error .error-msg { display: block; }
-
+ 
     .select-wrap { position: relative; }
     .select-wrap::after {
       content: '▾'; position: absolute; right: 14px; top: 50%;
       transform: translateY(-50%); color: rgba(255,255,255,.4);
       pointer-events: none; font-size: .9rem;
     }
-
+ 
     .resumen-box {
       background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.15);
       border-radius: 14px; padding: 20px; margin-bottom: 20px;
@@ -307,7 +307,7 @@
     .resumen-row strong { color: var(--blanco); }
     .resumen-total { font-size: 1.1rem; font-weight: 700; }
     .resumen-total strong { color: var(--dorado); font-family: 'Playfair Display', serif; font-size: 1.4rem; }
-
+ 
     .check-group { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 20px; }
     .check-group input[type="checkbox"] {
       width: 18px; height: 18px; margin-top: 2px; flex-shrink: 0;
@@ -318,7 +318,7 @@
       margin: 0; text-transform: none; letter-spacing: 0;
     }
     .check-group a { color: var(--dorado); text-decoration: underline; }
-
+ 
     .btn-step-next,
     .btn-step-back {
       display: inline-flex; align-items: center; gap: 8px;
@@ -339,7 +339,7 @@
       padding: 10px 0; font-size: .85rem; margin-bottom: 16px;
     }
     .btn-step-back:hover { color: var(--blanco); }
-
+ 
     /* Estado de envío */
     .sending-overlay {
       display: none; position: absolute; inset: 0;
@@ -355,7 +355,7 @@
     }
     .sending-overlay p { color: rgba(255,255,255,.8); font-size: .9rem; }
     @keyframes spin { to { transform: rotate(360deg); } }
-
+ 
     /* Toast de éxito */
     .toast {
       position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%) translateY(80px);
@@ -366,12 +366,12 @@
       white-space: nowrap;
     }
     .toast.show { transform: translateX(-50%) translateY(0); }
-
+ 
     .nota-seguridad {
       text-align: center; margin-top: 16px; color: rgba(255,255,255,.35);
       font-size: .75rem; display: flex; align-items: center; justify-content: center; gap: 6px;
     }
-
+ 
     /* ── FOOTER ── */
     footer {
       background: var(--oscuro); color: rgba(255,255,255,.4);
@@ -379,12 +379,12 @@
       border-top: 1px solid rgba(255,255,255,.06);
     }
     footer strong { color: rgba(255,255,255,.7); }
-
+ 
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(22px); }
       to   { opacity: 1; transform: translateY(0); }
     }
-
+ 
     @media (max-width: 768px) {
       .nav-links { display: none; }
       .fundadora-grid, .testimonios-grid { grid-template-columns: 1fr; }
@@ -396,10 +396,10 @@
   </style>
 </head>
 <body>
-
+ 
 <!-- TOAST -->
 <div class="toast" id="toast">✓ Datos guardados correctamente</div>
-
+ 
 <nav>
   <a class="nav-logo" href="#">
     <img src="logo-ch.png" alt="Christel House México" style="height:44px; width:auto; vertical-align:middle;">
@@ -411,7 +411,7 @@
     <li><a href="#donar" class="btn-nav">Donar ahora</a></li>
   </ul>
 </nav>
-
+ 
 <header class="hero">
   <div class="hero-inner">
     <div class="hero-badge">Fundación Estudiantil</div>
@@ -423,13 +423,13 @@
     </div>
   </div>
 </header>
-
+ 
 <div class="stats-bar">
   <div class="stat-item"><div class="stat-num">+1,200</div><div class="stat-label">Estudiantes apoyados</div></div>
   <div class="stat-item"><div class="stat-num">94%</div><div class="stat-label">Recursos a programas</div></div>
   <div class="stat-item"><div class="stat-num">28 años</div><div class="stat-label">De impacto continuo</div></div>
 </div>
-
+ 
 <section id="nosotros">
   <div class="nosotros-container">
     <h2 class="section-title">¿Quiénes somos?</h2>
@@ -438,7 +438,7 @@
     <p>Creemos que ningún estudiante debe abandonar sus estudios por falta de recursos. Por eso trabajamos de manera transparente para que cada peso donado llegue directamente a quienes más lo necesitan.</p>
   </div>
 </section>
-
+ 
 <section id="fundadora" class="bg-alt">
   <div class="fundadora-grid">
     <div class="fundadora-img-wrap">
@@ -470,7 +470,7 @@
     </div>
   </div>
 </section>
-
+ 
 <section id="testimonios">
   <h2 class="section-title" style="text-align:center;">Testimonios</h2>
   <p class="section-sub" style="text-align:center; margin: 0 auto 48px;">Lo que dicen quienes han vivido el cambio.</p>
@@ -485,11 +485,11 @@
     </div>
   </div>
 </section>
-
+ 
 <section id="donar">
   <h2 class="section-title">Haz tu donación</h2>
   <p class="section-sub">Con tu apoyo, transformamos la vida de un niño. Conoce lo que cada monto representa.</p>
-
+ 
   <div class="equiv-wrap">
     <p class="equiv-titulo">¿A qué equivale tu donación mensual?</p>
     <table class="equiv-tabla">
@@ -507,21 +507,21 @@
       </tbody>
     </table>
   </div>
-
+ 
   <div class="donation-widget" id="donationWidget" style="position:relative;">
-
+ 
     <!-- Overlay de carga -->
     <div class="sending-overlay" id="sendingOverlay">
       <div class="spinner"></div>
       <p>Guardando tu información…</p>
     </div>
-
+ 
     <div class="steps-header">
       <div class="step-tab active" id="tab1">1. Tu donación</div>
       <div class="step-tab" id="tab2">2. Tus datos</div>
       <div class="step-tab" id="tab3">3. Confirmar</div>
     </div>
-
+ 
     <!-- PASO 1: Monto -->
     <div class="step-panel active" id="panel1">
       <p style="font-size:.82rem; color:rgba(255,255,255,.45); text-transform:uppercase; letter-spacing:.06em; margin-bottom:14px;">¿Con qué frecuencia quieres donar?</p>
@@ -551,7 +551,7 @@
       </div>
       <button class="btn-step-next" id="next1" style="margin-top:24px;">Continuar →</button>
     </div>
-
+ 
     <!-- PASO 2: Datos personales -->
     <div class="step-panel" id="panel2">
       <button class="btn-step-back" id="back2">← Regresar</button>
@@ -620,7 +620,7 @@
       </div>
       <button class="btn-step-next" id="next2">Revisar mi donación →</button>
     </div>
-
+ 
     <!-- PASO 3: Confirmar -->
     <div class="step-panel" id="panel3">
       <button class="btn-step-back" id="back3">← Regresar</button>
@@ -635,15 +635,15 @@
       </div>
       <button type="button" class="btn-step-next" id="btnConfirmar">🔒 Guardar y proceder al pago</button>
     </div>
-
+ 
   </div>
   <p class="nota-seguridad">🔒 Conexión segura · Los datos se registran antes de derivar a la plataforma oficial</p>
 </section>
-
+ 
 <footer>
   <p>© 2026 <strong>Fundación Estudiantil Christel House</strong> · Proyecto Escolar</p>
 </footer>
-
+ 
 <script>
   /* ─────────────────────────────────────────
      ⚠️ IMPORTANTE: Reemplaza esta URL con la
@@ -651,10 +651,10 @@
      implementar tu Web App.
   ───────────────────────────────────────── */
   const GOOGLE_SHEET_URL = 'https://script.google.com/macros/s/AKfycbw3SUua33rgpO0YED8knVijTxAUBFPGzQRgxVLZbs9MIOW8D1uqXq2-91IFqf86Evev/exec';
-
+ 
   /* ── Estado global ── */
   const state = { frecuencia: 'una-vez', monto: 1000 };
-
+ 
   /* ── Mapa de impacto ── */
   const impactoMap = [
     { min: 1,    max: 199,   txt: 'Cada peso cuenta. Tu donación apoya materiales escolares.' },
@@ -666,12 +666,12 @@
     { min: 1280, max: 8559,  txt: '<strong>$1,280</strong> incluye un año de <em>Preparación en Tecnología</em>.' },
     { min: 8560, max: Infinity, txt: '🌟 <strong>$8,560</strong> financia el <em>Programa Integral</em> completo de un alumno por un mes.' },
   ];
-
+ 
   function getImpacto(monto) {
     const hit = impactoMap.find(r => monto >= r.min && monto <= r.max);
     return hit ? `💡 ${hit.txt}` : '💡 Tu donación hace la diferencia.';
   }
-
+ 
   /* ── Toast ── */
   function showToast(msg, color = '#38a169') {
     const t = document.getElementById('toast');
@@ -680,7 +680,7 @@
     t.classList.add('show');
     setTimeout(() => t.classList.remove('show'), 3500);
   }
-
+ 
   /* ── Envío a Google Sheets ── */
   async function enviarASheets(datos) {
     try {
@@ -696,10 +696,10 @@
       return false;
     }
   }
-
+ 
   /* ── Init ── */
   document.addEventListener('DOMContentLoaded', () => {
-
+ 
     const freqBtns   = document.querySelectorAll('.freq-btn');
     const montoBtns  = document.querySelectorAll('.monto-btn');
     const montoInput = document.getElementById('montoInput');
@@ -708,14 +708,14 @@
     const tabs   = [document.getElementById('tab1'),   document.getElementById('tab2'),   document.getElementById('tab3')];
     const sendingOverlay = document.getElementById('sendingOverlay');
     const resumenBox     = document.getElementById('resumenBox');
-
+ 
     /* Frecuencia */
     freqBtns.forEach(btn => btn.addEventListener('click', () => {
       freqBtns.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       state.frecuencia = btn.dataset.freq;
     }));
-
+ 
     /* Montos fijos */
     montoBtns.forEach(btn => btn.addEventListener('click', () => {
       montoBtns.forEach(b => b.classList.remove('activo'));
@@ -724,7 +724,7 @@
       montoInput.value = state.monto;
       impactoBadge.innerHTML = getImpacto(state.monto);
     }));
-
+ 
     /* Monto libre */
     montoInput.addEventListener('input', () => {
       montoBtns.forEach(b => b.classList.remove('activo'));
@@ -732,7 +732,7 @@
       state.monto = val;
       impactoBadge.innerHTML = getImpacto(val);
     });
-
+ 
     /* Cambio de paso */
     function goToStep(idx) {
       panels.forEach((p, i) => {
@@ -742,22 +742,22 @@
       });
       document.getElementById('donationWidget').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
-
+ 
     document.getElementById('back2').addEventListener('click', () => goToStep(0));
     document.getElementById('back3').addEventListener('click', () => goToStep(1));
-
+ 
     /* Paso 1 → 2 */
     document.getElementById('next1').addEventListener('click', () => {
       if (state.monto <= 0) { showToast('Ingresa un monto válido', '#e53e3e'); return; }
       goToStep(1);
     });
-
+ 
     /* Validación individual */
     function validarCampo(el, condicion) {
       el.closest('.form-group').classList.toggle('has-error', condicion);
       return !condicion;
     }
-
+ 
     /* Paso 2 → 3 */
     document.getElementById('next2').addEventListener('click', () => {
       const nombre   = document.getElementById('nombre');
@@ -766,10 +766,10 @@
       const edad     = document.getElementById('edad');
       const sexo     = document.getElementById('sexo');
       const pais     = document.getElementById('pais');
-
+ 
       const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(correo.value.trim());
       const edadVal = parseInt(edad.value);
-
+ 
       const ok = [
         validarCampo(nombre,   nombre.value.trim() === ''),
         validarCampo(apellido, apellido.value.trim() === ''),
@@ -778,7 +778,7 @@
         validarCampo(sexo,     sexo.value === ''),
         validarCampo(pais,     pais.value === ''),
       ].every(Boolean);
-
+ 
       if (ok) {
         const freqLabel = { 'una-vez': 'Una sola vez', 'mensual': 'Mensual', 'anual': 'Anual' }[state.frecuencia];
         resumenBox.innerHTML = `
@@ -791,7 +791,7 @@
         goToStep(2);
       }
     });
-
+ 
     /* Confirmar y enviar */
     document.getElementById('btnConfirmar').addEventListener('click', async () => {
       const aviso = document.getElementById('avisoPrivacidad');
@@ -799,11 +799,11 @@
         showToast('Acepta el aviso de privacidad para continuar', '#e53e3e');
         return;
       }
-
+ 
       const btn = document.getElementById('btnConfirmar');
       btn.disabled = true;
       sendingOverlay.classList.add('visible');
-
+ 
       const datos = {
         nombre:     document.getElementById('nombre').value.trim(),
         apellido:   document.getElementById('apellido').value.trim(),
@@ -816,18 +816,18 @@
         monto:      state.monto,
         frecuencia: state.frecuencia,
       };
-
+ 
       await enviarASheets(datos);
-
+ 
       sendingOverlay.classList.remove('visible');
       btn.disabled = false;
-
+ 
       showToast('✓ ¡Gracias por tu apoyo! Redirigiendo…');
       setTimeout(() => {
         window.location.href = 'https://alwayson.recaudia.com/christelhousefeenicia/donor';
       }, 1800);
     });
-
+ 
   });
 </script>
 </body>
