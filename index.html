@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <title>Fundación Estudiantil Christel House</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght=0,700;1,400&family=DM+Sans:wght=300;400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
   
   <style>
     :root {
@@ -144,8 +144,19 @@
 
     /* ── FUNDADORA ── */
     .fundadora-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
-    .fundadora-img-wrap { border-radius: 20px; overflow: hidden; box-shadow: var(--sombra); aspect-ratio: 4/5; background: #ddd; }
-    .fundadora-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
+    .fundadora-img-wrap {
+      border-radius: 20px; overflow: hidden; box-shadow: var(--sombra);
+      aspect-ratio: 4/5; background: linear-gradient(135deg, #c8d6e8, #a8bfd4);
+      display: flex; align-items: center; justify-content: center;
+      position: relative;
+    }
+    .fundadora-img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .fundadora-img-placeholder {
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 12px; color: var(--verde); text-align: center; padding: 32px;
+    }
+    .fundadora-img-placeholder svg { opacity: .5; }
+    .fundadora-img-placeholder p { font-size: .85rem; opacity: .6; line-height: 1.5; }
     .fundadora-text blockquote {
       font-family: 'Playfair Display', serif; font-size: 1.3rem; font-style: italic;
       color: var(--verde); border-left: 3px solid var(--dorado);
@@ -174,7 +185,6 @@
     #donar h2.section-title { color: var(--blanco); }
     #donar .section-sub { color: rgba(255,255,255,.6); margin: 0 auto 48px; }
 
-    /* Tabla de equivalencias */
     .equiv-wrap { max-width: 720px; margin: 0 auto 40px; }
     .equiv-titulo { font-size: .78rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.45); margin-bottom: 14px; }
     .equiv-tabla { width: 100%; border-collapse: collapse; border-radius: 14px; overflow: hidden; font-size: .9rem; }
@@ -187,7 +197,7 @@
     .equiv-row-highlight { background: rgba(242,101,34,.12) !important; }
     .equiv-row-highlight .equiv-monto { font-size: 1.2rem; }
 
-    /* ── WIDGET DE DONACIÓN ── */
+    /* ── WIDGET ── */
     .donation-widget {
       background: rgba(255,255,255,.06);
       border: 1px solid rgba(255,255,255,.15);
@@ -197,29 +207,19 @@
       margin: 0 auto;
       overflow: hidden;
     }
-
-    /* Progress bar de pasos */
-    .steps-header {
-      display: flex;
-      border-bottom: 1px solid rgba(255,255,255,.1);
-      padding: 0;
-    }
+    .steps-header { display: flex; border-bottom: 1px solid rgba(255,255,255,.1); }
     .step-tab {
       flex: 1; padding: 16px 8px; text-align: center;
       font-size: .75rem; font-weight: 600; letter-spacing: .06em;
       text-transform: uppercase; color: rgba(255,255,255,.35);
-      border-bottom: 3px solid transparent;
-      transition: color .3s, border-color .3s;
-      user-select: none;
+      border-bottom: 3px solid transparent; transition: color .3s, border-color .3s;
     }
     .step-tab.active { color: var(--dorado); border-bottom-color: var(--dorado); }
     .step-tab.done { color: rgba(255,255,255,.6); }
 
-    /* Contenido de pasos */
     .step-panel { display: none; padding: 36px 40px; text-align: left; }
     .step-panel.active { display: block; }
 
-    /* Frecuencia */
     .freq-tabs {
       display: flex; gap: 8px; margin-bottom: 28px;
       background: rgba(255,255,255,.06); border-radius: 50px; padding: 4px;
@@ -231,14 +231,9 @@
       background: transparent; color: rgba(255,255,255,.55);
       transition: background .2s, color .2s;
     }
-    .freq-btn.active {
-      background: var(--verde-claro); color: var(--blanco);
-    }
+    .freq-btn.active { background: var(--verde-claro); color: var(--blanco); }
 
-    /* Montos rápidos */
-    .montos-rapidos {
-      display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 16px;
-    }
+    .montos-rapidos { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 16px; }
     .monto-btn {
       padding: 11px 8px; border-radius: 10px;
       border: 1.5px solid rgba(255,255,255,.2);
@@ -256,7 +251,6 @@
     }
     .monto-custom-wrap input { padding-left: 30px !important; }
 
-    /* Impacto dinámico */
     .impacto-badge {
       background: rgba(242,101,34,.15); border: 1px solid rgba(242,101,34,.3);
       border-radius: 10px; padding: 12px 16px; margin-top: 16px;
@@ -265,7 +259,6 @@
     }
     .impacto-badge strong { color: var(--dorado); }
 
-    /* CAMPOS COMPARTIDOS */
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
     .form-group { margin-bottom: 16px; }
     .form-group label {
@@ -293,7 +286,6 @@
     .error-msg { font-size: .75rem; color: #fc8181; margin-top: 5px; display: none; }
     .form-group.has-error .error-msg { display: block; }
 
-    /* Select arrow */
     .select-wrap { position: relative; }
     .select-wrap::after {
       content: '▾'; position: absolute; right: 14px; top: 50%;
@@ -301,7 +293,6 @@
       pointer-events: none; font-size: .9rem;
     }
 
-    /* Resumen antes de pagar */
     .resumen-box {
       background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.15);
       border-radius: 14px; padding: 20px; margin-bottom: 20px;
@@ -317,16 +308,10 @@
     .resumen-total { font-size: 1.1rem; font-weight: 700; }
     .resumen-total strong { color: var(--dorado); font-family: 'Playfair Display', serif; font-size: 1.4rem; }
 
-    /* Checkbox de aviso */
-    .check-group {
-      display: flex; align-items: flex-start; gap: 10px;
-      margin-bottom: 20px;
-    }
+    .check-group { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 20px; }
     .check-group input[type="checkbox"] {
       width: 18px; height: 18px; margin-top: 2px; flex-shrink: 0;
       accent-color: var(--dorado);
-      background: rgba(255,255,255,.08);
-      border: 1.5px solid rgba(255,255,255,.2);
     }
     .check-group label {
       font-size: .82rem; color: rgba(255,255,255,.55); line-height: 1.5;
@@ -334,7 +319,6 @@
     }
     .check-group a { color: var(--dorado); text-decoration: underline; }
 
-    /* Botones de navegación */
     .btn-step-next,
     .btn-step-back {
       display: inline-flex; align-items: center; gap: 8px;
@@ -348,14 +332,41 @@
       padding: 16px 32px;
       box-shadow: 0 4px 20px rgba(242,101,34,.35);
     }
-    .btn-step-next:hover { background: #f47a3a; transform: translateY(-2px); box-shadow: 0 8px 28px rgba(242,101,34,.5); }
+    .btn-step-next:hover:not(:disabled) { background: #f47a3a; transform: translateY(-2px); box-shadow: 0 8px 28px rgba(242,101,34,.5); }
+    .btn-step-next:disabled { opacity: .6; cursor: not-allowed; transform: none; }
     .btn-step-back {
       background: transparent; color: rgba(255,255,255,.5);
       padding: 10px 0; font-size: .85rem; margin-bottom: 16px;
     }
     .btn-step-back:hover { color: var(--blanco); }
 
-    /* Nota de seguridad */
+    /* Estado de envío */
+    .sending-overlay {
+      display: none; position: absolute; inset: 0;
+      background: rgba(15,31,61,.85); backdrop-filter: blur(6px);
+      border-radius: 24px; align-items: center; justify-content: center;
+      flex-direction: column; gap: 16px; z-index: 10;
+    }
+    .sending-overlay.visible { display: flex; }
+    .spinner {
+      width: 40px; height: 40px; border: 3px solid rgba(255,255,255,.2);
+      border-top-color: var(--dorado); border-radius: 50%;
+      animation: spin .8s linear infinite;
+    }
+    .sending-overlay p { color: rgba(255,255,255,.8); font-size: .9rem; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* Toast de éxito */
+    .toast {
+      position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%) translateY(80px);
+      background: var(--success); color: #fff; padding: 14px 28px;
+      border-radius: 50px; font-weight: 600; font-size: .9rem;
+      box-shadow: 0 8px 32px rgba(0,0,0,.25); z-index: 200;
+      transition: transform .4s cubic-bezier(.34,1.56,.64,1);
+      white-space: nowrap;
+    }
+    .toast.show { transform: translateX(-50%) translateY(0); }
+
     .nota-seguridad {
       text-align: center; margin-top: 16px; color: rgba(255,255,255,.35);
       font-size: .75rem; display: flex; align-items: center; justify-content: center; gap: 6px;
@@ -369,13 +380,11 @@
     }
     footer strong { color: rgba(255,255,255,.7); }
 
-    /* ── ANIMACIONES ── */
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(22px); }
       to   { opacity: 1; transform: translateY(0); }
     }
 
-    /* ── RESPONSIVE ── */
     @media (max-width: 768px) {
       .nav-links { display: none; }
       .fundadora-grid, .testimonios-grid { grid-template-columns: 1fr; }
@@ -387,6 +396,9 @@
   </style>
 </head>
 <body>
+
+<!-- TOAST -->
+<div class="toast" id="toast">✓ Datos guardados correctamente</div>
 
 <nav>
   <a class="nav-logo" href="#">Christel House ✦</a>
@@ -424,17 +436,35 @@
     <p>Creemos que ningún estudiante debe abandonar sus estudios por falta de recursos. Por eso trabajamos de manera transparente para que cada peso donado llegue directamente a quienes más lo necesitan.</p>
   </div>
 </section>
-  
+
 <section id="fundadora" class="bg-alt">
   <div class="fundadora-grid">
     <div class="fundadora-img-wrap">
-      <img src="IMG_3855.jpeg" alt="Christel DeHaan, fundadora">
+      <!--
+        IMAGEN DE CHRISTEL DEHAAN
+        Si tienes una foto guardada en tu computadora, sube el archivo
+        junto a este HTML y cambia "christel-dehaan.jpg" por el nombre real.
+        Ejemplo: <img src="foto-christel.jpg" alt="Christel DeHaan">
+      -->
+      <img
+        src="christel-dehaan.jpg"
+        alt="Christel DeHaan, fundadora"
+        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+      >
+      <div class="fundadora-img-placeholder" style="display:none;">
+        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+          <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+        </svg>
+        <p>Coloca aquí la imagen de<br><strong>Christel DeHaan</strong><br>
+        (cambia el src del &lt;img&gt; al nombre de tu archivo)</p>
+      </div>
     </div>
     <div class="fundadora-text">
       <h2 class="section-title">Sobre la Fundadora</h2>
-      <blockquote class="fundadora-quote">"La educación es el camino más poderoso para romper el ciclo de la pobreza."</blockquote>
+      <blockquote>"La educación es el camino más poderoso para romper el ciclo de la pobreza."</blockquote>
       <p><strong>Christel DeHaan</strong> fue una empresaria que dedicó su vida a generar oportunidades reales para jóvenes en situación vulnerable.</p>
-      <p>Su visión dio origen a Christel House, una institución que hoy representa esperanza, equidad y futuro para miles de estudiantes alrededor del mundo Sobre nuestra misión “La educación puede cambiar una vida, pero una oportunidad puede cambiar generaciones.” Miles de estudiantes tienen sueños enormes, pero muchos enfrentan obstáculos que parecen imposibles de superar. En Cristel House México trabajamos para que ningún joven abandone sus metas por falta de recursos. Cada apoyo recibido representa una nueva oportunidad para aprender, crecer y construir un futuro mejor. Cuando donas, no solo ayudas a un estudiante; te conviertes en parte de su historia de éxito. Juntos podemos transformar desafíos en oportunidades y esperanza en realidad..</p>
+      <p>Su visión dio origen a Christel House, una institución que hoy representa esperanza, equidad y futuro para miles de estudiantes alrededor del mundo.</p>
+      <p>"La educación puede cambiar una vida, pero una oportunidad puede cambiar generaciones." Miles de estudiantes tienen sueños enormes, pero muchos enfrentan obstáculos que parecen imposibles de superar. En Christel House México trabajamos para que ningún joven abandone sus metas por falta de recursos.</p>
     </div>
   </div>
 </section>
@@ -476,7 +506,13 @@
     </table>
   </div>
 
-  <div class="donation-widget" id="donationWidget">
+  <div class="donation-widget" id="donationWidget" style="position:relative;">
+
+    <!-- Overlay de carga -->
+    <div class="sending-overlay" id="sendingOverlay">
+      <div class="spinner"></div>
+      <p>Guardando tu información…</p>
+    </div>
 
     <div class="steps-header">
       <div class="step-tab active" id="tab1">1. Tu donación</div>
@@ -484,17 +520,15 @@
       <div class="step-tab" id="tab3">3. Confirmar</div>
     </div>
 
+    <!-- PASO 1: Monto -->
     <div class="step-panel active" id="panel1">
       <p style="font-size:.82rem; color:rgba(255,255,255,.45); text-transform:uppercase; letter-spacing:.06em; margin-bottom:14px;">¿Con qué frecuencia quieres donar?</p>
-
       <div class="freq-tabs">
         <button class="freq-btn active" data-freq="una-vez">Una vez</button>
         <button class="freq-btn" data-freq="mensual">Mensual</button>
         <button class="freq-btn" data-freq="anual">Anual</button>
       </div>
-
       <p style="font-size:.82rem; color:rgba(255,255,255,.45); text-transform:uppercase; letter-spacing:.06em; margin-bottom:10px;">Elige un monto</p>
-
       <div class="montos-rapidos">
         <button class="monto-btn" data-monto="200">$200</button>
         <button class="monto-btn" data-monto="485">$485</button>
@@ -505,23 +539,20 @@
         <button class="monto-btn" data-monto="5000">$5,000</button>
         <button class="monto-btn" data-monto="8560">$8,560</button>
       </div>
-
       <div class="form-group monto-custom-wrap" style="margin-top:4px;">
         <label for="montoInput">O ingresa otro monto (MXN)</label>
         <span>$</span>
         <input type="number" id="montoInput" placeholder="Otro monto" min="1" value="1000">
       </div>
-
       <div class="impacto-badge" id="impactoBadge">
         💡 <strong>$1,000</strong> cubre la nutrición de un alumno durante un mes.
       </div>
-
       <button class="btn-step-next" id="next1" style="margin-top:24px;">Continuar →</button>
     </div>
 
+    <!-- PASO 2: Datos personales -->
     <div class="step-panel" id="panel2">
       <button class="btn-step-back" id="back2">← Regresar</button>
-
       <div class="form-row">
         <div class="form-group">
           <label for="nombre">Nombre</label>
@@ -534,13 +565,11 @@
           <p class="error-msg">Campo requerido</p>
         </div>
       </div>
-
       <div class="form-group">
         <label for="correo">Correo electrónico</label>
         <input type="email" id="correo" placeholder="tucorreo@ejemplo.com" autocomplete="email">
         <p class="error-msg">Correo inválido</p>
       </div>
-
       <div class="form-row">
         <div class="form-group">
           <label for="edad">Edad</label>
@@ -552,55 +581,49 @@
           <div class="select-wrap">
             <select id="sexo">
               <option value="">Seleccionar</option>
-              <option value="femenino">Femenino</option>
-              <option value="masculino">Masculino</option>
-              <option value="no-binario">No binario</option>
-              <option value="prefiero-no-decir">Prefiero no decir</option>
+              <option value="Femenino">Femenino</option>
+              <option value="Masculino">Masculino</option>
+              <option value="No binario">No binario</option>
+              <option value="Prefiero no decir">Prefiero no decir</option>
             </select>
           </div>
           <p class="error-msg">Campo requerido</p>
         </div>
       </div>
-
       <div class="form-row">
         <div class="form-group">
           <label for="pais">País de residencia</label>
           <div class="select-wrap">
             <select id="pais">
               <option value="">Seleccionar</option>
-              <option value="MX" selected>México</option>
-              <option value="US">Estados Unidos</option>
-              <option value="CA">Canadá</option>
-              <option value="ES">España</option>
-              <option value="CO">Colombia</option>
-              <option value="AR">Argentina</option>
-              <option value="otro">Otro</option>
+              <option value="México" selected>México</option>
+              <option value="Estados Unidos">Estados Unidos</option>
+              <option value="Canadá">Canadá</option>
+              <option value="España">España</option>
+              <option value="Colombia">Colombia</option>
+              <option value="Argentina">Argentina</option>
+              <option value="Otro">Otro</option>
             </select>
           </div>
           <p class="error-msg">Campo requerido</p>
         </div>
-        <div class="form-group" id="estadoGroup">
+        <div class="form-group">
           <label for="estado">Estado / Provincia</label>
           <input type="text" id="estado" placeholder="Ej. CDMX" autocomplete="address-level1">
         </div>
       </div>
-
       <div class="form-group">
         <label for="motivacion">¿Por qué apoyas esta causa? <span style="opacity:.5;">(opcional)</span></label>
         <input type="text" id="motivacion" placeholder="Tu motivación en una frase">
       </div>
-
       <button class="btn-step-next" id="next2">Revisar mi donación →</button>
     </div>
 
+    <!-- PASO 3: Confirmar -->
     <div class="step-panel" id="panel3">
       <button class="btn-step-back" id="back3">← Regresar</button>
-
       <p style="font-size:.82rem; color:rgba(255,255,255,.45); text-transform:uppercase; letter-spacing:.06em; margin-bottom:16px;">Resumen de tu donación</p>
-
-      <div class="resumen-box" id="resumenBox">
-      </div>
-
+      <div class="resumen-box" id="resumenBox"></div>
       <div class="check-group">
         <input type="checkbox" id="avisoPrivacidad">
         <label for="avisoPrivacidad">
@@ -608,13 +631,11 @@
           Autorizo el registro seguro de mis datos demográficos para fines del proyecto escolar.
         </label>
       </div>
-
       <button type="button" class="btn-step-next" id="btnConfirmar">🔒 Guardar y proceder al pago</button>
     </div>
 
   </div>
   <p class="nota-seguridad">🔒 Conexión segura · Los datos se registran antes de derivar a la plataforma oficial</p>
-
 </section>
 
 <footer>
@@ -623,16 +644,16 @@
 
 <script>
   /* ─────────────────────────────────────────
-     Estado global del widget
+     ⚠️ IMPORTANTE: Reemplaza esta URL con la
+     que te generó Google Apps Script al
+     implementar tu Web App.
   ───────────────────────────────────────── */
-  const state = {
-    frecuencia: 'una-vez',
-    monto: 1000
-  };
+  const GOOGLE_SHEET_URL = 'https://script.google.com/macros/s/AKfycbw3SUua33rgpO0YED8knVijTxAUBFPGzQRgxVLZbs9MIOW8D1uqXq2-91IFqf86Evev/exec';
 
-  /* ─────────────────────────────────────────
-     Mapa de impacto dinámico por monto
-  ───────────────────────────────────────── */
+  /* ── Estado global ── */
+  const state = { frecuencia: 'una-vez', monto: 1000 };
+
+  /* ── Mapa de impacto ── */
   const impactoMap = [
     { min: 1,    max: 199,   txt: 'Cada peso cuenta. Tu donación apoya materiales escolares.' },
     { min: 200,  max: 484,   txt: '<strong>$200</strong> cubre un mes de <em>Salud Física y Preventiva</em> para un alumno.' },
@@ -649,47 +670,60 @@
     return hit ? `💡 ${hit.txt}` : '💡 Tu donación hace la diferencia.';
   }
 
-  /* ─────────────────────────────────────────
-     Lógica y Control del Flujo del Widget
-  ───────────────────────────────────────── */
+  /* ── Toast ── */
+  function showToast(msg, color = '#38a169') {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.style.background = color;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 3500);
+  }
+
+  /* ── Envío a Google Sheets ── */
+  async function enviarASheets(datos) {
+    try {
+      await fetch(GOOGLE_SHEET_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(datos)
+      });
+      return true;
+    } catch (err) {
+      console.error('Error al guardar:', err);
+      return false;
+    }
+  }
+
+  /* ── Init ── */
   document.addEventListener('DOMContentLoaded', () => {
-    
-    const freqBtns = document.querySelectorAll('.freq-btn');
-    const montoBtns = document.querySelectorAll('.monto-btn');
+
+    const freqBtns   = document.querySelectorAll('.freq-btn');
+    const montoBtns  = document.querySelectorAll('.monto-btn');
     const montoInput = document.getElementById('montoInput');
     const impactoBadge = document.getElementById('impactoBadge');
-    
     const panels = [document.getElementById('panel1'), document.getElementById('panel2'), document.getElementById('panel3')];
-    const tabs = [document.getElementById('tab1'), document.getElementById('tab2'), document.getElementById('tab3')];
-    
-    const next1 = document.getElementById('next1');
-    const next2 = document.getElementById('next2');
-    const back2 = document.getElementById('back2');
-    const back3 = document.getElementById('back3');
-    const btnConfirmar = document.getElementById('btnConfirmar');
-    const resumenBox = document.getElementById('resumenBox');
+    const tabs   = [document.getElementById('tab1'),   document.getElementById('tab2'),   document.getElementById('tab3')];
+    const sendingOverlay = document.getElementById('sendingOverlay');
+    const resumenBox     = document.getElementById('resumenBox');
 
-    // 1. Manejo de Frecuencia
-    freqBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        freqBtns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        state.frecuencia = btn.dataset.freq;
-      });
-    });
+    /* Frecuencia */
+    freqBtns.forEach(btn => btn.addEventListener('click', () => {
+      freqBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      state.frecuencia = btn.dataset.freq;
+    }));
 
-    // 2. Control de montos fijos
-    montoBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        montoBtns.forEach(b => b.classList.remove('activo'));
-        btn.classList.add('activo');
-        state.monto = parseInt(btn.dataset.monto);
-        montoInput.value = state.monto;
-        impactoBadge.innerHTML = getImpacto(state.monto);
-      });
-    });
+    /* Montos fijos */
+    montoBtns.forEach(btn => btn.addEventListener('click', () => {
+      montoBtns.forEach(b => b.classList.remove('activo'));
+      btn.classList.add('activo');
+      state.monto = parseInt(btn.dataset.monto);
+      montoInput.value = state.monto;
+      impactoBadge.innerHTML = getImpacto(state.monto);
+    }));
 
-    // 3. Control de monto personalizado
+    /* Monto libre */
     montoInput.addEventListener('input', () => {
       montoBtns.forEach(b => b.classList.remove('activo'));
       const val = parseInt(montoInput.value) || 0;
@@ -697,78 +731,58 @@
       impactoBadge.innerHTML = getImpacto(val);
     });
 
-    // Cambiar de paneles de forma controlada
-    function goToStep(stepIndex) {
-      panels.forEach((p, idx) => {
-        if (idx === stepIndex) {
-          p.classList.add('active');
-          tabs[idx].classList.add('active');
-          tabs[idx].classList.remove('done');
-        } else {
-          p.classList.remove('active');
-          tabs[idx].classList.remove('active');
-          if (idx < stepIndex) {
-            tabs[idx].classList.add('done');
-          } else {
-            tabs[idx].classList.remove('done');
-          }
-        }
+    /* Cambio de paso */
+    function goToStep(idx) {
+      panels.forEach((p, i) => {
+        p.classList.toggle('active', i === idx);
+        tabs[i].classList.toggle('active', i === idx);
+        tabs[i].classList.toggle('done', i < idx);
       });
+      document.getElementById('donationWidget').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
 
-    // Eventos de Regresar
-    back2.addEventListener('click', () => goToStep(0));
-    back3.addEventListener('click', () => goToStep(1));
+    document.getElementById('back2').addEventListener('click', () => goToStep(0));
+    document.getElementById('back3').addEventListener('click', () => goToStep(1));
 
-    // Botón Continuar (Paso 1 -> Paso 2)
-    next1.addEventListener('click', () => {
-      if (state.monto <= 0) {
-        alert('Por favor ingresa un monto de donación válido.');
-        return;
-      }
+    /* Paso 1 → 2 */
+    document.getElementById('next1').addEventListener('click', () => {
+      if (state.monto <= 0) { showToast('Ingresa un monto válido', '#e53e3e'); return; }
       goToStep(1);
     });
 
-    // Función auxiliar para validar campos individuales
-    function validarCampo(inputEl, condicion) {
-      const grupo = inputEl.closest('.form-group');
-      if (condicion) {
-        grupo.classList.add('has-error');
-        return false;
-      } else {
-        grupo.classList.remove('has-error');
-        return true;
-      }
+    /* Validación individual */
+    function validarCampo(el, condicion) {
+      el.closest('.form-group').classList.toggle('has-error', condicion);
+      return !condicion;
     }
 
-    // Botón Revisar Donación (Paso 2 -> Paso 3)
-    next2.addEventListener('click', () => {
-      const nombre = document.getElementById('nombre');
+    /* Paso 2 → 3 */
+    document.getElementById('next2').addEventListener('click', () => {
+      const nombre   = document.getElementById('nombre');
       const apellido = document.getElementById('apellido');
-      const correo = document.getElementById('correo');
-      const edad = document.getElementById('edad');
-      const sexo = document.getElementById('sexo');
-      const pais = document.getElementById('pais');
+      const correo   = document.getElementById('correo');
+      const edad     = document.getElementById('edad');
+      const sexo     = document.getElementById('sexo');
+      const pais     = document.getElementById('pais');
 
-      let esValido = true;
-
-      if (!validarCampo(nombre, nombre.value.trim() === '')) esValido = false;
-      if (!validarCampo(apellido, apellido.value.trim() === '')) esValido = false;
-      
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!validarCampo(correo, !emailRegex.test(correo.value.trim()))) esValido = false;
-      
+      const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(correo.value.trim());
       const edadVal = parseInt(edad.value);
-      if (!validarCampo(edad, isNaN(edadVal) || edadVal < 18 || edadVal > 99)) esValido = false;
-      
-      if (!validarCampo(sexo, sexo.value === '')) esValido = false;
-      if (!validarCampo(pais, pais.value === '')) esValido = false;
 
-      if (esValido) {
-        const freqLabel = state.frecuencia === 'una-vez' ? 'Una sola vez' : (state.frecuencia === 'mensual' ? 'Mensual' : 'Anual');
-        
+      const ok = [
+        validarCampo(nombre,   nombre.value.trim() === ''),
+        validarCampo(apellido, apellido.value.trim() === ''),
+        validarCampo(correo,   !emailOk),
+        validarCampo(edad,     isNaN(edadVal) || edadVal < 18 || edadVal > 99),
+        validarCampo(sexo,     sexo.value === ''),
+        validarCampo(pais,     pais.value === ''),
+      ].every(Boolean);
+
+      if (ok) {
+        const freqLabel = { 'una-vez': 'Una sola vez', 'mensual': 'Mensual', 'anual': 'Anual' }[state.frecuencia];
         resumenBox.innerHTML = `
           <div class="resumen-row"><span>Donante:</span><strong>${nombre.value.trim()} ${apellido.value.trim()}</strong></div>
+          <div class="resumen-row"><span>Correo:</span><strong>${correo.value.trim()}</strong></div>
+          <div class="resumen-row"><span>País:</span><strong>${pais.value}</strong></div>
           <div class="resumen-row"><span>Frecuencia:</span><strong>${freqLabel}</strong></div>
           <div class="resumen-row resumen-total"><span>Total a aportar:</span><strong>$${state.monto.toLocaleString('es-MX')} MXN</strong></div>
         `;
@@ -776,22 +790,43 @@
       }
     });
 
-    // Botón Confirmar Final (Paso 3 con Redirección a Recaudia)
-    btnConfirmar.addEventListener('click', () => {
+    /* Confirmar y enviar */
+    document.getElementById('btnConfirmar').addEventListener('click', async () => {
       const aviso = document.getElementById('avisoPrivacidad');
       if (!aviso.checked) {
-        alert('Debes aceptar el aviso de privacidad y el uso escolar de los datos para continuar.');
+        showToast('Acepta el aviso de privacidad para continuar', '#e53e3e');
         return;
       }
 
-      alert('¡Muchas gracias por tu apoyo! Redirigiéndote de forma segura a la plataforma de pago oficial...');
-      
-      // Redirección directa a la URL oficial
-      window.location.href = "https://alwayson.recaudia.com/christelhousefeenicia/donor";
+      const btn = document.getElementById('btnConfirmar');
+      btn.disabled = true;
+      sendingOverlay.classList.add('visible');
+
+      const datos = {
+        nombre:     document.getElementById('nombre').value.trim(),
+        apellido:   document.getElementById('apellido').value.trim(),
+        correo:     document.getElementById('correo').value.trim(),
+        edad:       document.getElementById('edad').value,
+        sexo:       document.getElementById('sexo').value,
+        pais:       document.getElementById('pais').value,
+        estado:     document.getElementById('estado').value.trim(),
+        motivacion: document.getElementById('motivacion').value.trim(),
+        monto:      state.monto,
+        frecuencia: state.frecuencia,
+      };
+
+      await enviarASheets(datos);
+
+      sendingOverlay.classList.remove('visible');
+      btn.disabled = false;
+
+      showToast('✓ ¡Gracias por tu apoyo! Redirigiendo…');
+      setTimeout(() => {
+        window.location.href = 'https://alwayson.recaudia.com/christelhousefeenicia/donor';
+      }, 1800);
     });
 
   });
 </script>
 </body>
 </html>
-  
