@@ -20,3 +20,6 @@ document.getElementById("donacionForm").addEventListener("submit", function(e) {
 
     document.getElementById("mensajeExito").style.display = "block";
 });
+
+
+
