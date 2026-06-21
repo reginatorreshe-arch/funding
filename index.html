@@ -121,7 +121,7 @@
       position: absolute; left: 0; top: 0; bottom: 0; width: 60px; z-index: 1;
       background: linear-gradient(to right, var(--crema), transparent);
     }
-
+ 
     .btn-primary {
       display: inline-flex; align-items: center; gap: 8px;
       background: var(--verde); color: var(--blanco);
@@ -453,7 +453,7 @@
       transition: background .2s;
     }
     .modal-btn-ok:hover { background: var(--verde-claro); }
-
+ 
     /* ── FOOTER ── */
     footer {
       background: var(--oscuro); color: rgba(255,255,255,.4);
@@ -484,7 +484,7 @@
  
 <!-- TOAST -->
 <div class="toast" id="toast">✓ Datos guardados correctamente</div>
-
+ 
 <!-- MODAL AVISO DE PRIVACIDAD -->
 <div class="modal-overlay" id="modalPrivacidad">
   <div class="modal-box">
@@ -497,10 +497,10 @@
         <span class="icon">🛡️</span>
         <p><strong>Tu información está segura.</strong> Los datos que compartes con nosotros son tratados con estricta confidencialidad y sólo se utilizan para los fines descritos en este aviso. Nunca vendemos ni compartimos tu información con terceros con fines comerciales.</p>
       </div>
-
+ 
       <h4>Responsable del tratamiento</h4>
       <p>La <strong>Fundación Estudiantil Christel House México</strong> (en adelante "la Fundación"), con domicilio en la Ciudad de México, es responsable del tratamiento de tus datos personales.</p>
-
+ 
       <h4>Datos que recopilamos</h4>
       <ul>
         <li>Nombre y apellido</li>
@@ -510,7 +510,7 @@
         <li>Motivación (campo opcional)</li>
         <li>Monto y frecuencia de donación seleccionados</li>
       </ul>
-
+ 
       <h4>Finalidad del tratamiento</h4>
       <p>Tus datos son utilizados exclusivamente para:</p>
       <ul>
@@ -519,13 +519,13 @@
         <li>Generar reportes estadísticos anónimos sobre el perfil de nuestros donantes (proyecto escolar).</li>
         <li>Cumplir con obligaciones legales y fiscales aplicables.</li>
       </ul>
-
+ 
       <h4>Seguridad de tus datos</h4>
       <p>Implementamos medidas técnicas y organizativas para proteger tus datos frente a accesos no autorizados, pérdida o divulgación. Tu información viaja a través de conexiones cifradas (HTTPS/TLS).</p>
-
+ 
       <h4>Derechos ARCO</h4>
       <p>En cualquier momento puedes ejercer tus derechos de <strong>Acceso, Rectificación, Cancelación u Oposición</strong> (ARCO) escribiéndonos a: <strong>privacidad@christelhousemx.org</strong></p>
-
+ 
       <h4>Cambios a este aviso</h4>
       <p>Cualquier modificación a este aviso será publicada en nuestro sitio web con al menos 10 días de anticipación.</p>
     </div>
@@ -840,13 +840,13 @@
     const tabs   = [document.getElementById('tab1'),   document.getElementById('tab2'),   document.getElementById('tab3')];
     const sendingOverlay = document.getElementById('sendingOverlay');
     const resumenBox     = document.getElementById('resumenBox');
-
+ 
     /* Modal privacidad */
     const modalOverlay   = document.getElementById('modalPrivacidad');
     const linkPrivacidad = document.getElementById('linkPrivacidad');
     const cerrarModal    = document.getElementById('cerrarModal');
     const aceptarPriv    = document.getElementById('aceptarPrivacidad');
-
+ 
     linkPrivacidad.addEventListener('click', (e) => {
       e.preventDefault();
       modalOverlay.classList.add('open');
