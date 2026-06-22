@@ -962,4 +962,2896 @@
   });
 </script>
 </body>
+</html><!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Fundación Estudiantil Christel House</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  
+  <style>
+    :root {
+      --verde:      #1B3A6B;
+      --verde-claro:#2a5298;
+      --dorado:     #F26522;
+      --crema:      #f5f7fa;
+      --oscuro:     #0f1f3d;
+      --gris:       #5a6a80;
+      --blanco:     #ffffff;
+      --radio:      14px;
+      --sombra:     0 8px 32px rgba(27,58,107,.13);
+      --error:      #e53e3e;
+      --success:    #38a169;
+    }
+ 
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--crema);
+      color: var(--oscuro);
+      overflow-x: hidden;
+    }
+ 
+    /* ── NAVBAR ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 6vw;
+      background: rgba(245,247,250,.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(27,58,107,.12);
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px;
+      text-decoration: none;
+    }
+    /* Logo CH inline SVG */
+    .ch-logo-svg {
+      height: 44px; width: auto;
+    }
+    .nav-logo-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem; color: var(--verde);
+      font-weight: 700; line-height: 1.2;
+      display: flex; flex-direction: column;
+    }
+    .nav-logo-text span:last-child { font-size: .72rem; font-weight: 400; opacity: .6; letter-spacing: .04em; }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a {
+      text-decoration: none; color: var(--oscuro);
+      font-size: .875rem; font-weight: 500; opacity: .75; transition: opacity .2s;
+    }
+    .nav-links a:hover { opacity: 1; }
+    .btn-nav {
+      background: var(--verde); color: var(--blanco) !important;
+      opacity: 1 !important; padding: 9px 22px; border-radius: 50px;
+      font-weight: 600 !important; transition: background .2s, transform .15s !important;
+    }
+    .btn-nav:hover { background: var(--verde-claro); transform: translateY(-1px); }
+ 
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding-top: 76px; /* altura del nav */
+      position: relative; overflow: hidden;
+      background: var(--crema);
+    }
+    .hero-left {
+      display: flex; align-items: center;
+      padding: 60px 6vw 60px 6vw;
+      background:
+        radial-gradient(ellipse 80% 60% at 30% 50%, rgba(42,82,152,.1) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 50% at 10% 80%, rgba(242,101,34,.08) 0%, transparent 60%);
+    }
+    .hero-inner { max-width: 560px; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(27,58,107,.1); color: var(--verde);
+      font-size: .78rem; font-weight: 600; letter-spacing: .05em;
+      text-transform: uppercase; padding: 6px 14px; border-radius: 50px;
+      margin-bottom: 24px; animation: fadeUp .6s ease both;
+    }
+    .hero-badge::before { content: '●'; font-size: .5rem; }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 4vw, 3.6rem); line-height: 1.15;
+      color: var(--oscuro); animation: fadeUp .6s .1s ease both;
+    }
+    .hero h1 em { font-style: italic; color: var(--verde); }
+    .hero p {
+      margin-top: 18px; font-size: 1.05rem; line-height: 1.7;
+      color: var(--gris); max-width: 480px; animation: fadeUp .6s .2s ease both;
+    }
+    .hero-ctas {
+      margin-top: 36px; display: flex; gap: 14px; flex-wrap: wrap;
+      animation: fadeUp .6s .3s ease both;
+    }
+    /* Hero imagen derecha */
+    .hero-right {
+      position: relative; overflow: hidden;
+    }
+    .hero-right img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center top;
+      display: block;
+    }
+    /* overlay sutil para suavizar el corte */
+    .hero-right::before {
+      content: '';
+      position: absolute; left: 0; top: 0; bottom: 0; width: 60px; z-index: 1;
+      background: linear-gradient(to right, var(--crema), transparent);
+    }
+ 
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--verde); color: var(--blanco);
+      padding: 14px 32px; border-radius: 50px;
+      font-weight: 600; font-size: .95rem; text-decoration: none;
+      box-shadow: 0 4px 20px rgba(27,58,107,.35);
+      transition: background .2s, transform .15s, box-shadow .2s;
+    }
+    .btn-primary:hover { background: var(--verde-claro); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(27,58,107,.4); }
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 8px;
+      border: 2px solid rgba(27,58,107,.3); color: var(--verde);
+      padding: 13px 28px; border-radius: 50px; font-weight: 600; font-size: .95rem;
+      text-decoration: none; transition: border-color .2s, background .2s;
+    }
+    .btn-secondary:hover { border-color: var(--verde); background: rgba(27,58,107,.05); }
+ 
+    /* ── STATS ── */
+    .stats-bar {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      background: var(--verde); color: var(--blanco);
+    }
+    .stat-item {
+      padding: 28px 24px; text-align: center;
+      border-right: 1px solid rgba(255,255,255,.15);
+      animation: fadeUp .6s ease both;
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-num { font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 700; }
+    .stat-label { font-size: .8rem; opacity: .75; margin-top: 4px; letter-spacing: .04em; text-transform: uppercase; }
+ 
+    /* ── SECCIONES ── */
+    section { padding: 90px 6vw; }
+    .bg-alt { background: #edf1f8; }
+    h2.section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.7rem, 3vw, 2.5rem); color: var(--oscuro); margin-bottom: 10px;
+    }
+    .section-sub { color: var(--gris); font-size: .95rem; max-width: 520px; line-height: 1.6; margin-bottom: 48px; }
+ 
+    /* ── NOSOTROS ── */
+    .nosotros-container { max-width: 760px; margin: 0 auto; text-align: center; }
+    .nosotros-container p { color: var(--gris); line-height: 1.8; font-size: .97rem; margin-bottom: 16px; text-align: left; }
+    .nosotros-container .section-sub { text-align: center; margin-left: auto; margin-right: auto; }
+ 
+    /* ── FUNDADORA ── */
+    .fundadora-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+    .fundadora-img-wrap {
+      border-radius: 20px; overflow: hidden; box-shadow: var(--sombra);
+      aspect-ratio: 4/5; background: linear-gradient(135deg, #c8d6e8, #a8bfd4);
+      display: flex; align-items: center; justify-content: center;
+      position: relative;
+    }
+    .fundadora-img-wrap img { width: 100%; height: 100%; object-fit: cover; object-position: center 15%; display: block; }
+    .fundadora-img-placeholder {
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 12px; color: var(--verde); text-align: center; padding: 32px;
+    }
+    .fundadora-img-placeholder svg { opacity: .5; }
+    .fundadora-img-placeholder p { font-size: .85rem; opacity: .6; line-height: 1.5; }
+    .fundadora-text blockquote {
+      font-family: 'Playfair Display', serif; font-size: 1.3rem; font-style: italic;
+      color: var(--verde); border-left: 3px solid var(--dorado);
+      padding-left: 20px; margin: 24px 0; line-height: 1.5;
+    }
+    .fundadora-text p { color: var(--gris); line-height: 1.8; font-size: .97rem; margin-bottom: 14px; }
+ 
+    /* ── TESTIMONIOS ── */
+    .testimonios-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .testimonio-card {
+      background: var(--blanco); border-radius: var(--radio);
+      padding: 32px; box-shadow: var(--sombra); position: relative;
+    }
+    .testimonio-card::before {
+      content: '"'; font-family: 'Playfair Display', serif;
+      font-size: 5rem; line-height: 1; color: rgba(27,58,107,.12);
+      position: absolute; top: 8px; left: 24px; pointer-events: none;
+    }
+    .testimonio-card p { font-size: .97rem; color: var(--oscuro); line-height: 1.7; font-style: italic; margin-bottom: 20px; }
+ 
+    /* ── SECCIÓN DONAR ── */
+    #donar {
+      background: linear-gradient(135deg, #0f1f3d 0%, #1B3A6B 100%);
+      color: var(--blanco); text-align: center;
+    }
+    #donar h2.section-title { color: var(--blanco); }
+    #donar .section-sub { color: rgba(255,255,255,.6); margin: 0 auto 48px; }
+ 
+    .equiv-wrap { max-width: 720px; margin: 0 auto 40px; }
+    .equiv-titulo { font-size: .78rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.45); margin-bottom: 14px; }
+    .equiv-tabla { width: 100%; border-collapse: collapse; border-radius: 14px; overflow: hidden; font-size: .9rem; }
+    .equiv-tabla thead tr { background: var(--dorado); color: var(--blanco); }
+    .equiv-tabla thead th { padding: 14px 18px; text-align: center; font-weight: 700; font-size: .8rem; letter-spacing: .05em; text-transform: uppercase; }
+    .equiv-tabla tbody tr { background: rgba(255,255,255,.06); border-bottom: 1px solid rgba(255,255,255,.08); transition: background .2s; }
+    .equiv-tabla tbody tr:hover { background: rgba(255,255,255,.11); }
+    .equiv-tabla tbody td { padding: 13px 18px; text-align: center; color: rgba(255,255,255,.85); }
+    .equiv-monto { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: var(--dorado) !important; }
+    .equiv-row-highlight { background: rgba(242,101,34,.12) !important; }
+    .equiv-row-highlight .equiv-monto { font-size: 1.2rem; }
+ 
+    /* ── WIDGET ── */
+    .donation-widget {
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.15);
+      backdrop-filter: blur(12px);
+      border-radius: 24px;
+      max-width: 560px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+    .steps-header { display: flex; border-bottom: 1px solid rgba(255,255,255,.1); }
+    .step-tab {
+      flex: 1; padding: 16px 8px; text-align: center;
+      font-size: .75rem; font-weight: 600; letter-spacing: .06em;
+      text-transform: uppercase; color: rgba(255,255,255,.35);
+      border-bottom: 3px solid transparent; transition: color .3s, border-color .3s;
+    }
+    .step-tab.active { color: var(--dorado); border-bottom-color: var(--dorado); }
+    .step-tab.done { color: rgba(255,255,255,.6); }
+ 
+    .step-panel { display: none; padding: 36px 40px; text-align: left; }
+    .step-panel.active { display: block; }
+ 
+    .freq-tabs {
+      display: flex; gap: 8px; margin-bottom: 28px;
+      background: rgba(255,255,255,.06); border-radius: 50px; padding: 4px;
+    }
+    .freq-btn {
+      flex: 1; padding: 10px; border-radius: 50px;
+      border: none; cursor: pointer; font-family: 'DM Sans', sans-serif;
+      font-size: .85rem; font-weight: 600;
+      background: transparent; color: rgba(255,255,255,.55);
+      transition: background .2s, color .2s;
+    }
+    .freq-btn.active { background: var(--verde-claro); color: var(--blanco); }
+ 
+    .montos-rapidos { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 16px; }
+    .monto-btn {
+      padding: 11px 8px; border-radius: 10px;
+      border: 1.5px solid rgba(255,255,255,.2);
+      background: rgba(255,255,255,.05); color: rgba(255,255,255,.8);
+      font-family: 'DM Sans', sans-serif; font-size: .88rem; font-weight: 600;
+      cursor: pointer; transition: all .2s; text-align: center;
+    }
+    .monto-btn:hover { border-color: var(--dorado); color: var(--blanco); }
+    .monto-btn.activo { background: var(--dorado); border-color: var(--dorado); color: var(--oscuro); }
+ 
+    .monto-custom-wrap { position: relative; }
+    .monto-custom-wrap span {
+      position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+      color: rgba(255,255,255,.5); font-weight: 600;
+    }
+    .monto-custom-wrap input { padding-left: 30px !important; }
+ 
+    .impacto-badge {
+      background: rgba(242,101,34,.15); border: 1px solid rgba(242,101,34,.3);
+      border-radius: 10px; padding: 12px 16px; margin-top: 16px;
+      font-size: .875rem; color: rgba(255,255,255,.8); line-height: 1.5;
+      min-height: 48px; transition: all .3s;
+    }
+    .impacto-badge strong { color: var(--dorado); }
+ 
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .form-group { margin-bottom: 16px; }
+    .form-group label {
+      display: block; font-size: .78rem; font-weight: 600;
+      color: rgba(255,255,255,.55); margin-bottom: 7px;
+      text-transform: uppercase; letter-spacing: .05em;
+    }
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      background: rgba(255,255,255,.08);
+      border: 1.5px solid rgba(255,255,255,.15);
+      border-radius: 10px; padding: 13px 16px;
+      color: var(--blanco); font-size: .95rem;
+      font-family: 'DM Sans', sans-serif;
+      transition: border-color .2s, background .2s; outline: none;
+      appearance: none; -webkit-appearance: none;
+    }
+    .form-group select option { background: #1B3A6B; color: #fff; }
+    .form-group input::placeholder { color: rgba(255,255,255,.3); }
+    .form-group input:focus,
+    .form-group select:focus { border-color: var(--dorado); background: rgba(255,255,255,.12); }
+    .form-group.has-error input,
+    .form-group.has-error select { border-color: var(--error); }
+    .error-msg { font-size: .75rem; color: #fc8181; margin-top: 5px; display: none; }
+    .form-group.has-error .error-msg { display: block; }
+ 
+    .select-wrap { position: relative; }
+    .select-wrap::after {
+      content: '▾'; position: absolute; right: 14px; top: 50%;
+      transform: translateY(-50%); color: rgba(255,255,255,.4);
+      pointer-events: none; font-size: .9rem;
+    }
+ 
+    .resumen-box {
+      background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.15);
+      border-radius: 14px; padding: 20px; margin-bottom: 20px;
+    }
+    .resumen-row {
+      display: flex; justify-content: space-between;
+      font-size: .9rem; padding: 6px 0;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      color: rgba(255,255,255,.75);
+    }
+    .resumen-row:last-child { border: none; }
+    .resumen-row strong { color: var(--blanco); }
+    .resumen-total { font-size: 1.1rem; font-weight: 700; }
+    .resumen-total strong { color: var(--dorado); font-family: 'Playfair Display', serif; font-size: 1.4rem; }
+ 
+    .check-group { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 20px; }
+    .check-group input[type="checkbox"] {
+      width: 18px; height: 18px; margin-top: 2px; flex-shrink: 0;
+      accent-color: var(--dorado);
+    }
+    .check-group label {
+      font-size: .82rem; color: rgba(255,255,255,.55); line-height: 1.5;
+      margin: 0; text-transform: none; letter-spacing: 0;
+    }
+    .check-group a { color: var(--dorado); text-decoration: underline; cursor: pointer; }
+ 
+    .btn-step-next,
+    .btn-step-back {
+      display: inline-flex; align-items: center; gap: 8px;
+      border: none; cursor: pointer; border-radius: 50px;
+      font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: .95rem;
+      transition: all .2s;
+    }
+    .btn-step-next {
+      width: 100%; justify-content: center;
+      background: var(--dorado); color: var(--oscuro);
+      padding: 16px 32px;
+      box-shadow: 0 4px 20px rgba(242,101,34,.35);
+    }
+    .btn-step-next:hover:not(:disabled) { background: #f47a3a; transform: translateY(-2px); box-shadow: 0 8px 28px rgba(242,101,34,.5); }
+    .btn-step-next:disabled { opacity: .6; cursor: not-allowed; transform: none; }
+    .btn-step-back {
+      background: transparent; color: rgba(255,255,255,.5);
+      padding: 10px 0; font-size: .85rem; margin-bottom: 16px;
+    }
+    .btn-step-back:hover { color: var(--blanco); }
+ 
+    /* Estado de envío */
+    .sending-overlay {
+      display: none; position: absolute; inset: 0;
+      background: rgba(15,31,61,.85); backdrop-filter: blur(6px);
+      border-radius: 24px; align-items: center; justify-content: center;
+      flex-direction: column; gap: 16px; z-index: 10;
+    }
+    .sending-overlay.visible { display: flex; }
+    .spinner {
+      width: 40px; height: 40px; border: 3px solid rgba(255,255,255,.2);
+      border-top-color: var(--dorado); border-radius: 50%;
+      animation: spin .8s linear infinite;
+    }
+    .sending-overlay p { color: rgba(255,255,255,.8); font-size: .9rem; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+ 
+    /* Toast de éxito */
+    .toast {
+      position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%) translateY(80px);
+      background: var(--success); color: #fff; padding: 14px 28px;
+      border-radius: 50px; font-weight: 600; font-size: .9rem;
+      box-shadow: 0 8px 32px rgba(0,0,0,.25); z-index: 200;
+      transition: transform .4s cubic-bezier(.34,1.56,.64,1);
+      white-space: nowrap;
+    }
+    .toast.show { transform: translateX(-50%) translateY(0); }
+ 
+    .nota-seguridad {
+      text-align: center; margin-top: 16px; color: rgba(255,255,255,.35);
+      font-size: .75rem; display: flex; align-items: center; justify-content: center; gap: 6px;
+    }
+ 
+    /* ── MODAL AVISO DE PRIVACIDAD ── */
+    .modal-overlay {
+      display: none; position: fixed; inset: 0; z-index: 300;
+      background: rgba(10,20,40,.7); backdrop-filter: blur(6px);
+      align-items: center; justify-content: center; padding: 20px;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal-box {
+      background: #fff; border-radius: 20px; max-width: 600px; width: 100%;
+      max-height: 85vh; overflow-y: auto;
+      box-shadow: 0 20px 60px rgba(0,0,0,.35);
+      animation: modalIn .3s ease;
+    }
+    @keyframes modalIn { from { opacity:0; transform:translateY(20px) scale(.97); } to { opacity:1; transform:none; } }
+    .modal-header {
+      position: sticky; top: 0; background: var(--verde); color: #fff;
+      padding: 20px 28px; border-radius: 20px 20px 0 0;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .modal-header h3 { font-family: 'Playfair Display', serif; font-size: 1.2rem; }
+    .modal-close {
+      background: rgba(255,255,255,.15); border: none; color: #fff;
+      width: 32px; height: 32px; border-radius: 50%; cursor: pointer;
+      font-size: 1rem; display: flex; align-items: center; justify-content: center;
+      transition: background .2s;
+    }
+    .modal-close:hover { background: rgba(255,255,255,.3); }
+    .modal-body { padding: 28px; }
+    .modal-body .seguridad-badge {
+      background: #f0fdf4; border: 1.5px solid #86efac; border-radius: 12px;
+      padding: 14px 18px; margin-bottom: 24px;
+      display: flex; align-items: flex-start; gap: 12px;
+    }
+    .seguridad-badge .icon { font-size: 1.4rem; flex-shrink: 0; margin-top: 2px; }
+    .seguridad-badge p { font-size: .88rem; color: #166534; line-height: 1.6; margin: 0; }
+    .seguridad-badge p strong { color: #15803d; }
+    .modal-body h4 {
+      font-family: 'Playfair Display', serif; color: var(--oscuro);
+      font-size: 1rem; margin: 20px 0 8px; border-bottom: 1px solid #e5e7eb; padding-bottom: 6px;
+    }
+    .modal-body p, .modal-body li {
+      font-size: .875rem; color: var(--gris); line-height: 1.7; margin-bottom: 8px;
+    }
+    .modal-body ul { padding-left: 18px; }
+    .modal-body li { margin-bottom: 4px; }
+    .modal-footer {
+      padding: 20px 28px; border-top: 1px solid #f1f5f9;
+      display: flex; justify-content: flex-end;
+    }
+    .modal-btn-ok {
+      background: var(--verde); color: #fff; border: none;
+      padding: 11px 28px; border-radius: 50px; font-weight: 700;
+      font-family: 'DM Sans', sans-serif; font-size: .9rem; cursor: pointer;
+      transition: background .2s;
+    }
+    .modal-btn-ok:hover { background: var(--verde-claro); }
+ 
+    /* ── FOOTER ── */
+    footer {
+      background: var(--oscuro); color: rgba(255,255,255,.4);
+      text-align: center; padding: 28px; font-size: .82rem;
+      border-top: 1px solid rgba(255,255,255,.06);
+    }
+    footer strong { color: rgba(255,255,255,.7); }
+ 
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(22px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+ 
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hero { grid-template-columns: 1fr; }
+      .hero-right { height: 55vw; }
+      .hero-left { padding: 40px 6vw; }
+      .fundadora-grid, .testimonios-grid { grid-template-columns: 1fr; }
+      .stats-bar { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .step-panel { padding: 28px 24px; }
+      .montos-rapidos { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+ 
+<!-- TOAST -->
+<div class="toast" id="toast">✓ Datos guardados correctamente</div>
+ 
+<!-- MODAL AVISO DE PRIVACIDAD -->
+<div class="modal-overlay" id="modalPrivacidad">
+  <div class="modal-box">
+    <div class="modal-header">
+      <h3>🔒 Aviso de Privacidad</h3>
+      <button class="modal-close" id="cerrarModal">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="seguridad-badge">
+        <span class="icon">🛡️</span>
+        <p><strong>Tu información está segura.</strong> Los datos que compartes con nosotros son tratados con estricta confidencialidad y sólo se utilizan para los fines descritos en este aviso. Nunca vendemos ni compartimos tu información con terceros con fines comerciales.</p>
+      </div>
+ 
+      <h4>Responsable del tratamiento</h4>
+      <p>La <strong>Fundación Estudiantil Christel House México</strong> (en adelante "la Fundación"), con domicilio en la Ciudad de México, es responsable del tratamiento de tus datos personales.</p>
+ 
+      <h4>Datos que recopilamos</h4>
+      <ul>
+        <li>Nombre y apellido</li>
+        <li>Correo electrónico</li>
+        <li>Edad y sexo</li>
+        <li>País y estado de residencia</li>
+        <li>Motivación (campo opcional)</li>
+        <li>Monto y frecuencia de donación seleccionados</li>
+      </ul>
+ 
+      <h4>Finalidad del tratamiento</h4>
+      <p>Tus datos son utilizados exclusivamente para:</p>
+      <ul>
+        <li>Registrar y procesar tu donación de forma segura.</li>
+        <li>Enviarte confirmaciones y actualizaciones sobre el impacto de tu aportación.</li>
+        <li>Generar reportes estadísticos anónimos sobre el perfil de nuestros donantes (proyecto escolar).</li>
+        <li>Cumplir con obligaciones legales y fiscales aplicables.</li>
+      </ul>
+ 
+      <h4>Seguridad de tus datos</h4>
+      <p>Implementamos medidas técnicas y organizativas para proteger tus datos frente a accesos no autorizados, pérdida o divulgación. Tu información viaja a través de conexiones cifradas (HTTPS/TLS).</p>
+ 
+      <h4>Derechos ARCO</h4>
+      <p>En cualquier momento puedes ejercer tus derechos de <strong>Acceso, Rectificación, Cancelación u Oposición</strong> (ARCO) escribiéndonos a: <strong>privacidad@christelhousemx.org</strong></p>
+ 
+      <h4>Cambios a este aviso</h4>
+      <p>Cualquier modificación a este aviso será publicada en nuestro sitio web con al menos 10 días de anticipación.</p>
+    </div>
+    <div class="modal-footer">
+      <button class="modal-btn-ok" id="aceptarPrivacidad">Entendido ✓</button>
+    </div>
+  </div>
+</div>
+ 
+<nav>
+  <a class="nav-logo" href="#">
+    <!-- Logo CH inline - adaptado de los colores de Christel House -->
+    <svg class="ch-logo-svg" viewBox="0 0 120 50" xmlns="http://www.w3.org/2000/svg">
+      <!-- Círculo naranja (la "C") -->
+      <circle cx="23" cy="25" r="22" fill="#F26522"/>
+      <!-- Mordida para crear la "C" -->
+      <polygon points="23,3 50,3 50,47 23,47" fill="#1B3A6B"/>
+      <!-- Rectángulo azul (la "h") -->
+      <rect x="32" y="8" width="18" height="34" rx="3" fill="#2a5298"/>
+      <!-- Parte baja del brazo derecho de la h -->
+      <rect x="42" y="25" width="12" height="17" rx="3" fill="#2a5298"/>
+    </svg>
+    <div class="nav-logo-text">
+      <span>Christel House</span>
+      <span>México</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#nosotros">Nosotros</a></li>
+    <li><a href="#fundadora">Fundadora</a></li>
+    <li><a href="#testimonios">Testimonios</a></li>
+    <li><a href="#donar" class="btn-nav">Donar ahora</a></li>
+  </ul>
+</nav>
+ 
+<!-- HERO con imagen a la derecha -->
+<header class="hero">
+  <div class="hero-left">
+    <div class="hero-inner">
+      <div class="hero-badge">Fundación Estudiantil</div>
+      <h1>Educación que<br><em>transforma vidas</em></h1>
+      <p>Apoyamos a estudiantes de bajos recursos con becas, útiles escolares y tecnología. Cada donación cambia una historia.</p>
+      <div class="hero-ctas">
+        <a href="#donar" class="btn-primary">♥ Apoyar la causa</a>
+        <a href="#nosotros" class="btn-secondary">Conocer más</a>
+      </div>
+    </div>
+  </div>
+  <!-- Imagen grupal de estudiantes Christel House -->
+  <div class="hero-right">
+    <img src="students.png" alt="Estudiantes Christel House México" />
+  </div>
+</header>
+ 
+<div class="stats-bar">
+  <div class="stat-item"><div class="stat-num">+1,200</div><div class="stat-label">Estudiantes apoyados</div></div>
+  <div class="stat-item"><div class="stat-num">94%</div><div class="stat-label">Recursos a programas</div></div>
+  <div class="stat-item"><div class="stat-num">28 años</div><div class="stat-label">De impacto continuo</div></div>
+</div>
+ 
+<section id="nosotros">
+  <div class="nosotros-container">
+    <h2 class="section-title">¿Quiénes somos?</h2>
+    <p class="section-sub">Una iniciativa estudiantil con un propósito real.</p>
+    <p>Somos una comunidad comprometida con brindar oportunidades educativas, acompañamiento y herramientas para que cada estudiante alcance su máximo potencial y construya un mejor futuro.</p>
+    <p>Creemos que ningún estudiante debe abandonar sus estudios por falta de recursos. Por eso trabajamos de manera transparente para que cada peso donado llegue directamente a quienes más lo necesitan.</p>
+  </div>
+</section>
+ 
+<section id="fundadora" class="bg-alt">
+  <div class="fundadora-grid">
+    <div class="fundadora-img-wrap">
+      <img
+        src="christel-dehaan.jpg"
+        alt="Christel DeHaan, fundadora"
+        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+      >
+      <div class="fundadora-img-placeholder" style="display:none;">
+        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+          <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+        </svg>
+        <p>Coloca aquí la imagen de<br><strong>Christel DeHaan</strong></p>
+      </div>
+    </div>
+    <div class="fundadora-text">
+      <h2 class="section-title">Sobre la Fundadora</h2>
+      <blockquote>"La educación es el camino más poderoso para romper el ciclo de la pobreza."</blockquote>
+      <p><strong>Christel DeHaan</strong> fue una empresaria que dedicó su vida a generar oportunidades reales para jóvenes en situación vulnerable.</p>
+      <p>Su visión dio origen a Christel House, una institución que hoy representa esperanza, equidad y futuro para miles de estudiantes alrededor del mundo.</p>
+      <p>"La educación puede cambiar una vida, pero una oportunidad puede cambiar generaciones." Miles de estudiantes tienen sueños enormes, pero muchos enfrentan obstáculos que parecen imposibles de superar. En Christel House México trabajamos para que ningún joven abandone sus metas por falta de recursos.</p>
+    </div>
+  </div>
+</section>
+ 
+<section id="testimonios">
+  <h2 class="section-title" style="text-align:center;">Testimonios</h2>
+  <p class="section-sub" style="text-align:center; margin: 0 auto 48px;">Lo que dicen quienes han vivido el cambio.</p>
+  <div class="testimonios-grid">
+    <div class="testimonio-card">
+      <p>"Cristel House me ha enseñado que los sueños sí se pueden alcanzar con esfuerzo y apoyo. Aquí he encontrado personas que creen en mí y me motivan a seguir creciendo cada día."</p>
+      <strong style="color: var(--verde); font-size: .88rem;">— Regina Torres, Alumna.</strong>
+    </div>
+    <div class="testimonio-card">
+      <p>"He visto cómo los estudiantes apoyados por Christel House desarrollan confianza, compromiso y liderazgo. El impacto de este programa va más allá de lo académico; transforma vidas y abre nuevas oportunidades para el futuro."</p>
+      <strong style="color: var(--verde); font-size: .88rem;">— Armando Yáñez, Docente.</strong>
+    </div>
+  </div>
+</section>
+ 
+<section id="donar">
+  <h2 class="section-title">Haz tu donación</h2>
+  <p class="section-sub">Con tu apoyo, transformamos la vida de un niño. Conoce lo que cada monto representa.</p>
+ 
+  <div class="equiv-wrap">
+    <p class="equiv-titulo">¿A qué equivale tu donación mensual?</p>
+    <table class="equiv-tabla">
+      <thead>
+        <tr><th>Monto</th><th>Programa</th><th>Periodo</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="equiv-monto">$200</td><td>Salud Física y Preventiva</td><td>Mensual</td></tr>
+        <tr><td class="equiv-monto">$485</td><td>Programa de Alto Nivel de Inglés</td><td>Mensual</td></tr>
+        <tr><td class="equiv-monto">$600</td><td>Uniforme</td><td>Anual</td></tr>
+        <tr><td class="equiv-monto">$750</td><td>Apoyo Psicológico</td><td>Mensual</td></tr>
+        <tr><td class="equiv-monto">$1,000</td><td>Nutrición</td><td>Mensual</td></tr>
+        <tr><td class="equiv-monto">$1,280</td><td>Preparación en Tecnología</td><td>Anual</td></tr>
+        <tr class="equiv-row-highlight"><td class="equiv-monto">$8,560</td><td>Programa Integral</td><td>Mensual</td></tr>
+      </tbody>
+    </table>
+  </div>
+ 
+  <div class="donation-widget" id="donationWidget" style="position:relative;">
+ 
+    <div class="sending-overlay" id="sendingOverlay">
+      <div class="spinner"></div>
+      <p>Guardando tu información…</p>
+    </div>
+ 
+    <div class="steps-header">
+      <div class="step-tab active" id="tab1">1. Tu donación</div>
+      <div class="step-tab" id="tab2">2. Tus datos</div>
+      <div class="step-tab" id="tab3">3. Confirmar</div>
+    </div>
+ 
+    <!-- PASO 1: Monto -->
+    <div class="step-panel active" id="panel1">
+      <p style="font-size:.82rem; color:rgba(255,255,255,.45); text-transform:uppercase; letter-spacing:.06em; margin-bottom:14px;">¿Con qué frecuencia quieres donar?</p>
+      <div class="freq-tabs">
+        <button class="freq-btn active" data-freq="una-vez">Una vez</button>
+        <button class="freq-btn" data-freq="mensual">Mensual</button>
+        <button class="freq-btn" data-freq="anual">Anual</button>
+      </div>
+      <p style="font-size:.82rem; color:rgba(255,255,255,.45); text-transform:uppercase; letter-spacing:.06em; margin-bottom:10px;">Elige un monto</p>
+      <div class="montos-rapidos">
+        <button class="monto-btn" data-monto="200">$200</button>
+        <button class="monto-btn" data-monto="485">$485</button>
+        <button class="monto-btn" data-monto="750">$750</button>
+        <button class="monto-btn activo" data-monto="1000">$1,000</button>
+        <button class="monto-btn" data-monto="1280">$1,280</button>
+        <button class="monto-btn" data-monto="2500">$2,500</button>
+        <button class="monto-btn" data-monto="5000">$5,000</button>
+        <button class="monto-btn" data-monto="8560">$8,560</button>
+      </div>
+      <div class="form-group monto-custom-wrap" style="margin-top:4px;">
+        <label for="montoInput">O ingresa otro monto (MXN)</label>
+        <span>$</span>
+        <input type="number" id="montoInput" placeholder="Otro monto" min="1" value="1000">
+      </div>
+      <div class="impacto-badge" id="impactoBadge">
+        💡 <strong>$1,000</strong> cubre la nutrición de un alumno durante un mes.
+      </div>
+      <button class="btn-step-next" id="next1" style="margin-top:24px;">Continuar →</button>
+    </div>
+ 
+    <!-- PASO 2: Datos personales -->
+    <div class="step-panel" id="panel2">
+      <button class="btn-step-back" id="back2">← Regresar</button>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="nombre">Nombre</label>
+          <input type="text" id="nombre" placeholder="Tu nombre" autocomplete="given-name">
+          <p class="error-msg">Campo requerido</p>
+        </div>
+        <div class="form-group">
+          <label for="apellido">Apellido</label>
+          <input type="text" id="apellido" placeholder="Tu apellido" autocomplete="family-name">
+          <p class="error-msg">Campo requerido</p>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="correo">Correo electrónico</label>
+        <input type="email" id="correo" placeholder="tucorreo@ejemplo.com" autocomplete="email">
+        <p class="error-msg">Correo inválido</p>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="edad">Edad</label>
+          <input type="number" id="edad" placeholder="Ej. 32" min="18" max="99" autocomplete="off">
+          <p class="error-msg">18–99 años requerido</p>
+        </div>
+        <div class="form-group">
+          <label for="sexo">Sexo</label>
+          <div class="select-wrap">
+            <select id="sexo">
+              <option value="">Seleccionar</option>
+              <option value="Femenino">Femenino</option>
+              <option value="Masculino">Masculino</option>
+              <option value="No binario">No binario</option>
+              <option value="Prefiero no decir">Prefiero no decir</option>
+            </select>
+          </div>
+          <p class="error-msg">Campo requerido</p>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="pais">País de residencia</label>
+          <div class="select-wrap">
+            <select id="pais">
+              <option value="">Seleccionar</option>
+              <option value="México" selected>México</option>
+              <option value="Estados Unidos">Estados Unidos</option>
+              <option value="Canadá">Canadá</option>
+              <option value="España">España</option>
+              <option value="Colombia">Colombia</option>
+              <option value="Argentina">Argentina</option>
+              <option value="Otro">Otro</option>
+            </select>
+          </div>
+          <p class="error-msg">Campo requerido</p>
+        </div>
+        <div class="form-group">
+          <label for="estado">Estado / Provincia</label>
+          <input type="text" id="estado" placeholder="Ej. CDMX" autocomplete="address-level1">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="motivacion">¿Por qué apoyas esta causa? <span style="opacity:.5;">(opcional)</span></label>
+        <input type="text" id="motivacion" placeholder="Tu motivación en una frase">
+      </div>
+      <button class="btn-step-next" id="next2">Revisar mi donación →</button>
+    </div>
+ 
+    <!-- PASO 3: Confirmar -->
+    <div class="step-panel" id="panel3">
+      <button class="btn-step-back" id="back3">← Regresar</button>
+      <p style="font-size:.82rem; color:rgba(255,255,255,.45); text-transform:uppercase; letter-spacing:.06em; margin-bottom:16px;">Resumen de tu donación</p>
+      <div class="resumen-box" id="resumenBox"></div>
+      <div class="check-group">
+        <input type="checkbox" id="avisoPrivacidad">
+        <label for="avisoPrivacidad">
+          He leído y acepto el <a id="linkPrivacidad">aviso de privacidad</a>.
+          Autorizo el registro seguro de mis datos demográficos para fines del proyecto escolar.
+        </label>
+      </div>
+      <button type="button" class="btn-step-next" id="btnConfirmar">🔒 Guardar y proceder al pago</button>
+    </div>
+ 
+  </div>
+  <p class="nota-seguridad">🔒 Conexión segura · Los datos se registran antes de derivar a la plataforma oficial</p>
+</section>
+ 
+<footer>
+  <p>© 2026 <strong>Fundación Estudiantil Christel House</strong> · Proyecto Escolar</p>
+</footer>
+ 
+<script>
+  const GOOGLE_SHEET_URL = 'https://script.google.com/macros/s/AKfycbw3SUua33rgpO0YED8knVijTxAUBFPGzQRgxVLZbs9MIOW8D1uqXq2-91IFqf86Evev/exec';
+  const state = { frecuencia: 'una-vez', monto: 1000 };
+ 
+  const impactoMap = [
+    { min: 1,    max: 199,   txt: 'Cada peso cuenta. Tu donación apoya materiales escolares.' },
+    { min: 200,  max: 484,   txt: '<strong>$200</strong> cubre un mes de <em>Salud Física y Preventiva</em> para un alumno.' },
+    { min: 485,  max: 599,   txt: '<strong>$485</strong> financia un mes del <em>Programa de Inglés</em> de alto nivel.' },
+    { min: 600,  max: 749,   txt: '<strong>$600</strong> costea el <em>uniforme completo</em> de un estudiante por el año.' },
+    { min: 750,  max: 999,   txt: '<strong>$750</strong> paga un mes de <em>Apoyo Psicológico</em> para un joven.' },
+    { min: 1000, max: 1279,  txt: '<strong>$1,000</strong> cubre la <em>nutrición</em> de un alumno durante un mes.' },
+    { min: 1280, max: 8559,  txt: '<strong>$1,280</strong> incluye un año de <em>Preparación en Tecnología</em>.' },
+    { min: 8560, max: Infinity, txt: '🌟 <strong>$8,560</strong> financia el <em>Programa Integral</em> completo de un alumno por un mes.' },
+  ];
+ 
+  function getImpacto(monto) {
+    const hit = impactoMap.find(r => monto >= r.min && monto <= r.max);
+    return hit ? `💡 ${hit.txt}` : '💡 Tu donación hace la diferencia.';
+  }
+ 
+  function showToast(msg, color = '#38a169') {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.style.background = color;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 3500);
+  }
+ 
+  async function enviarASheets(datos) {
+    try {
+      await fetch(GOOGLE_SHEET_URL, {
+        method: 'POST', mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(datos)
+      });
+      return true;
+    } catch (err) { console.error('Error al guardar:', err); return false; }
+  }
+ 
+  document.addEventListener('DOMContentLoaded', () => {
+    const freqBtns   = document.querySelectorAll('.freq-btn');
+    const montoBtns  = document.querySelectorAll('.monto-btn');
+    const montoInput = document.getElementById('montoInput');
+    const impactoBadge = document.getElementById('impactoBadge');
+    const panels = [document.getElementById('panel1'), document.getElementById('panel2'), document.getElementById('panel3')];
+    const tabs   = [document.getElementById('tab1'),   document.getElementById('tab2'),   document.getElementById('tab3')];
+    const sendingOverlay = document.getElementById('sendingOverlay');
+    const resumenBox     = document.getElementById('resumenBox');
+ 
+    /* Modal privacidad */
+    const modalOverlay   = document.getElementById('modalPrivacidad');
+    const linkPrivacidad = document.getElementById('linkPrivacidad');
+    const cerrarModal    = document.getElementById('cerrarModal');
+    const aceptarPriv    = document.getElementById('aceptarPrivacidad');
+ 
+    linkPrivacidad.addEventListener('click', (e) => {
+      e.preventDefault();
+      modalOverlay.classList.add('open');
+    });
+    cerrarModal.addEventListener('click', () => modalOverlay.classList.remove('open'));
+    aceptarPriv.addEventListener('click', () => {
+      modalOverlay.classList.remove('open');
+      document.getElementById('avisoPrivacidad').checked = true;
+    });
+    modalOverlay.addEventListener('click', (e) => {
+      if (e.target === modalOverlay) modalOverlay.classList.remove('open');
+    });
+ 
+    freqBtns.forEach(btn => btn.addEventListener('click', () => {
+      freqBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      state.frecuencia = btn.dataset.freq;
+    }));
+ 
+    montoBtns.forEach(btn => btn.addEventListener('click', () => {
+      montoBtns.forEach(b => b.classList.remove('activo'));
+      btn.classList.add('activo');
+      state.monto = parseInt(btn.dataset.monto);
+      montoInput.value = state.monto;
+      impactoBadge.innerHTML = getImpacto(state.monto);
+    }));
+ 
+    montoInput.addEventListener('input', () => {
+      montoBtns.forEach(b => b.classList.remove('activo'));
+      const val = parseInt(montoInput.value) || 0;
+      state.monto = val;
+      impactoBadge.innerHTML = getImpacto(val);
+    });
+ 
+    function goToStep(idx) {
+      panels.forEach((p, i) => {
+        p.classList.toggle('active', i === idx);
+        tabs[i].classList.toggle('active', i === idx);
+        tabs[i].classList.toggle('done', i < idx);
+      });
+      document.getElementById('donationWidget').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+ 
+    document.getElementById('back2').addEventListener('click', () => goToStep(0));
+    document.getElementById('back3').addEventListener('click', () => goToStep(1));
+ 
+    document.getElementById('next1').addEventListener('click', () => {
+      if (state.monto <= 0) { showToast('Ingresa un monto válido', '#e53e3e'); return; }
+      goToStep(1);
+    });
+ 
+    function validarCampo(el, condicion) {
+      el.closest('.form-group').classList.toggle('has-error', condicion);
+      return !condicion;
+    }
+ 
+    document.getElementById('next2').addEventListener('click', () => {
+      const nombre   = document.getElementById('nombre');
+      const apellido = document.getElementById('apellido');
+      const correo   = document.getElementById('correo');
+      const edad     = document.getElementById('edad');
+      const sexo     = document.getElementById('sexo');
+      const pais     = document.getElementById('pais');
+      const emailOk  = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(correo.value.trim());
+      const edadVal  = parseInt(edad.value);
+ 
+      const ok = [
+        validarCampo(nombre,   nombre.value.trim() === ''),
+        validarCampo(apellido, apellido.value.trim() === ''),
+        validarCampo(correo,   !emailOk),
+        validarCampo(edad,     isNaN(edadVal) || edadVal < 18 || edadVal > 99),
+        validarCampo(sexo,     sexo.value === ''),
+        validarCampo(pais,     pais.value === ''),
+      ].every(Boolean);
+ 
+      if (ok) {
+        const freqLabel = { 'una-vez': 'Una sola vez', 'mensual': 'Mensual', 'anual': 'Anual' }[state.frecuencia];
+        resumenBox.innerHTML = `
+          <div class="resumen-row"><span>Donante:</span><strong>${nombre.value.trim()} ${apellido.value.trim()}</strong></div>
+          <div class="resumen-row"><span>Correo:</span><strong>${correo.value.trim()}</strong></div>
+          <div class="resumen-row"><span>País:</span><strong>${pais.value}</strong></div>
+          <div class="resumen-row"><span>Frecuencia:</span><strong>${freqLabel}</strong></div>
+          <div class="resumen-row resumen-total"><span>Total a aportar:</span><strong>$${state.monto.toLocaleString('es-MX')} MXN</strong></div>
+        `;
+        goToStep(2);
+      }
+    });
+ 
+    document.getElementById('btnConfirmar').addEventListener('click', async () => {
+      const aviso = document.getElementById('avisoPrivacidad');
+      if (!aviso.checked) { showToast('Acepta el aviso de privacidad para continuar', '#e53e3e'); return; }
+      const btn = document.getElementById('btnConfirmar');
+      btn.disabled = true;
+      sendingOverlay.classList.add('visible');
+      const datos = {
+        nombre:     document.getElementById('nombre').value.trim(),
+        apellido:   document.getElementById('apellido').value.trim(),
+        correo:     document.getElementById('correo').value.trim(),
+        edad:       document.getElementById('edad').value,
+        sexo:       document.getElementById('sexo').value,
+        pais:       document.getElementById('pais').value,
+        estado:     document.getElementById('estado').value.trim(),
+        motivacion: document.getElementById('motivacion').value.trim(),
+        monto:      state.monto,
+        frecuencia: state.frecuencia,
+      };
+      await enviarASheets(datos);
+      sendingOverlay.classList.remove('visible');
+      btn.disabled = false;
+      showToast('✓ ¡Gracias por tu apoyo! Redirigiendo…');
+      setTimeout(() => { window.location.href = 'https://alwayson.recaudia.com/christelhousefeenicia/donor'; }, 1800);
+    });
+  });
+</script>
+</body>
+</html><!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Fundación Estudiantil Christel House</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  
+  <style>
+    :root {
+      --verde:      #1B3A6B;
+      --verde-claro:#2a5298;
+      --dorado:     #F26522;
+      --crema:      #f5f7fa;
+      --oscuro:     #0f1f3d;
+      --gris:       #5a6a80;
+      --blanco:     #ffffff;
+      --radio:      14px;
+      --sombra:     0 8px 32px rgba(27,58,107,.13);
+      --error:      #e53e3e;
+      --success:    #38a169;
+    }
+ 
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--crema);
+      color: var(--oscuro);
+      overflow-x: hidden;
+    }
+ 
+    /* ── NAVBAR ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 6vw;
+      background: rgba(245,247,250,.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(27,58,107,.12);
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px;
+      text-decoration: none;
+    }
+    /* Logo CH inline SVG */
+    .ch-logo-svg {
+      height: 44px; width: auto;
+    }
+    .nav-logo-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem; color: var(--verde);
+      font-weight: 700; line-height: 1.2;
+      display: flex; flex-direction: column;
+    }
+    .nav-logo-text span:last-child { font-size: .72rem; font-weight: 400; opacity: .6; letter-spacing: .04em; }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a {
+      text-decoration: none; color: var(--oscuro);
+      font-size: .875rem; font-weight: 500; opacity: .75; transition: opacity .2s;
+    }
+    .nav-links a:hover { opacity: 1; }
+    .btn-nav {
+      background: var(--verde); color: var(--blanco) !important;
+      opacity: 1 !important; padding: 9px 22px; border-radius: 50px;
+      font-weight: 600 !important; transition: background .2s, transform .15s !important;
+    }
+    .btn-nav:hover { background: var(--verde-claro); transform: translateY(-1px); }
+ 
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding-top: 76px; /* altura del nav */
+      position: relative; overflow: hidden;
+      background: var(--crema);
+    }
+    .hero-left {
+      display: flex; align-items: center;
+      padding: 60px 6vw 60px 6vw;
+      background:
+        radial-gradient(ellipse 80% 60% at 30% 50%, rgba(42,82,152,.1) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 50% at 10% 80%, rgba(242,101,34,.08) 0%, transparent 60%);
+    }
+    .hero-inner { max-width: 560px; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(27,58,107,.1); color: var(--verde);
+      font-size: .78rem; font-weight: 600; letter-spacing: .05em;
+      text-transform: uppercase; padding: 6px 14px; border-radius: 50px;
+      margin-bottom: 24px; animation: fadeUp .6s ease both;
+    }
+    .hero-badge::before { content: '●'; font-size: .5rem; }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 4vw, 3.6rem); line-height: 1.15;
+      color: var(--oscuro); animation: fadeUp .6s .1s ease both;
+    }
+    .hero h1 em { font-style: italic; color: var(--verde); }
+    .hero p {
+      margin-top: 18px; font-size: 1.05rem; line-height: 1.7;
+      color: var(--gris); max-width: 480px; animation: fadeUp .6s .2s ease both;
+    }
+    .hero-ctas {
+      margin-top: 36px; display: flex; gap: 14px; flex-wrap: wrap;
+      animation: fadeUp .6s .3s ease both;
+    }
+    /* Hero imagen derecha */
+    .hero-right {
+      position: relative; overflow: hidden;
+    }
+    .hero-right img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center top;
+      display: block;
+    }
+    /* overlay sutil para suavizar el corte */
+    .hero-right::before {
+      content: '';
+      position: absolute; left: 0; top: 0; bottom: 0; width: 60px; z-index: 1;
+      background: linear-gradient(to right, var(--crema), transparent);
+    }
+ 
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--verde); color: var(--blanco);
+      padding: 14px 32px; border-radius: 50px;
+      font-weight: 600; font-size: .95rem; text-decoration: none;
+      box-shadow: 0 4px 20px rgba(27,58,107,.35);
+      transition: background .2s, transform .15s, box-shadow .2s;
+    }
+    .btn-primary:hover { background: var(--verde-claro); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(27,58,107,.4); }
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 8px;
+      border: 2px solid rgba(27,58,107,.3); color: var(--verde);
+      padding: 13px 28px; border-radius: 50px; font-weight: 600; font-size: .95rem;
+      text-decoration: none; transition: border-color .2s, background .2s;
+    }
+    .btn-secondary:hover { border-color: var(--verde); background: rgba(27,58,107,.05); }
+ 
+    /* ── STATS ── */
+    .stats-bar {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      background: var(--verde); color: var(--blanco);
+    }
+    .stat-item {
+      padding: 28px 24px; text-align: center;
+      border-right: 1px solid rgba(255,255,255,.15);
+      animation: fadeUp .6s ease both;
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-num { font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 700; }
+    .stat-label { font-size: .8rem; opacity: .75; margin-top: 4px; letter-spacing: .04em; text-transform: uppercase; }
+ 
+    /* ── SECCIONES ── */
+    section { padding: 90px 6vw; }
+    .bg-alt { background: #edf1f8; }
+    h2.section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.7rem, 3vw, 2.5rem); color: var(--oscuro); margin-bottom: 10px;
+    }
+    .section-sub { color: var(--gris); font-size: .95rem; max-width: 520px; line-height: 1.6; margin-bottom: 48px; }
+ 
+    /* ── NOSOTROS ── */
+    .nosotros-container { max-width: 760px; margin: 0 auto; text-align: center; }
+    .nosotros-container p { color: var(--gris); line-height: 1.8; font-size: .97rem; margin-bottom: 16px; text-align: left; }
+    .nosotros-container .section-sub { text-align: center; margin-left: auto; margin-right: auto; }
+ 
+    /* ── FUNDADORA ── */
+    .fundadora-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+    .fundadora-img-wrap {
+      border-radius: 20px; overflow: hidden; box-shadow: var(--sombra);
+      aspect-ratio: 4/5; background: linear-gradient(135deg, #c8d6e8, #a8bfd4);
+      display: flex; align-items: center; justify-content: center;
+      position: relative;
+    }
+    .fundadora-img-wrap img { width: 100%; height: 100%; object-fit: cover; object-position: center 15%; display: block; }
+    .fundadora-img-placeholder {
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 12px; color: var(--verde); text-align: center; padding: 32px;
+    }
+    .fundadora-img-placeholder svg { opacity: .5; }
+    .fundadora-img-placeholder p { font-size: .85rem; opacity: .6; line-height: 1.5; }
+    .fundadora-text blockquote {
+      font-family: 'Playfair Display', serif; font-size: 1.3rem; font-style: italic;
+      color: var(--verde); border-left: 3px solid var(--dorado);
+      padding-left: 20px; margin: 24px 0; line-height: 1.5;
+    }
+    .fundadora-text p { color: var(--gris); line-height: 1.8; font-size: .97rem; margin-bottom: 14px; }
+ 
+    /* ── TESTIMONIOS ── */
+    .testimonios-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .testimonio-card {
+      background: var(--blanco); border-radius: var(--radio);
+      padding: 32px; box-shadow: var(--sombra); position: relative;
+    }
+    .testimonio-card::before {
+      content: '"'; font-family: 'Playfair Display', serif;
+      font-size: 5rem; line-height: 1; color: rgba(27,58,107,.12);
+      position: absolute; top: 8px; left: 24px; pointer-events: none;
+    }
+    .testimonio-card p { font-size: .97rem; color: var(--oscuro); line-height: 1.7; font-style: italic; margin-bottom: 20px; }
+ 
+    /* ── SECCIÓN DONAR ── */
+    #donar {
+      background: linear-gradient(135deg, #0f1f3d 0%, #1B3A6B 100%);
+      color: var(--blanco); text-align: center;
+    }
+    #donar h2.section-title { color: var(--blanco); }
+    #donar .section-sub { color: rgba(255,255,255,.6); margin: 0 auto 48px; }
+ 
+    .equiv-wrap { max-width: 720px; margin: 0 auto 40px; }
+    .equiv-titulo { font-size: .78rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.45); margin-bottom: 14px; }
+    .equiv-tabla { width: 100%; border-collapse: collapse; border-radius: 14px; overflow: hidden; font-size: .9rem; }
+    .equiv-tabla thead tr { background: var(--dorado); color: var(--blanco); }
+    .equiv-tabla thead th { padding: 14px 18px; text-align: center; font-weight: 700; font-size: .8rem; letter-spacing: .05em; text-transform: uppercase; }
+    .equiv-tabla tbody tr { background: rgba(255,255,255,.06); border-bottom: 1px solid rgba(255,255,255,.08); transition: background .2s; }
+    .equiv-tabla tbody tr:hover { background: rgba(255,255,255,.11); }
+    .equiv-tabla tbody td { padding: 13px 18px; text-align: center; color: rgba(255,255,255,.85); }
+    .equiv-monto { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: var(--dorado) !important; }
+    .equiv-row-highlight { background: rgba(242,101,34,.12) !important; }
+    .equiv-row-highlight .equiv-monto { font-size: 1.2rem; }
+ 
+    /* ── WIDGET ── */
+    .donation-widget {
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.15);
+      backdrop-filter: blur(12px);
+      border-radius: 24px;
+      max-width: 560px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+    .steps-header { display: flex; border-bottom: 1px solid rgba(255,255,255,.1); }
+    .step-tab {
+      flex: 1; padding: 16px 8px; text-align: center;
+      font-size: .75rem; font-weight: 600; letter-spacing: .06em;
+      text-transform: uppercase; color: rgba(255,255,255,.35);
+      border-bottom: 3px solid transparent; transition: color .3s, border-color .3s;
+    }
+    .step-tab.active { color: var(--dorado); border-bottom-color: var(--dorado); }
+    .step-tab.done { color: rgba(255,255,255,.6); }
+ 
+    .step-panel { display: none; padding: 36px 40px; text-align: left; }
+    .step-panel.active { display: block; }
+ 
+    .freq-tabs {
+      display: flex; gap: 8px; margin-bottom: 28px;
+      background: rgba(255,255,255,.06); border-radius: 50px; padding: 4px;
+    }
+    .freq-btn {
+      flex: 1; padding: 10px; border-radius: 50px;
+      border: none; cursor: pointer; font-family: 'DM Sans', sans-serif;
+      font-size: .85rem; font-weight: 600;
+      background: transparent; color: rgba(255,255,255,.55);
+      transition: background .2s, color .2s;
+    }
+    .freq-btn.active { background: var(--verde-claro); color: var(--blanco); }
+ 
+    .montos-rapidos { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 16px; }
+    .monto-btn {
+      padding: 11px 8px; border-radius: 10px;
+      border: 1.5px solid rgba(255,255,255,.2);
+      background: rgba(255,255,255,.05); color: rgba(255,255,255,.8);
+      font-family: 'DM Sans', sans-serif; font-size: .88rem; font-weight: 600;
+      cursor: pointer; transition: all .2s; text-align: center;
+    }
+    .monto-btn:hover { border-color: var(--dorado); color: var(--blanco); }
+    .monto-btn.activo { background: var(--dorado); border-color: var(--dorado); color: var(--oscuro); }
+ 
+    .monto-custom-wrap { position: relative; }
+    .monto-custom-wrap span {
+      position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+      color: rgba(255,255,255,.5); font-weight: 600;
+    }
+    .monto-custom-wrap input { padding-left: 30px !important; }
+ 
+    .impacto-badge {
+      background: rgba(242,101,34,.15); border: 1px solid rgba(242,101,34,.3);
+      border-radius: 10px; padding: 12px 16px; margin-top: 16px;
+      font-size: .875rem; color: rgba(255,255,255,.8); line-height: 1.5;
+      min-height: 48px; transition: all .3s;
+    }
+    .impacto-badge strong { color: var(--dorado); }
+ 
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .form-group { margin-bottom: 16px; }
+    .form-group label {
+      display: block; font-size: .78rem; font-weight: 600;
+      color: rgba(255,255,255,.55); margin-bottom: 7px;
+      text-transform: uppercase; letter-spacing: .05em;
+    }
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      background: rgba(255,255,255,.08);
+      border: 1.5px solid rgba(255,255,255,.15);
+      border-radius: 10px; padding: 13px 16px;
+      color: var(--blanco); font-size: .95rem;
+      font-family: 'DM Sans', sans-serif;
+      transition: border-color .2s, background .2s; outline: none;
+      appearance: none; -webkit-appearance: none;
+    }
+    .form-group select option { background: #1B3A6B; color: #fff; }
+    .form-group input::placeholder { color: rgba(255,255,255,.3); }
+    .form-group input:focus,
+    .form-group select:focus { border-color: var(--dorado); background: rgba(255,255,255,.12); }
+    .form-group.has-error input,
+    .form-group.has-error select { border-color: var(--error); }
+    .error-msg { font-size: .75rem; color: #fc8181; margin-top: 5px; display: none; }
+    .form-group.has-error .error-msg { display: block; }
+ 
+    .select-wrap { position: relative; }
+    .select-wrap::after {
+      content: '▾'; position: absolute; right: 14px; top: 50%;
+      transform: translateY(-50%); color: rgba(255,255,255,.4);
+      pointer-events: none; font-size: .9rem;
+    }
+ 
+    .resumen-box {
+      background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.15);
+      border-radius: 14px; padding: 20px; margin-bottom: 20px;
+    }
+    .resumen-row {
+      display: flex; justify-content: space-between;
+      font-size: .9rem; padding: 6px 0;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      color: rgba(255,255,255,.75);
+    }
+    .resumen-row:last-child { border: none; }
+    .resumen-row strong { color: var(--blanco); }
+    .resumen-total { font-size: 1.1rem; font-weight: 700; }
+    .resumen-total strong { color: var(--dorado); font-family: 'Playfair Display', serif; font-size: 1.4rem; }
+ 
+    .check-group { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 20px; }
+    .check-group input[type="checkbox"] {
+      width: 18px; height: 18px; margin-top: 2px; flex-shrink: 0;
+      accent-color: var(--dorado);
+    }
+    .check-group label {
+      font-size: .82rem; color: rgba(255,255,255,.55); line-height: 1.5;
+      margin: 0; text-transform: none; letter-spacing: 0;
+    }
+    .check-group a { color: var(--dorado); text-decoration: underline; cursor: pointer; }
+ 
+    .btn-step-next,
+    .btn-step-back {
+      display: inline-flex; align-items: center; gap: 8px;
+      border: none; cursor: pointer; border-radius: 50px;
+      font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: .95rem;
+      transition: all .2s;
+    }
+    .btn-step-next {
+      width: 100%; justify-content: center;
+      background: var(--dorado); color: var(--oscuro);
+      padding: 16px 32px;
+      box-shadow: 0 4px 20px rgba(242,101,34,.35);
+    }
+    .btn-step-next:hover:not(:disabled) { background: #f47a3a; transform: translateY(-2px); box-shadow: 0 8px 28px rgba(242,101,34,.5); }
+    .btn-step-next:disabled { opacity: .6; cursor: not-allowed; transform: none; }
+    .btn-step-back {
+      background: transparent; color: rgba(255,255,255,.5);
+      padding: 10px 0; font-size: .85rem; margin-bottom: 16px;
+    }
+    .btn-step-back:hover { color: var(--blanco); }
+ 
+    /* Estado de envío */
+    .sending-overlay {
+      display: none; position: absolute; inset: 0;
+      background: rgba(15,31,61,.85); backdrop-filter: blur(6px);
+      border-radius: 24px; align-items: center; justify-content: center;
+      flex-direction: column; gap: 16px; z-index: 10;
+    }
+    .sending-overlay.visible { display: flex; }
+    .spinner {
+      width: 40px; height: 40px; border: 3px solid rgba(255,255,255,.2);
+      border-top-color: var(--dorado); border-radius: 50%;
+      animation: spin .8s linear infinite;
+    }
+    .sending-overlay p { color: rgba(255,255,255,.8); font-size: .9rem; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+ 
+    /* Toast de éxito */
+    .toast {
+      position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%) translateY(80px);
+      background: var(--success); color: #fff; padding: 14px 28px;
+      border-radius: 50px; font-weight: 600; font-size: .9rem;
+      box-shadow: 0 8px 32px rgba(0,0,0,.25); z-index: 200;
+      transition: transform .4s cubic-bezier(.34,1.56,.64,1);
+      white-space: nowrap;
+    }
+    .toast.show { transform: translateX(-50%) translateY(0); }
+ 
+    .nota-seguridad {
+      text-align: center; margin-top: 16px; color: rgba(255,255,255,.35);
+      font-size: .75rem; display: flex; align-items: center; justify-content: center; gap: 6px;
+    }
+ 
+    /* ── MODAL AVISO DE PRIVACIDAD ── */
+    .modal-overlay {
+      display: none; position: fixed; inset: 0; z-index: 300;
+      background: rgba(10,20,40,.7); backdrop-filter: blur(6px);
+      align-items: center; justify-content: center; padding: 20px;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal-box {
+      background: #fff; border-radius: 20px; max-width: 600px; width: 100%;
+      max-height: 85vh; overflow-y: auto;
+      box-shadow: 0 20px 60px rgba(0,0,0,.35);
+      animation: modalIn .3s ease;
+    }
+    @keyframes modalIn { from { opacity:0; transform:translateY(20px) scale(.97); } to { opacity:1; transform:none; } }
+    .modal-header {
+      position: sticky; top: 0; background: var(--verde); color: #fff;
+      padding: 20px 28px; border-radius: 20px 20px 0 0;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .modal-header h3 { font-family: 'Playfair Display', serif; font-size: 1.2rem; }
+    .modal-close {
+      background: rgba(255,255,255,.15); border: none; color: #fff;
+      width: 32px; height: 32px; border-radius: 50%; cursor: pointer;
+      font-size: 1rem; display: flex; align-items: center; justify-content: center;
+      transition: background .2s;
+    }
+    .modal-close:hover { background: rgba(255,255,255,.3); }
+    .modal-body { padding: 28px; }
+    .modal-body .seguridad-badge {
+      background: #f0fdf4; border: 1.5px solid #86efac; border-radius: 12px;
+      padding: 14px 18px; margin-bottom: 24px;
+      display: flex; align-items: flex-start; gap: 12px;
+    }
+    .seguridad-badge .icon { font-size: 1.4rem; flex-shrink: 0; margin-top: 2px; }
+    .seguridad-badge p { font-size: .88rem; color: #166534; line-height: 1.6; margin: 0; }
+    .seguridad-badge p strong { color: #15803d; }
+    .modal-body h4 {
+      font-family: 'Playfair Display', serif; color: var(--oscuro);
+      font-size: 1rem; margin: 20px 0 8px; border-bottom: 1px solid #e5e7eb; padding-bottom: 6px;
+    }
+    .modal-body p, .modal-body li {
+      font-size: .875rem; color: var(--gris); line-height: 1.7; margin-bottom: 8px;
+    }
+    .modal-body ul { padding-left: 18px; }
+    .modal-body li { margin-bottom: 4px; }
+    .modal-footer {
+      padding: 20px 28px; border-top: 1px solid #f1f5f9;
+      display: flex; justify-content: flex-end;
+    }
+    .modal-btn-ok {
+      background: var(--verde); color: #fff; border: none;
+      padding: 11px 28px; border-radius: 50px; font-weight: 700;
+      font-family: 'DM Sans', sans-serif; font-size: .9rem; cursor: pointer;
+      transition: background .2s;
+    }
+    .modal-btn-ok:hover { background: var(--verde-claro); }
+ 
+    /* ── FOOTER ── */
+    footer {
+      background: var(--oscuro); color: rgba(255,255,255,.4);
+      text-align: center; padding: 28px; font-size: .82rem;
+      border-top: 1px solid rgba(255,255,255,.06);
+    }
+    footer strong { color: rgba(255,255,255,.7); }
+ 
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(22px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+ 
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hero { grid-template-columns: 1fr; }
+      .hero-right { height: 55vw; }
+      .hero-left { padding: 40px 6vw; }
+      .fundadora-grid, .testimonios-grid { grid-template-columns: 1fr; }
+      .stats-bar { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .step-panel { padding: 28px 24px; }
+      .montos-rapidos { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+ 
+<!-- TOAST -->
+<div class="toast" id="toast">✓ Datos guardados correctamente</div>
+ 
+<!-- MODAL AVISO DE PRIVACIDAD -->
+<div class="modal-overlay" id="modalPrivacidad">
+  <div class="modal-box">
+    <div class="modal-header">
+      <h3>🔒 Aviso de Privacidad</h3>
+      <button class="modal-close" id="cerrarModal">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="seguridad-badge">
+        <span class="icon">🛡️</span>
+        <p><strong>Tu información está segura.</strong> Los datos que compartes con nosotros son tratados con estricta confidencialidad y sólo se utilizan para los fines descritos en este aviso. Nunca vendemos ni compartimos tu información con terceros con fines comerciales.</p>
+      </div>
+ 
+      <h4>Responsable del tratamiento</h4>
+      <p>La <strong>Fundación Estudiantil Christel House México</strong> (en adelante "la Fundación"), con domicilio en la Ciudad de México, es responsable del tratamiento de tus datos personales.</p>
+ 
+      <h4>Datos que recopilamos</h4>
+      <ul>
+        <li>Nombre y apellido</li>
+        <li>Correo electrónico</li>
+        <li>Edad y sexo</li>
+        <li>País y estado de residencia</li>
+        <li>Motivación (campo opcional)</li>
+        <li>Monto y frecuencia de donación seleccionados</li>
+      </ul>
+ 
+      <h4>Finalidad del tratamiento</h4>
+      <p>Tus datos son utilizados exclusivamente para:</p>
+      <ul>
+        <li>Registrar y procesar tu donación de forma segura.</li>
+        <li>Enviarte confirmaciones y actualizaciones sobre el impacto de tu aportación.</li>
+        <li>Generar reportes estadísticos anónimos sobre el perfil de nuestros donantes (proyecto escolar).</li>
+        <li>Cumplir con obligaciones legales y fiscales aplicables.</li>
+      </ul>
+ 
+      <h4>Seguridad de tus datos</h4>
+      <p>Implementamos medidas técnicas y organizativas para proteger tus datos frente a accesos no autorizados, pérdida o divulgación. Tu información viaja a través de conexiones cifradas (HTTPS/TLS).</p>
+ 
+      <h4>Derechos ARCO</h4>
+      <p>En cualquier momento puedes ejercer tus derechos de <strong>Acceso, Rectificación, Cancelación u Oposición</strong> (ARCO) escribiéndonos a: <strong>privacidad@christelhousemx.org</strong></p>
+ 
+      <h4>Cambios a este aviso</h4>
+      <p>Cualquier modificación a este aviso será publicada en nuestro sitio web con al menos 10 días de anticipación.</p>
+    </div>
+    <div class="modal-footer">
+      <button class="modal-btn-ok" id="aceptarPrivacidad">Entendido ✓</button>
+    </div>
+  </div>
+</div>
+ 
+<nav>
+  <a class="nav-logo" href="#">
+    <!-- Logo CH inline - adaptado de los colores de Christel House -->
+    <svg class="ch-logo-svg" viewBox="0 0 120 50" xmlns="http://www.w3.org/2000/svg">
+      <!-- Círculo naranja (la "C") -->
+      <circle cx="23" cy="25" r="22" fill="#F26522"/>
+      <!-- Mordida para crear la "C" -->
+      <polygon points="23,3 50,3 50,47 23,47" fill="#1B3A6B"/>
+      <!-- Rectángulo azul (la "h") -->
+      <rect x="32" y="8" width="18" height="34" rx="3" fill="#2a5298"/>
+      <!-- Parte baja del brazo derecho de la h -->
+      <rect x="42" y="25" width="12" height="17" rx="3" fill="#2a5298"/>
+    </svg>
+    <div class="nav-logo-text">
+      <span>Christel House</span>
+      <span>México</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#nosotros">Nosotros</a></li>
+    <li><a href="#fundadora">Fundadora</a></li>
+    <li><a href="#testimonios">Testimonios</a></li>
+    <li><a href="#donar" class="btn-nav">Donar ahora</a></li>
+  </ul>
+</nav>
+ 
+<!-- HERO con imagen a la derecha -->
+<header class="hero">
+  <div class="hero-left">
+    <div class="hero-inner">
+      <div class="hero-badge">Fundación Estudiantil</div>
+      <h1>Educación que<br><em>transforma vidas</em></h1>
+      <p>Apoyamos a estudiantes de bajos recursos con becas, útiles escolares y tecnología. Cada donación cambia una historia.</p>
+      <div class="hero-ctas">
+        <a href="#donar" class="btn-primary">♥ Apoyar la causa</a>
+        <a href="#nosotros" class="btn-secondary">Conocer más</a>
+      </div>
+    </div>
+  </div>
+  <!-- Imagen grupal de estudiantes Christel House -->
+  <div class="hero-right">
+    <img src="students.png" alt="Estudiantes Christel House México" />
+  </div>
+</header>
+ 
+<div class="stats-bar">
+  <div class="stat-item"><div class="stat-num">+1,200</div><div class="stat-label">Estudiantes apoyados</div></div>
+  <div class="stat-item"><div class="stat-num">94%</div><div class="stat-label">Recursos a programas</div></div>
+  <div class="stat-item"><div class="stat-num">28 años</div><div class="stat-label">De impacto continuo</div></div>
+</div>
+ 
+<section id="nosotros">
+  <div class="nosotros-container">
+    <h2 class="section-title">¿Quiénes somos?</h2>
+    <p class="section-sub">Una iniciativa estudiantil con un propósito real.</p>
+    <p>Somos una comunidad comprometida con brindar oportunidades educativas, acompañamiento y herramientas para que cada estudiante alcance su máximo potencial y construya un mejor futuro.</p>
+    <p>Creemos que ningún estudiante debe abandonar sus estudios por falta de recursos. Por eso trabajamos de manera transparente para que cada peso donado llegue directamente a quienes más lo necesitan.</p>
+  </div>
+</section>
+ 
+<section id="fundadora" class="bg-alt">
+  <div class="fundadora-grid">
+    <div class="fundadora-img-wrap">
+      <img
+        src="christel-dehaan.jpg"
+        alt="Christel DeHaan, fundadora"
+        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+      >
+      <div class="fundadora-img-placeholder" style="display:none;">
+        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+          <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+        </svg>
+        <p>Coloca aquí la imagen de<br><strong>Christel DeHaan</strong></p>
+      </div>
+    </div>
+    <div class="fundadora-text">
+      <h2 class="section-title">Sobre la Fundadora</h2>
+      <blockquote>"La educación es el camino más poderoso para romper el ciclo de la pobreza."</blockquote>
+      <p><strong>Christel DeHaan</strong> fue una empresaria que dedicó su vida a generar oportunidades reales para jóvenes en situación vulnerable.</p>
+      <p>Su visión dio origen a Christel House, una institución que hoy representa esperanza, equidad y futuro para miles de estudiantes alrededor del mundo.</p>
+      <p>"La educación puede cambiar una vida, pero una oportunidad puede cambiar generaciones." Miles de estudiantes tienen sueños enormes, pero muchos enfrentan obstáculos que parecen imposibles de superar. En Christel House México trabajamos para que ningún joven abandone sus metas por falta de recursos.</p>
+    </div>
+  </div>
+</section>
+ 
+<section id="testimonios">
+  <h2 class="section-title" style="text-align:center;">Testimonios</h2>
+  <p class="section-sub" style="text-align:center; margin: 0 auto 48px;">Lo que dicen quienes han vivido el cambio.</p>
+  <div class="testimonios-grid">
+    <div class="testimonio-card">
+      <p>"Cristel House me ha enseñado que los sueños sí se pueden alcanzar con esfuerzo y apoyo. Aquí he encontrado personas que creen en mí y me motivan a seguir creciendo cada día."</p>
+      <strong style="color: var(--verde); font-size: .88rem;">— Regina Torres, Alumna.</strong>
+    </div>
+    <div class="testimonio-card">
+      <p>"He visto cómo los estudiantes apoyados por Christel House desarrollan confianza, compromiso y liderazgo. El impacto de este programa va más allá de lo académico; transforma vidas y abre nuevas oportunidades para el futuro."</p>
+      <strong style="color: var(--verde); font-size: .88rem;">— Armando Yáñez, Docente.</strong>
+    </div>
+  </div>
+</section>
+ 
+<section id="donar">
+  <h2 class="section-title">Haz tu donación</h2>
+  <p class="section-sub">Con tu apoyo, transformamos la vida de un niño. Conoce lo que cada monto representa.</p>
+ 
+  <div class="equiv-wrap">
+    <p class="equiv-titulo">¿A qué equivale tu donación mensual?</p>
+    <table class="equiv-tabla">
+      <thead>
+        <tr><th>Monto</th><th>Programa</th><th>Periodo</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="equiv-monto">$200</td><td>Salud Física y Preventiva</td><td>Mensual</td></tr>
+        <tr><td class="equiv-monto">$485</td><td>Programa de Alto Nivel de Inglés</td><td>Mensual</td></tr>
+        <tr><td class="equiv-monto">$600</td><td>Uniforme</td><td>Anual</td></tr>
+        <tr><td class="equiv-monto">$750</td><td>Apoyo Psicológico</td><td>Mensual</td></tr>
+        <tr><td class="equiv-monto">$1,000</td><td>Nutrición</td><td>Mensual</td></tr>
+        <tr><td class="equiv-monto">$1,280</td><td>Preparación en Tecnología</td><td>Anual</td></tr>
+        <tr class="equiv-row-highlight"><td class="equiv-monto">$8,560</td><td>Programa Integral</td><td>Mensual</td></tr>
+      </tbody>
+    </table>
+  </div>
+ 
+  <div class="donation-widget" id="donationWidget" style="position:relative;">
+ 
+    <div class="sending-overlay" id="sendingOverlay">
+      <div class="spinner"></div>
+      <p>Guardando tu información…</p>
+    </div>
+ 
+    <div class="steps-header">
+      <div class="step-tab active" id="tab1">1. Tu donación</div>
+      <div class="step-tab" id="tab2">2. Tus datos</div>
+      <div class="step-tab" id="tab3">3. Confirmar</div>
+    </div>
+ 
+    <!-- PASO 1: Monto -->
+    <div class="step-panel active" id="panel1">
+      <p style="font-size:.82rem; color:rgba(255,255,255,.45); text-transform:uppercase; letter-spacing:.06em; margin-bottom:14px;">¿Con qué frecuencia quieres donar?</p>
+      <div class="freq-tabs">
+        <button class="freq-btn active" data-freq="una-vez">Una vez</button>
+        <button class="freq-btn" data-freq="mensual">Mensual</button>
+        <button class="freq-btn" data-freq="anual">Anual</button>
+      </div>
+      <p style="font-size:.82rem; color:rgba(255,255,255,.45); text-transform:uppercase; letter-spacing:.06em; margin-bottom:10px;">Elige un monto</p>
+      <div class="montos-rapidos">
+        <button class="monto-btn" data-monto="200">$200</button>
+        <button class="monto-btn" data-monto="485">$485</button>
+        <button class="monto-btn" data-monto="750">$750</button>
+        <button class="monto-btn activo" data-monto="1000">$1,000</button>
+        <button class="monto-btn" data-monto="1280">$1,280</button>
+        <button class="monto-btn" data-monto="2500">$2,500</button>
+        <button class="monto-btn" data-monto="5000">$5,000</button>
+        <button class="monto-btn" data-monto="8560">$8,560</button>
+      </div>
+      <div class="form-group monto-custom-wrap" style="margin-top:4px;">
+        <label for="montoInput">O ingresa otro monto (MXN)</label>
+        <span>$</span>
+        <input type="number" id="montoInput" placeholder="Otro monto" min="1" value="1000">
+      </div>
+      <div class="impacto-badge" id="impactoBadge">
+        💡 <strong>$1,000</strong> cubre la nutrición de un alumno durante un mes.
+      </div>
+      <button class="btn-step-next" id="next1" style="margin-top:24px;">Continuar →</button>
+    </div>
+ 
+    <!-- PASO 2: Datos personales -->
+    <div class="step-panel" id="panel2">
+      <button class="btn-step-back" id="back2">← Regresar</button>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="nombre">Nombre</label>
+          <input type="text" id="nombre" placeholder="Tu nombre" autocomplete="given-name">
+          <p class="error-msg">Campo requerido</p>
+        </div>
+        <div class="form-group">
+          <label for="apellido">Apellido</label>
+          <input type="text" id="apellido" placeholder="Tu apellido" autocomplete="family-name">
+          <p class="error-msg">Campo requerido</p>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="correo">Correo electrónico</label>
+        <input type="email" id="correo" placeholder="tucorreo@ejemplo.com" autocomplete="email">
+        <p class="error-msg">Correo inválido</p>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="edad">Edad</label>
+          <input type="number" id="edad" placeholder="Ej. 32" min="18" max="99" autocomplete="off">
+          <p class="error-msg">18–99 años requerido</p>
+        </div>
+        <div class="form-group">
+          <label for="sexo">Sexo</label>
+          <div class="select-wrap">
+            <select id="sexo">
+              <option value="">Seleccionar</option>
+              <option value="Femenino">Femenino</option>
+              <option value="Masculino">Masculino</option>
+              <option value="No binario">No binario</option>
+              <option value="Prefiero no decir">Prefiero no decir</option>
+            </select>
+          </div>
+          <p class="error-msg">Campo requerido</p>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="pais">País de residencia</label>
+          <div class="select-wrap">
+            <select id="pais">
+              <option value="">Seleccionar</option>
+              <option value="México" selected>México</option>
+              <option value="Estados Unidos">Estados Unidos</option>
+              <option value="Canadá">Canadá</option>
+              <option value="España">España</option>
+              <option value="Colombia">Colombia</option>
+              <option value="Argentina">Argentina</option>
+              <option value="Otro">Otro</option>
+            </select>
+          </div>
+          <p class="error-msg">Campo requerido</p>
+        </div>
+        <div class="form-group">
+          <label for="estado">Estado / Provincia</label>
+          <input type="text" id="estado" placeholder="Ej. CDMX" autocomplete="address-level1">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="motivacion">¿Por qué apoyas esta causa? <span style="opacity:.5;">(opcional)</span></label>
+        <input type="text" id="motivacion" placeholder="Tu motivación en una frase">
+      </div>
+      <button class="btn-step-next" id="next2">Revisar mi donación →</button>
+    </div>
+ 
+    <!-- PASO 3: Confirmar -->
+    <div class="step-panel" id="panel3">
+      <button class="btn-step-back" id="back3">← Regresar</button>
+      <p style="font-size:.82rem; color:rgba(255,255,255,.45); text-transform:uppercase; letter-spacing:.06em; margin-bottom:16px;">Resumen de tu donación</p>
+      <div class="resumen-box" id="resumenBox"></div>
+      <div class="check-group">
+        <input type="checkbox" id="avisoPrivacidad">
+        <label for="avisoPrivacidad">
+          He leído y acepto el <a id="linkPrivacidad">aviso de privacidad</a>.
+          Autorizo el registro seguro de mis datos demográficos para fines del proyecto escolar.
+        </label>
+      </div>
+      <button type="button" class="btn-step-next" id="btnConfirmar">🔒 Guardar y proceder al pago</button>
+    </div>
+ 
+  </div>
+  <p class="nota-seguridad">🔒 Conexión segura · Los datos se registran antes de derivar a la plataforma oficial</p>
+</section>
+ 
+<footer>
+  <p>© 2026 <strong>Fundación Estudiantil Christel House</strong> · Proyecto Escolar</p>
+</footer>
+ 
+<script>
+  const GOOGLE_SHEET_URL = 'https://script.google.com/macros/s/AKfycbw3SUua33rgpO0YED8knVijTxAUBFPGzQRgxVLZbs9MIOW8D1uqXq2-91IFqf86Evev/exec';
+  const state = { frecuencia: 'una-vez', monto: 1000 };
+ 
+  const impactoMap = [
+    { min: 1,    max: 199,   txt: 'Cada peso cuenta. Tu donación apoya materiales escolares.' },
+    { min: 200,  max: 484,   txt: '<strong>$200</strong> cubre un mes de <em>Salud Física y Preventiva</em> para un alumno.' },
+    { min: 485,  max: 599,   txt: '<strong>$485</strong> financia un mes del <em>Programa de Inglés</em> de alto nivel.' },
+    { min: 600,  max: 749,   txt: '<strong>$600</strong> costea el <em>uniforme completo</em> de un estudiante por el año.' },
+    { min: 750,  max: 999,   txt: '<strong>$750</strong> paga un mes de <em>Apoyo Psicológico</em> para un joven.' },
+    { min: 1000, max: 1279,  txt: '<strong>$1,000</strong> cubre la <em>nutrición</em> de un alumno durante un mes.' },
+    { min: 1280, max: 8559,  txt: '<strong>$1,280</strong> incluye un año de <em>Preparación en Tecnología</em>.' },
+    { min: 8560, max: Infinity, txt: '🌟 <strong>$8,560</strong> financia el <em>Programa Integral</em> completo de un alumno por un mes.' },
+  ];
+ 
+  function getImpacto(monto) {
+    const hit = impactoMap.find(r => monto >= r.min && monto <= r.max);
+    return hit ? `💡 ${hit.txt}` : '💡 Tu donación hace la diferencia.';
+  }
+ 
+  function showToast(msg, color = '#38a169') {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.style.background = color;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 3500);
+  }
+ 
+  async function enviarASheets(datos) {
+    try {
+      await fetch(GOOGLE_SHEET_URL, {
+        method: 'POST', mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(datos)
+      });
+      return true;
+    } catch (err) { console.error('Error al guardar:', err); return false; }
+  }
+ 
+  document.addEventListener('DOMContentLoaded', () => {
+    const freqBtns   = document.querySelectorAll('.freq-btn');
+    const montoBtns  = document.querySelectorAll('.monto-btn');
+    const montoInput = document.getElementById('montoInput');
+    const impactoBadge = document.getElementById('impactoBadge');
+    const panels = [document.getElementById('panel1'), document.getElementById('panel2'), document.getElementById('panel3')];
+    const tabs   = [document.getElementById('tab1'),   document.getElementById('tab2'),   document.getElementById('tab3')];
+    const sendingOverlay = document.getElementById('sendingOverlay');
+    const resumenBox     = document.getElementById('resumenBox');
+ 
+    /* Modal privacidad */
+    const modalOverlay   = document.getElementById('modalPrivacidad');
+    const linkPrivacidad = document.getElementById('linkPrivacidad');
+    const cerrarModal    = document.getElementById('cerrarModal');
+    const aceptarPriv    = document.getElementById('aceptarPrivacidad');
+ 
+    linkPrivacidad.addEventListener('click', (e) => {
+      e.preventDefault();
+      modalOverlay.classList.add('open');
+    });
+    cerrarModal.addEventListener('click', () => modalOverlay.classList.remove('open'));
+    aceptarPriv.addEventListener('click', () => {
+      modalOverlay.classList.remove('open');
+      document.getElementById('avisoPrivacidad').checked = true;
+    });
+    modalOverlay.addEventListener('click', (e) => {
+      if (e.target === modalOverlay) modalOverlay.classList.remove('open');
+    });
+ 
+    freqBtns.forEach(btn => btn.addEventListener('click', () => {
+      freqBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      state.frecuencia = btn.dataset.freq;
+    }));
+ 
+    montoBtns.forEach(btn => btn.addEventListener('click', () => {
+      montoBtns.forEach(b => b.classList.remove('activo'));
+      btn.classList.add('activo');
+      state.monto = parseInt(btn.dataset.monto);
+      montoInput.value = state.monto;
+      impactoBadge.innerHTML = getImpacto(state.monto);
+    }));
+ 
+    montoInput.addEventListener('input', () => {
+      montoBtns.forEach(b => b.classList.remove('activo'));
+      const val = parseInt(montoInput.value) || 0;
+      state.monto = val;
+      impactoBadge.innerHTML = getImpacto(val);
+    });
+ 
+    function goToStep(idx) {
+      panels.forEach((p, i) => {
+        p.classList.toggle('active', i === idx);
+        tabs[i].classList.toggle('active', i === idx);
+        tabs[i].classList.toggle('done', i < idx);
+      });
+      document.getElementById('donationWidget').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+ 
+    document.getElementById('back2').addEventListener('click', () => goToStep(0));
+    document.getElementById('back3').addEventListener('click', () => goToStep(1));
+ 
+    document.getElementById('next1').addEventListener('click', () => {
+      if (state.monto <= 0) { showToast('Ingresa un monto válido', '#e53e3e'); return; }
+      goToStep(1);
+    });
+ 
+    function validarCampo(el, condicion) {
+      el.closest('.form-group').classList.toggle('has-error', condicion);
+      return !condicion;
+    }
+ 
+    document.getElementById('next2').addEventListener('click', () => {
+      const nombre   = document.getElementById('nombre');
+      const apellido = document.getElementById('apellido');
+      const correo   = document.getElementById('correo');
+      const edad     = document.getElementById('edad');
+      const sexo     = document.getElementById('sexo');
+      const pais     = document.getElementById('pais');
+      const emailOk  = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(correo.value.trim());
+      const edadVal  = parseInt(edad.value);
+ 
+      const ok = [
+        validarCampo(nombre,   nombre.value.trim() === ''),
+        validarCampo(apellido, apellido.value.trim() === ''),
+        validarCampo(correo,   !emailOk),
+        validarCampo(edad,     isNaN(edadVal) || edadVal < 18 || edadVal > 99),
+        validarCampo(sexo,     sexo.value === ''),
+        validarCampo(pais,     pais.value === ''),
+      ].every(Boolean);
+ 
+      if (ok) {
+        const freqLabel = { 'una-vez': 'Una sola vez', 'mensual': 'Mensual', 'anual': 'Anual' }[state.frecuencia];
+        resumenBox.innerHTML = `
+          <div class="resumen-row"><span>Donante:</span><strong>${nombre.value.trim()} ${apellido.value.trim()}</strong></div>
+          <div class="resumen-row"><span>Correo:</span><strong>${correo.value.trim()}</strong></div>
+          <div class="resumen-row"><span>País:</span><strong>${pais.value}</strong></div>
+          <div class="resumen-row"><span>Frecuencia:</span><strong>${freqLabel}</strong></div>
+          <div class="resumen-row resumen-total"><span>Total a aportar:</span><strong>$${state.monto.toLocaleString('es-MX')} MXN</strong></div>
+        `;
+        goToStep(2);
+      }
+    });
+ 
+    document.getElementById('btnConfirmar').addEventListener('click', async () => {
+      const aviso = document.getElementById('avisoPrivacidad');
+      if (!aviso.checked) { showToast('Acepta el aviso de privacidad para continuar', '#e53e3e'); return; }
+      const btn = document.getElementById('btnConfirmar');
+      btn.disabled = true;
+      sendingOverlay.classList.add('visible');
+      const datos = {
+        nombre:     document.getElementById('nombre').value.trim(),
+        apellido:   document.getElementById('apellido').value.trim(),
+        correo:     document.getElementById('correo').value.trim(),
+        edad:       document.getElementById('edad').value,
+        sexo:       document.getElementById('sexo').value,
+        pais:       document.getElementById('pais').value,
+        estado:     document.getElementById('estado').value.trim(),
+        motivacion: document.getElementById('motivacion').value.trim(),
+        monto:      state.monto,
+        frecuencia: state.frecuencia,
+      };
+      await enviarASheets(datos);
+      sendingOverlay.classList.remove('visible');
+      btn.disabled = false;
+      showToast('✓ ¡Gracias por tu apoyo! Redirigiendo…');
+      setTimeout(() => { window.location.href = 'https://alwayson.recaudia.com/christelhousefeenicia/donor'; }, 1800);
+    });
+  });
+</script>
+</body>
+</html><!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Fundación Estudiantil Christel House</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  
+  <style>
+    :root {
+      --verde:      #1B3A6B;
+      --verde-claro:#2a5298;
+      --dorado:     #F26522;
+      --crema:      #f5f7fa;
+      --oscuro:     #0f1f3d;
+      --gris:       #5a6a80;
+      --blanco:     #ffffff;
+      --radio:      14px;
+      --sombra:     0 8px 32px rgba(27,58,107,.13);
+      --error:      #e53e3e;
+      --success:    #38a169;
+    }
+ 
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--crema);
+      color: var(--oscuro);
+      overflow-x: hidden;
+    }
+ 
+    /* ── NAVBAR ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 6vw;
+      background: rgba(245,247,250,.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(27,58,107,.12);
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px;
+      text-decoration: none;
+    }
+    /* Logo CH inline SVG */
+    .ch-logo-svg {
+      height: 44px; width: auto;
+    }
+    .nav-logo-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem; color: var(--verde);
+      font-weight: 700; line-height: 1.2;
+      display: flex; flex-direction: column;
+    }
+    .nav-logo-text span:last-child { font-size: .72rem; font-weight: 400; opacity: .6; letter-spacing: .04em; }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a {
+      text-decoration: none; color: var(--oscuro);
+      font-size: .875rem; font-weight: 500; opacity: .75; transition: opacity .2s;
+    }
+    .nav-links a:hover { opacity: 1; }
+    .btn-nav {
+      background: var(--verde); color: var(--blanco) !important;
+      opacity: 1 !important; padding: 9px 22px; border-radius: 50px;
+      font-weight: 600 !important; transition: background .2s, transform .15s !important;
+    }
+    .btn-nav:hover { background: var(--verde-claro); transform: translateY(-1px); }
+ 
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding-top: 76px; /* altura del nav */
+      position: relative; overflow: hidden;
+      background: var(--crema);
+    }
+    .hero-left {
+      display: flex; align-items: center;
+      padding: 60px 6vw 60px 6vw;
+      background:
+        radial-gradient(ellipse 80% 60% at 30% 50%, rgba(42,82,152,.1) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 50% at 10% 80%, rgba(242,101,34,.08) 0%, transparent 60%);
+    }
+    .hero-inner { max-width: 560px; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(27,58,107,.1); color: var(--verde);
+      font-size: .78rem; font-weight: 600; letter-spacing: .05em;
+      text-transform: uppercase; padding: 6px 14px; border-radius: 50px;
+      margin-bottom: 24px; animation: fadeUp .6s ease both;
+    }
+    .hero-badge::before { content: '●'; font-size: .5rem; }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 4vw, 3.6rem); line-height: 1.15;
+      color: var(--oscuro); animation: fadeUp .6s .1s ease both;
+    }
+    .hero h1 em { font-style: italic; color: var(--verde); }
+    .hero p {
+      margin-top: 18px; font-size: 1.05rem; line-height: 1.7;
+      color: var(--gris); max-width: 480px; animation: fadeUp .6s .2s ease both;
+    }
+    .hero-ctas {
+      margin-top: 36px; display: flex; gap: 14px; flex-wrap: wrap;
+      animation: fadeUp .6s .3s ease both;
+    }
+    /* Hero imagen derecha */
+    .hero-right {
+      position: relative; overflow: hidden;
+    }
+    .hero-right img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center top;
+      display: block;
+    }
+    /* overlay sutil para suavizar el corte */
+    .hero-right::before {
+      content: '';
+      position: absolute; left: 0; top: 0; bottom: 0; width: 60px; z-index: 1;
+      background: linear-gradient(to right, var(--crema), transparent);
+    }
+ 
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--verde); color: var(--blanco);
+      padding: 14px 32px; border-radius: 50px;
+      font-weight: 600; font-size: .95rem; text-decoration: none;
+      box-shadow: 0 4px 20px rgba(27,58,107,.35);
+      transition: background .2s, transform .15s, box-shadow .2s;
+    }
+    .btn-primary:hover { background: var(--verde-claro); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(27,58,107,.4); }
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 8px;
+      border: 2px solid rgba(27,58,107,.3); color: var(--verde);
+      padding: 13px 28px; border-radius: 50px; font-weight: 600; font-size: .95rem;
+      text-decoration: none; transition: border-color .2s, background .2s;
+    }
+    .btn-secondary:hover { border-color: var(--verde); background: rgba(27,58,107,.05); }
+ 
+    /* ── STATS ── */
+    .stats-bar {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      background: var(--verde); color: var(--blanco);
+    }
+    .stat-item {
+      padding: 28px 24px; text-align: center;
+      border-right: 1px solid rgba(255,255,255,.15);
+      animation: fadeUp .6s ease both;
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-num { font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 700; }
+    .stat-label { font-size: .8rem; opacity: .75; margin-top: 4px; letter-spacing: .04em; text-transform: uppercase; }
+ 
+    /* ── SECCIONES ── */
+    section { padding: 90px 6vw; }
+    .bg-alt { background: #edf1f8; }
+    h2.section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.7rem, 3vw, 2.5rem); color: var(--oscuro); margin-bottom: 10px;
+    }
+    .section-sub { color: var(--gris); font-size: .95rem; max-width: 520px; line-height: 1.6; margin-bottom: 48px; }
+ 
+    /* ── NOSOTROS ── */
+    .nosotros-container { max-width: 760px; margin: 0 auto; text-align: center; }
+    .nosotros-container p { color: var(--gris); line-height: 1.8; font-size: .97rem; margin-bottom: 16px; text-align: left; }
+    .nosotros-container .section-sub { text-align: center; margin-left: auto; margin-right: auto; }
+ 
+    /* ── FUNDADORA ── */
+    .fundadora-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+    .fundadora-img-wrap {
+      border-radius: 20px; overflow: hidden; box-shadow: var(--sombra);
+      aspect-ratio: 4/5; background: linear-gradient(135deg, #c8d6e8, #a8bfd4);
+      display: flex; align-items: center; justify-content: center;
+      position: relative;
+    }
+    .fundadora-img-wrap img { width: 100%; height: 100%; object-fit: cover; object-position: center 15%; display: block; }
+    .fundadora-img-placeholder {
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 12px; color: var(--verde); text-align: center; padding: 32px;
+    }
+    .fundadora-img-placeholder svg { opacity: .5; }
+    .fundadora-img-placeholder p { font-size: .85rem; opacity: .6; line-height: 1.5; }
+    .fundadora-text blockquote {
+      font-family: 'Playfair Display', serif; font-size: 1.3rem; font-style: italic;
+      color: var(--verde); border-left: 3px solid var(--dorado);
+      padding-left: 20px; margin: 24px 0; line-height: 1.5;
+    }
+    .fundadora-text p { color: var(--gris); line-height: 1.8; font-size: .97rem; margin-bottom: 14px; }
+ 
+    /* ── TESTIMONIOS ── */
+    .testimonios-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .testimonio-card {
+      background: var(--blanco); border-radius: var(--radio);
+      padding: 32px; box-shadow: var(--sombra); position: relative;
+    }
+    .testimonio-card::before {
+      content: '"'; font-family: 'Playfair Display', serif;
+      font-size: 5rem; line-height: 1; color: rgba(27,58,107,.12);
+      position: absolute; top: 8px; left: 24px; pointer-events: none;
+    }
+    .testimonio-card p { font-size: .97rem; color: var(--oscuro); line-height: 1.7; font-style: italic; margin-bottom: 20px; }
+ 
+    /* ── SECCIÓN DONAR ── */
+    #donar {
+      background: linear-gradient(135deg, #0f1f3d 0%, #1B3A6B 100%);
+      color: var(--blanco); text-align: center;
+    }
+    #donar h2.section-title { color: var(--blanco); }
+    #donar .section-sub { color: rgba(255,255,255,.6); margin: 0 auto 48px; }
+ 
+    .equiv-wrap { max-width: 720px; margin: 0 auto 40px; }
+    .equiv-titulo { font-size: .78rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.45); margin-bottom: 14px; }
+    .equiv-tabla { width: 100%; border-collapse: collapse; border-radius: 14px; overflow: hidden; font-size: .9rem; }
+    .equiv-tabla thead tr { background: var(--dorado); color: var(--blanco); }
+    .equiv-tabla thead th { padding: 14px 18px; text-align: center; font-weight: 700; font-size: .8rem; letter-spacing: .05em; text-transform: uppercase; }
+    .equiv-tabla tbody tr { background: rgba(255,255,255,.06); border-bottom: 1px solid rgba(255,255,255,.08); transition: background .2s; }
+    .equiv-tabla tbody tr:hover { background: rgba(255,255,255,.11); }
+    .equiv-tabla tbody td { padding: 13px 18px; text-align: center; color: rgba(255,255,255,.85); }
+    .equiv-monto { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: var(--dorado) !important; }
+    .equiv-row-highlight { background: rgba(242,101,34,.12) !important; }
+    .equiv-row-highlight .equiv-monto { font-size: 1.2rem; }
+ 
+    /* ── WIDGET ── */
+    .donation-widget {
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.15);
+      backdrop-filter: blur(12px);
+      border-radius: 24px;
+      max-width: 560px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+    .steps-header { display: flex; border-bottom: 1px solid rgba(255,255,255,.1); }
+    .step-tab {
+      flex: 1; padding: 16px 8px; text-align: center;
+      font-size: .75rem; font-weight: 600; letter-spacing: .06em;
+      text-transform: uppercase; color: rgba(255,255,255,.35);
+      border-bottom: 3px solid transparent; transition: color .3s, border-color .3s;
+    }
+    .step-tab.active { color: var(--dorado); border-bottom-color: var(--dorado); }
+    .step-tab.done { color: rgba(255,255,255,.6); }
+ 
+    .step-panel { display: none; padding: 36px 40px; text-align: left; }
+    .step-panel.active { display: block; }
+ 
+    .freq-tabs {
+      display: flex; gap: 8px; margin-bottom: 28px;
+      background: rgba(255,255,255,.06); border-radius: 50px; padding: 4px;
+    }
+    .freq-btn {
+      flex: 1; padding: 10px; border-radius: 50px;
+      border: none; cursor: pointer; font-family: 'DM Sans', sans-serif;
+      font-size: .85rem; font-weight: 600;
+      background: transparent; color: rgba(255,255,255,.55);
+      transition: background .2s, color .2s;
+    }
+    .freq-btn.active { background: var(--verde-claro); color: var(--blanco); }
+ 
+    .montos-rapidos { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 16px; }
+    .monto-btn {
+      padding: 11px 8px; border-radius: 10px;
+      border: 1.5px solid rgba(255,255,255,.2);
+      background: rgba(255,255,255,.05); color: rgba(255,255,255,.8);
+      font-family: 'DM Sans', sans-serif; font-size: .88rem; font-weight: 600;
+      cursor: pointer; transition: all .2s; text-align: center;
+    }
+    .monto-btn:hover { border-color: var(--dorado); color: var(--blanco); }
+    .monto-btn.activo { background: var(--dorado); border-color: var(--dorado); color: var(--oscuro); }
+ 
+    .monto-custom-wrap { position: relative; }
+    .monto-custom-wrap span {
+      position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+      color: rgba(255,255,255,.5); font-weight: 600;
+    }
+    .monto-custom-wrap input { padding-left: 30px !important; }
+ 
+    .impacto-badge {
+      background: rgba(242,101,34,.15); border: 1px solid rgba(242,101,34,.3);
+      border-radius: 10px; padding: 12px 16px; margin-top: 16px;
+      font-size: .875rem; color: rgba(255,255,255,.8); line-height: 1.5;
+      min-height: 48px; transition: all .3s;
+    }
+    .impacto-badge strong { color: var(--dorado); }
+ 
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .form-group { margin-bottom: 16px; }
+    .form-group label {
+      display: block; font-size: .78rem; font-weight: 600;
+      color: rgba(255,255,255,.55); margin-bottom: 7px;
+      text-transform: uppercase; letter-spacing: .05em;
+    }
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      background: rgba(255,255,255,.08);
+      border: 1.5px solid rgba(255,255,255,.15);
+      border-radius: 10px; padding: 13px 16px;
+      color: var(--blanco); font-size: .95rem;
+      font-family: 'DM Sans', sans-serif;
+      transition: border-color .2s, background .2s; outline: none;
+      appearance: none; -webkit-appearance: none;
+    }
+    .form-group select option { background: #1B3A6B; color: #fff; }
+    .form-group input::placeholder { color: rgba(255,255,255,.3); }
+    .form-group input:focus,
+    .form-group select:focus { border-color: var(--dorado); background: rgba(255,255,255,.12); }
+    .form-group.has-error input,
+    .form-group.has-error select { border-color: var(--error); }
+    .error-msg { font-size: .75rem; color: #fc8181; margin-top: 5px; display: none; }
+    .form-group.has-error .error-msg { display: block; }
+ 
+    .select-wrap { position: relative; }
+    .select-wrap::after {
+      content: '▾'; position: absolute; right: 14px; top: 50%;
+      transform: translateY(-50%); color: rgba(255,255,255,.4);
+      pointer-events: none; font-size: .9rem;
+    }
+ 
+    .resumen-box {
+      background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.15);
+      border-radius: 14px; padding: 20px; margin-bottom: 20px;
+    }
+    .resumen-row {
+      display: flex; justify-content: space-between;
+      font-size: .9rem; padding: 6px 0;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      color: rgba(255,255,255,.75);
+    }
+    .resumen-row:last-child { border: none; }
+    .resumen-row strong { color: var(--blanco); }
+    .resumen-total { font-size: 1.1rem; font-weight: 700; }
+    .resumen-total strong { color: var(--dorado); font-family: 'Playfair Display', serif; font-size: 1.4rem; }
+ 
+    .check-group { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 20px; }
+    .check-group input[type="checkbox"] {
+      width: 18px; height: 18px; margin-top: 2px; flex-shrink: 0;
+      accent-color: var(--dorado);
+    }
+    .check-group label {
+      font-size: .82rem; color: rgba(255,255,255,.55); line-height: 1.5;
+      margin: 0; text-transform: none; letter-spacing: 0;
+    }
+    .check-group a { color: var(--dorado); text-decoration: underline; cursor: pointer; }
+ 
+    .btn-step-next,
+    .btn-step-back {
+      display: inline-flex; align-items: center; gap: 8px;
+      border: none; cursor: pointer; border-radius: 50px;
+      font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: .95rem;
+      transition: all .2s;
+    }
+    .btn-step-next {
+      width: 100%; justify-content: center;
+      background: var(--dorado); color: var(--oscuro);
+      padding: 16px 32px;
+      box-shadow: 0 4px 20px rgba(242,101,34,.35);
+    }
+    .btn-step-next:hover:not(:disabled) { background: #f47a3a; transform: translateY(-2px); box-shadow: 0 8px 28px rgba(242,101,34,.5); }
+    .btn-step-next:disabled { opacity: .6; cursor: not-allowed; transform: none; }
+    .btn-step-back {
+      background: transparent; color: rgba(255,255,255,.5);
+      padding: 10px 0; font-size: .85rem; margin-bottom: 16px;
+    }
+    .btn-step-back:hover { color: var(--blanco); }
+ 
+    /* Estado de envío */
+    .sending-overlay {
+      display: none; position: absolute; inset: 0;
+      background: rgba(15,31,61,.85); backdrop-filter: blur(6px);
+      border-radius: 24px; align-items: center; justify-content: center;
+      flex-direction: column; gap: 16px; z-index: 10;
+    }
+    .sending-overlay.visible { display: flex; }
+    .spinner {
+      width: 40px; height: 40px; border: 3px solid rgba(255,255,255,.2);
+      border-top-color: var(--dorado); border-radius: 50%;
+      animation: spin .8s linear infinite;
+    }
+    .sending-overlay p { color: rgba(255,255,255,.8); font-size: .9rem; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+ 
+    /* Toast de éxito */
+    .toast {
+      position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%) translateY(80px);
+      background: var(--success); color: #fff; padding: 14px 28px;
+      border-radius: 50px; font-weight: 600; font-size: .9rem;
+      box-shadow: 0 8px 32px rgba(0,0,0,.25); z-index: 200;
+      transition: transform .4s cubic-bezier(.34,1.56,.64,1);
+      white-space: nowrap;
+    }
+    .toast.show { transform: translateX(-50%) translateY(0); }
+ 
+    .nota-seguridad {
+      text-align: center; margin-top: 16px; color: rgba(255,255,255,.35);
+      font-size: .75rem; display: flex; align-items: center; justify-content: center; gap: 6px;
+    }
+ 
+    /* ── MODAL AVISO DE PRIVACIDAD ── */
+    .modal-overlay {
+      display: none; position: fixed; inset: 0; z-index: 300;
+      background: rgba(10,20,40,.7); backdrop-filter: blur(6px);
+      align-items: center; justify-content: center; padding: 20px;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal-box {
+      background: #fff; border-radius: 20px; max-width: 600px; width: 100%;
+      max-height: 85vh; overflow-y: auto;
+      box-shadow: 0 20px 60px rgba(0,0,0,.35);
+      animation: modalIn .3s ease;
+    }
+    @keyframes modalIn { from { opacity:0; transform:translateY(20px) scale(.97); } to { opacity:1; transform:none; } }
+    .modal-header {
+      position: sticky; top: 0; background: var(--verde); color: #fff;
+      padding: 20px 28px; border-radius: 20px 20px 0 0;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .modal-header h3 { font-family: 'Playfair Display', serif; font-size: 1.2rem; }
+    .modal-close {
+      background: rgba(255,255,255,.15); border: none; color: #fff;
+      width: 32px; height: 32px; border-radius: 50%; cursor: pointer;
+      font-size: 1rem; display: flex; align-items: center; justify-content: center;
+      transition: background .2s;
+    }
+    .modal-close:hover { background: rgba(255,255,255,.3); }
+    .modal-body { padding: 28px; }
+    .modal-body .seguridad-badge {
+      background: #f0fdf4; border: 1.5px solid #86efac; border-radius: 12px;
+      padding: 14px 18px; margin-bottom: 24px;
+      display: flex; align-items: flex-start; gap: 12px;
+    }
+    .seguridad-badge .icon { font-size: 1.4rem; flex-shrink: 0; margin-top: 2px; }
+    .seguridad-badge p { font-size: .88rem; color: #166534; line-height: 1.6; margin: 0; }
+    .seguridad-badge p strong { color: #15803d; }
+    .modal-body h4 {
+      font-family: 'Playfair Display', serif; color: var(--oscuro);
+      font-size: 1rem; margin: 20px 0 8px; border-bottom: 1px solid #e5e7eb; padding-bottom: 6px;
+    }
+    .modal-body p, .modal-body li {
+      font-size: .875rem; color: var(--gris); line-height: 1.7; margin-bottom: 8px;
+    }
+    .modal-body ul { padding-left: 18px; }
+    .modal-body li { margin-bottom: 4px; }
+    .modal-footer {
+      padding: 20px 28px; border-top: 1px solid #f1f5f9;
+      display: flex; justify-content: flex-end;
+    }
+    .modal-btn-ok {
+      background: var(--verde); color: #fff; border: none;
+      padding: 11px 28px; border-radius: 50px; font-weight: 700;
+      font-family: 'DM Sans', sans-serif; font-size: .9rem; cursor: pointer;
+      transition: background .2s;
+    }
+    .modal-btn-ok:hover { background: var(--verde-claro); }
+ 
+    /* ── FOOTER ── */
+    footer {
+      background: var(--oscuro); color: rgba(255,255,255,.4);
+      text-align: center; padding: 28px; font-size: .82rem;
+      border-top: 1px solid rgba(255,255,255,.06);
+    }
+    footer strong { color: rgba(255,255,255,.7); }
+ 
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(22px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+ 
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hero { grid-template-columns: 1fr; }
+      .hero-right { height: 55vw; }
+      .hero-left { padding: 40px 6vw; }
+      .fundadora-grid, .testimonios-grid { grid-template-columns: 1fr; }
+      .stats-bar { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .step-panel { padding: 28px 24px; }
+      .montos-rapidos { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+ 
+<!-- TOAST -->
+<div class="toast" id="toast">✓ Datos guardados correctamente</div>
+ 
+<!-- MODAL AVISO DE PRIVACIDAD -->
+<div class="modal-overlay" id="modalPrivacidad">
+  <div class="modal-box">
+    <div class="modal-header">
+      <h3>🔒 Aviso de Privacidad</h3>
+      <button class="modal-close" id="cerrarModal">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="seguridad-badge">
+        <span class="icon">🛡️</span>
+        <p><strong>Tu información está segura.</strong> Los datos que compartes con nosotros son tratados con estricta confidencialidad y sólo se utilizan para los fines descritos en este aviso. Nunca vendemos ni compartimos tu información con terceros con fines comerciales.</p>
+      </div>
+ 
+      <h4>Responsable del tratamiento</h4>
+      <p>La <strong>Fundación Estudiantil Christel House México</strong> (en adelante "la Fundación"), con domicilio en la Ciudad de México, es responsable del tratamiento de tus datos personales.</p>
+ 
+      <h4>Datos que recopilamos</h4>
+      <ul>
+        <li>Nombre y apellido</li>
+        <li>Correo electrónico</li>
+        <li>Edad y sexo</li>
+        <li>País y estado de residencia</li>
+        <li>Motivación (campo opcional)</li>
+        <li>Monto y frecuencia de donación seleccionados</li>
+      </ul>
+ 
+      <h4>Finalidad del tratamiento</h4>
+      <p>Tus datos son utilizados exclusivamente para:</p>
+      <ul>
+        <li>Registrar y procesar tu donación de forma segura.</li>
+        <li>Enviarte confirmaciones y actualizaciones sobre el impacto de tu aportación.</li>
+        <li>Generar reportes estadísticos anónimos sobre el perfil de nuestros donantes (proyecto escolar).</li>
+        <li>Cumplir con obligaciones legales y fiscales aplicables.</li>
+      </ul>
+ 
+      <h4>Seguridad de tus datos</h4>
+      <p>Implementamos medidas técnicas y organizativas para proteger tus datos frente a accesos no autorizados, pérdida o divulgación. Tu información viaja a través de conexiones cifradas (HTTPS/TLS).</p>
+ 
+      <h4>Derechos ARCO</h4>
+      <p>En cualquier momento puedes ejercer tus derechos de <strong>Acceso, Rectificación, Cancelación u Oposición</strong> (ARCO) escribiéndonos a: <strong>privacidad@christelhousemx.org</strong></p>
+ 
+      <h4>Cambios a este aviso</h4>
+      <p>Cualquier modificación a este aviso será publicada en nuestro sitio web con al menos 10 días de anticipación.</p>
+    </div>
+    <div class="modal-footer">
+      <button class="modal-btn-ok" id="aceptarPrivacidad">Entendido ✓</button>
+    </div>
+  </div>
+</div>
+ 
+<nav>
+  <a class="nav-logo" href="#">
+    <!-- Logo CH inline - adaptado de los colores de Christel House -->
+    <svg class="ch-logo-svg" viewBox="0 0 120 50" xmlns="http://www.w3.org/2000/svg">
+      <!-- Círculo naranja (la "C") -->
+      <circle cx="23" cy="25" r="22" fill="#F26522"/>
+      <!-- Mordida para crear la "C" -->
+      <polygon points="23,3 50,3 50,47 23,47" fill="#1B3A6B"/>
+      <!-- Rectángulo azul (la "h") -->
+      <rect x="32" y="8" width="18" height="34" rx="3" fill="#2a5298"/>
+      <!-- Parte baja del brazo derecho de la h -->
+      <rect x="42" y="25" width="12" height="17" rx="3" fill="#2a5298"/>
+    </svg>
+    <div class="nav-logo-text">
+      <span>Christel House</span>
+      <span>México</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#nosotros">Nosotros</a></li>
+    <li><a href="#fundadora">Fundadora</a></li>
+    <li><a href="#testimonios">Testimonios</a></li>
+    <li><a href="#donar" class="btn-nav">Donar ahora</a></li>
+  </ul>
+</nav>
+ 
+<!-- HERO con imagen a la derecha -->
+<header class="hero">
+  <div class="hero-left">
+    <div class="hero-inner">
+      <div class="hero-badge">Fundación Estudiantil</div>
+      <h1>Educación que<br><em>transforma vidas</em></h1>
+      <p>Apoyamos a estudiantes de bajos recursos con becas, útiles escolares y tecnología. Cada donación cambia una historia.</p>
+      <div class="hero-ctas">
+        <a href="#donar" class="btn-primary">♥ Apoyar la causa</a>
+        <a href="#nosotros" class="btn-secondary">Conocer más</a>
+      </div>
+    </div>
+  </div>
+  <!-- Imagen grupal de estudiantes Christel House -->
+  <div class="hero-right">
+    <img src="students.png" alt="Estudiantes Christel House México" />
+  </div>
+</header>
+ 
+<div class="stats-bar">
+  <div class="stat-item"><div class="stat-num">+1,200</div><div class="stat-label">Estudiantes apoyados</div></div>
+  <div class="stat-item"><div class="stat-num">94%</div><div class="stat-label">Recursos a programas</div></div>
+  <div class="stat-item"><div class="stat-num">28 años</div><div class="stat-label">De impacto continuo</div></div>
+</div>
+ 
+<section id="nosotros">
+  <div class="nosotros-container">
+    <h2 class="section-title">¿Quiénes somos?</h2>
+    <p class="section-sub">Una iniciativa estudiantil con un propósito real.</p>
+    <p>Somos una comunidad comprometida con brindar oportunidades educativas, acompañamiento y herramientas para que cada estudiante alcance su máximo potencial y construya un mejor futuro.</p>
+    <p>Creemos que ningún estudiante debe abandonar sus estudios por falta de recursos. Por eso trabajamos de manera transparente para que cada peso donado llegue directamente a quienes más lo necesitan.</p>
+  </div>
+</section>
+ 
+<section id="fundadora" class="bg-alt">
+  <div class="fundadora-grid">
+    <div class="fundadora-img-wrap">
+      <img
+        src="christel-dehaan.jpg"
+        alt="Christel DeHaan, fundadora"
+        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+      >
+      <div class="fundadora-img-placeholder" style="display:none;">
+        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+          <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+        </svg>
+        <p>Coloca aquí la imagen de<br><strong>Christel DeHaan</strong></p>
+      </div>
+    </div>
+    <div class="fundadora-text">
+      <h2 class="section-title">Sobre la Fundadora</h2>
+      <blockquote>"La educación es el camino más poderoso para romper el ciclo de la pobreza."</blockquote>
+      <p><strong>Christel DeHaan</strong> fue una empresaria que dedicó su vida a generar oportunidades reales para jóvenes en situación vulnerable.</p>
+      <p>Su visión dio origen a Christel House, una institución que hoy representa esperanza, equidad y futuro para miles de estudiantes alrededor del mundo.</p>
+      <p>"La educación puede cambiar una vida, pero una oportunidad puede cambiar generaciones." Miles de estudiantes tienen sueños enormes, pero muchos enfrentan obstáculos que parecen imposibles de superar. En Christel House México trabajamos para que ningún joven abandone sus metas por falta de recursos.</p>
+    </div>
+  </div>
+</section>
+ 
+<section id="testimonios">
+  <h2 class="section-title" style="text-align:center;">Testimonios</h2>
+  <p class="section-sub" style="text-align:center; margin: 0 auto 48px;">Lo que dicen quienes han vivido el cambio.</p>
+  <div class="testimonios-grid">
+    <div class="testimonio-card">
+      <p>"Cristel House me ha enseñado que los sueños sí se pueden alcanzar con esfuerzo y apoyo. Aquí he encontrado personas que creen en mí y me motivan a seguir creciendo cada día."</p>
+      <strong style="color: var(--verde); font-size: .88rem;">— Regina Torres, Alumna.</strong>
+    </div>
+    <div class="testimonio-card">
+      <p>"He visto cómo los estudiantes apoyados por Christel House desarrollan confianza, compromiso y liderazgo. El impacto de este programa va más allá de lo académico; transforma vidas y abre nuevas oportunidades para el futuro."</p>
+      <strong style="color: var(--verde); font-size: .88rem;">— Armando Yáñez, Docente.</strong>
+    </div>
+  </div>
+</section>
+ 
+<section id="donar">
+  <h2 class="section-title">Haz tu donación</h2>
+  <p class="section-sub">Con tu apoyo, transformamos la vida de un niño. Conoce lo que cada monto representa.</p>
+ 
+  <div class="equiv-wrap">
+    <p class="equiv-titulo">¿A qué equivale tu donación mensual?</p>
+    <table class="equiv-tabla">
+      <thead>
+        <tr><th>Monto</th><th>Programa</th><th>Periodo</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="equiv-monto">$200</td><td>Salud Física y Preventiva</td><td>Mensual</td></tr>
+        <tr><td class="equiv-monto">$485</td><td>Programa de Alto Nivel de Inglés</td><td>Mensual</td></tr>
+        <tr><td class="equiv-monto">$600</td><td>Uniforme</td><td>Anual</td></tr>
+        <tr><td class="equiv-monto">$750</td><td>Apoyo Psicológico</td><td>Mensual</td></tr>
+        <tr><td class="equiv-monto">$1,000</td><td>Nutrición</td><td>Mensual</td></tr>
+        <tr><td class="equiv-monto">$1,280</td><td>Preparación en Tecnología</td><td>Anual</td></tr>
+        <tr class="equiv-row-highlight"><td class="equiv-monto">$8,560</td><td>Programa Integral</td><td>Mensual</td></tr>
+      </tbody>
+    </table>
+  </div>
+ 
+  <div class="donation-widget" id="donationWidget" style="position:relative;">
+ 
+    <div class="sending-overlay" id="sendingOverlay">
+      <div class="spinner"></div>
+      <p>Guardando tu información…</p>
+    </div>
+ 
+    <div class="steps-header">
+      <div class="step-tab active" id="tab1">1. Tu donación</div>
+      <div class="step-tab" id="tab2">2. Tus datos</div>
+      <div class="step-tab" id="tab3">3. Confirmar</div>
+    </div>
+ 
+    <!-- PASO 1: Monto -->
+    <div class="step-panel active" id="panel1">
+      <p style="font-size:.82rem; color:rgba(255,255,255,.45); text-transform:uppercase; letter-spacing:.06em; margin-bottom:14px;">¿Con qué frecuencia quieres donar?</p>
+      <div class="freq-tabs">
+        <button class="freq-btn active" data-freq="una-vez">Una vez</button>
+        <button class="freq-btn" data-freq="mensual">Mensual</button>
+        <button class="freq-btn" data-freq="anual">Anual</button>
+      </div>
+      <p style="font-size:.82rem; color:rgba(255,255,255,.45); text-transform:uppercase; letter-spacing:.06em; margin-bottom:10px;">Elige un monto</p>
+      <div class="montos-rapidos">
+        <button class="monto-btn" data-monto="200">$200</button>
+        <button class="monto-btn" data-monto="485">$485</button>
+        <button class="monto-btn" data-monto="750">$750</button>
+        <button class="monto-btn activo" data-monto="1000">$1,000</button>
+        <button class="monto-btn" data-monto="1280">$1,280</button>
+        <button class="monto-btn" data-monto="2500">$2,500</button>
+        <button class="monto-btn" data-monto="5000">$5,000</button>
+        <button class="monto-btn" data-monto="8560">$8,560</button>
+      </div>
+      <div class="form-group monto-custom-wrap" style="margin-top:4px;">
+        <label for="montoInput">O ingresa otro monto (MXN)</label>
+        <span>$</span>
+        <input type="number" id="montoInput" placeholder="Otro monto" min="1" value="1000">
+      </div>
+      <div class="impacto-badge" id="impactoBadge">
+        💡 <strong>$1,000</strong> cubre la nutrición de un alumno durante un mes.
+      </div>
+      <button class="btn-step-next" id="next1" style="margin-top:24px;">Continuar →</button>
+    </div>
+ 
+    <!-- PASO 2: Datos personales -->
+    <div class="step-panel" id="panel2">
+      <button class="btn-step-back" id="back2">← Regresar</button>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="nombre">Nombre</label>
+          <input type="text" id="nombre" placeholder="Tu nombre" autocomplete="given-name">
+          <p class="error-msg">Campo requerido</p>
+        </div>
+        <div class="form-group">
+          <label for="apellido">Apellido</label>
+          <input type="text" id="apellido" placeholder="Tu apellido" autocomplete="family-name">
+          <p class="error-msg">Campo requerido</p>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="correo">Correo electrónico</label>
+        <input type="email" id="correo" placeholder="tucorreo@ejemplo.com" autocomplete="email">
+        <p class="error-msg">Correo inválido</p>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="edad">Edad</label>
+          <input type="number" id="edad" placeholder="Ej. 32" min="18" max="99" autocomplete="off">
+          <p class="error-msg">18–99 años requerido</p>
+        </div>
+        <div class="form-group">
+          <label for="sexo">Sexo</label>
+          <div class="select-wrap">
+            <select id="sexo">
+              <option value="">Seleccionar</option>
+              <option value="Femenino">Femenino</option>
+              <option value="Masculino">Masculino</option>
+              <option value="No binario">No binario</option>
+              <option value="Prefiero no decir">Prefiero no decir</option>
+            </select>
+          </div>
+          <p class="error-msg">Campo requerido</p>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="pais">País de residencia</label>
+          <div class="select-wrap">
+            <select id="pais">
+              <option value="">Seleccionar</option>
+              <option value="México" selected>México</option>
+              <option value="Estados Unidos">Estados Unidos</option>
+              <option value="Canadá">Canadá</option>
+              <option value="España">España</option>
+              <option value="Colombia">Colombia</option>
+              <option value="Argentina">Argentina</option>
+              <option value="Otro">Otro</option>
+            </select>
+          </div>
+          <p class="error-msg">Campo requerido</p>
+        </div>
+        <div class="form-group">
+          <label for="estado">Estado / Provincia</label>
+          <input type="text" id="estado" placeholder="Ej. CDMX" autocomplete="address-level1">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="motivacion">¿Por qué apoyas esta causa? <span style="opacity:.5;">(opcional)</span></label>
+        <input type="text" id="motivacion" placeholder="Tu motivación en una frase">
+      </div>
+      <button class="btn-step-next" id="next2">Revisar mi donación →</button>
+    </div>
+ 
+    <!-- PASO 3: Confirmar -->
+    <div class="step-panel" id="panel3">
+      <button class="btn-step-back" id="back3">← Regresar</button>
+      <p style="font-size:.82rem; color:rgba(255,255,255,.45); text-transform:uppercase; letter-spacing:.06em; margin-bottom:16px;">Resumen de tu donación</p>
+      <div class="resumen-box" id="resumenBox"></div>
+      <div class="check-group">
+        <input type="checkbox" id="avisoPrivacidad">
+        <label for="avisoPrivacidad">
+          He leído y acepto el <a id="linkPrivacidad">aviso de privacidad</a>.
+          Autorizo el registro seguro de mis datos demográficos para fines del proyecto escolar.
+        </label>
+      </div>
+      <button type="button" class="btn-step-next" id="btnConfirmar">🔒 Guardar y proceder al pago</button>
+    </div>
+ 
+  </div>
+  <p class="nota-seguridad">🔒 Conexión segura · Los datos se registran antes de derivar a la plataforma oficial</p>
+</section>
+ 
+<footer>
+  <p>© 2026 <strong>Fundación Estudiantil Christel House</strong> · Proyecto Escolar</p>
+</footer>
+ 
+<script>
+  const GOOGLE_SHEET_URL = 'https://script.google.com/macros/s/AKfycbw3SUua33rgpO0YED8knVijTxAUBFPGzQRgxVLZbs9MIOW8D1uqXq2-91IFqf86Evev/exec';
+  const state = { frecuencia: 'una-vez', monto: 1000 };
+ 
+  const impactoMap = [
+    { min: 1,    max: 199,   txt: 'Cada peso cuenta. Tu donación apoya materiales escolares.' },
+    { min: 200,  max: 484,   txt: '<strong>$200</strong> cubre un mes de <em>Salud Física y Preventiva</em> para un alumno.' },
+    { min: 485,  max: 599,   txt: '<strong>$485</strong> financia un mes del <em>Programa de Inglés</em> de alto nivel.' },
+    { min: 600,  max: 749,   txt: '<strong>$600</strong> costea el <em>uniforme completo</em> de un estudiante por el año.' },
+    { min: 750,  max: 999,   txt: '<strong>$750</strong> paga un mes de <em>Apoyo Psicológico</em> para un joven.' },
+    { min: 1000, max: 1279,  txt: '<strong>$1,000</strong> cubre la <em>nutrición</em> de un alumno durante un mes.' },
+    { min: 1280, max: 8559,  txt: '<strong>$1,280</strong> incluye un año de <em>Preparación en Tecnología</em>.' },
+    { min: 8560, max: Infinity, txt: '🌟 <strong>$8,560</strong> financia el <em>Programa Integral</em> completo de un alumno por un mes.' },
+  ];
+ 
+  function getImpacto(monto) {
+    const hit = impactoMap.find(r => monto >= r.min && monto <= r.max);
+    return hit ? `💡 ${hit.txt}` : '💡 Tu donación hace la diferencia.';
+  }
+ 
+  function showToast(msg, color = '#38a169') {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.style.background = color;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 3500);
+  }
+ 
+  async function enviarASheets(datos) {
+    try {
+      await fetch(GOOGLE_SHEET_URL, {
+        method: 'POST', mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(datos)
+      });
+      return true;
+    } catch (err) { console.error('Error al guardar:', err); return false; }
+  }
+ 
+  document.addEventListener('DOMContentLoaded', () => {
+    const freqBtns   = document.querySelectorAll('.freq-btn');
+    const montoBtns  = document.querySelectorAll('.monto-btn');
+    const montoInput = document.getElementById('montoInput');
+    const impactoBadge = document.getElementById('impactoBadge');
+    const panels = [document.getElementById('panel1'), document.getElementById('panel2'), document.getElementById('panel3')];
+    const tabs   = [document.getElementById('tab1'),   document.getElementById('tab2'),   document.getElementById('tab3')];
+    const sendingOverlay = document.getElementById('sendingOverlay');
+    const resumenBox     = document.getElementById('resumenBox');
+ 
+    /* Modal privacidad */
+    const modalOverlay   = document.getElementById('modalPrivacidad');
+    const linkPrivacidad = document.getElementById('linkPrivacidad');
+    const cerrarModal    = document.getElementById('cerrarModal');
+    const aceptarPriv    = document.getElementById('aceptarPrivacidad');
+ 
+    linkPrivacidad.addEventListener('click', (e) => {
+      e.preventDefault();
+      modalOverlay.classList.add('open');
+    });
+    cerrarModal.addEventListener('click', () => modalOverlay.classList.remove('open'));
+    aceptarPriv.addEventListener('click', () => {
+      modalOverlay.classList.remove('open');
+      document.getElementById('avisoPrivacidad').checked = true;
+    });
+    modalOverlay.addEventListener('click', (e) => {
+      if (e.target === modalOverlay) modalOverlay.classList.remove('open');
+    });
+ 
+    freqBtns.forEach(btn => btn.addEventListener('click', () => {
+      freqBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      state.frecuencia = btn.dataset.freq;
+    }));
+ 
+    montoBtns.forEach(btn => btn.addEventListener('click', () => {
+      montoBtns.forEach(b => b.classList.remove('activo'));
+      btn.classList.add('activo');
+      state.monto = parseInt(btn.dataset.monto);
+      montoInput.value = state.monto;
+      impactoBadge.innerHTML = getImpacto(state.monto);
+    }));
+ 
+    montoInput.addEventListener('input', () => {
+      montoBtns.forEach(b => b.classList.remove('activo'));
+      const val = parseInt(montoInput.value) || 0;
+      state.monto = val;
+      impactoBadge.innerHTML = getImpacto(val);
+    });
+ 
+    function goToStep(idx) {
+      panels.forEach((p, i) => {
+        p.classList.toggle('active', i === idx);
+        tabs[i].classList.toggle('active', i === idx);
+        tabs[i].classList.toggle('done', i < idx);
+      });
+      document.getElementById('donationWidget').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+ 
+    document.getElementById('back2').addEventListener('click', () => goToStep(0));
+    document.getElementById('back3').addEventListener('click', () => goToStep(1));
+ 
+    document.getElementById('next1').addEventListener('click', () => {
+      if (state.monto <= 0) { showToast('Ingresa un monto válido', '#e53e3e'); return; }
+      goToStep(1);
+    });
+ 
+    function validarCampo(el, condicion) {
+      el.closest('.form-group').classList.toggle('has-error', condicion);
+      return !condicion;
+    }
+ 
+    document.getElementById('next2').addEventListener('click', () => {
+      const nombre   = document.getElementById('nombre');
+      const apellido = document.getElementById('apellido');
+      const correo   = document.getElementById('correo');
+      const edad     = document.getElementById('edad');
+      const sexo     = document.getElementById('sexo');
+      const pais     = document.getElementById('pais');
+      const emailOk  = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(correo.value.trim());
+      const edadVal  = parseInt(edad.value);
+ 
+      const ok = [
+        validarCampo(nombre,   nombre.value.trim() === ''),
+        validarCampo(apellido, apellido.value.trim() === ''),
+        validarCampo(correo,   !emailOk),
+        validarCampo(edad,     isNaN(edadVal) || edadVal < 18 || edadVal > 99),
+        validarCampo(sexo,     sexo.value === ''),
+        validarCampo(pais,     pais.value === ''),
+      ].every(Boolean);
+ 
+      if (ok) {
+        const freqLabel = { 'una-vez': 'Una sola vez', 'mensual': 'Mensual', 'anual': 'Anual' }[state.frecuencia];
+        resumenBox.innerHTML = `
+          <div class="resumen-row"><span>Donante:</span><strong>${nombre.value.trim()} ${apellido.value.trim()}</strong></div>
+          <div class="resumen-row"><span>Correo:</span><strong>${correo.value.trim()}</strong></div>
+          <div class="resumen-row"><span>País:</span><strong>${pais.value}</strong></div>
+          <div class="resumen-row"><span>Frecuencia:</span><strong>${freqLabel}</strong></div>
+          <div class="resumen-row resumen-total"><span>Total a aportar:</span><strong>$${state.monto.toLocaleString('es-MX')} MXN</strong></div>
+        `;
+        goToStep(2);
+      }
+    });
+ 
+    document.getElementById('btnConfirmar').addEventListener('click', async () => {
+      const aviso = document.getElementById('avisoPrivacidad');
+      if (!aviso.checked) { showToast('Acepta el aviso de privacidad para continuar', '#e53e3e'); return; }
+      const btn = document.getElementById('btnConfirmar');
+      btn.disabled = true;
+      sendingOverlay.classList.add('visible');
+      const datos = {
+        nombre:     document.getElementById('nombre').value.trim(),
+        apellido:   document.getElementById('apellido').value.trim(),
+        correo:     document.getElementById('correo').value.trim(),
+        edad:       document.getElementById('edad').value,
+        sexo:       document.getElementById('sexo').value,
+        pais:       document.getElementById('pais').value,
+        estado:     document.getElementById('estado').value.trim(),
+        motivacion: document.getElementById('motivacion').value.trim(),
+        monto:      state.monto,
+        frecuencia: state.frecuencia,
+      };
+      await enviarASheets(datos);
+      sendingOverlay.classList.remove('visible');
+      btn.disabled = false;
+      showToast('✓ ¡Gracias por tu apoyo! Redirigiendo…');
+      setTimeout(() => { window.location.href = 'https://alwayson.recaudia.com/christelhousefeenicia/donor'; }, 1800);
+    });
+  });
+</script>
+</body>
 </html>
